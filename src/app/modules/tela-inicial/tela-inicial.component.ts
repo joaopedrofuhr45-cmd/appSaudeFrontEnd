@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../shared/button/button.component';
 
 @Component({
   selector: 'app-tela-inicial',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, ButtonComponent],
   templateUrl: './tela-inicial.component.html',
-  styleUrl: './tela-inicial.component.css'
+  styleUrls: ['./tela-inicial.component.css']
 })
 export class TelaInicialComponent {
 
