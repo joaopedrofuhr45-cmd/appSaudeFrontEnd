@@ -15,3 +15,15 @@
 .btn-perigo { background: #dc2626; color: #fff; }
 .btn-secundario { background: transparent; color: #1a5278; border: 1px solid #1a5278; }
 .btn-sucesso { background: #16a34a; color: #fff; }
+
+.btn-menu {
+  width: 300px;
+  height: 55px;
+  justify-content: flex-start;
+  padding: 0 16px;
+  background: #1a5278;
+  color: #fff;
+  border: 1.5px solid #2e86c1;
+  font-weight: normal;
+  font-size: 16px;
+}

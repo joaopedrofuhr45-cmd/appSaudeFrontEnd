@@ -8,7 +8,7 @@ import {Component, Input} from '@angular/core';
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
-  @Input() variante: 'primario' | 'perigo' | 'secundario' | 'sucesso' = 'primario';
+  @Input() variante: 'primario' | 'perigo' | 'secundario' | 'sucesso' | 'menu' = 'primario';
   @Input() type: 'button' | 'submit' = 'button';
   @Input() disabled = false;
 }

@@ -1,0 +1,21 @@
+<div class="tela">
+  <h1>Login</h1>
+
+  <div class="campo">
+    <label>CPF</label>
+    <input type="text" />
+  </div>
+
+  <div class="campo">
+    <label>Senha</label>
+    <input type="password" />
+  </div>
+
+  <app-button variante="primario">Entrar</app-button>
+
+  @if (perfil === 'paciente') {
+    <a class="cadastrar" routerLink="/cadastro">Cadastrar</a>
+  }
+
+  <a class="voltar" routerLink="/menu-inicial">Voltar</a>
+</div>
