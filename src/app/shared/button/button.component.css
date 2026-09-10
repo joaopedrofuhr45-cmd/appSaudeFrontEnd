@@ -1,0 +1,17 @@
+.btn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.9; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primario { background: #1a5278; color: #fff; }
+.btn-perigo { background: #dc2626; color: #fff; }
+.btn-secundario { background: transparent; color: #1a5278; border: 1px solid #1a5278; }
+.btn-sucesso { background: #16a34a; color: #fff; }
