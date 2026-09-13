@@ -25,11 +25,11 @@ describe('AuthService', () => {
   });
 
   it('deve enviar CPF e senha via POST para /login com withCredentials', () => {
-    service.login({ cpf: '12345678900', senha: 'minhasenha' }).subscribe();
+    service.login({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente' }).subscribe();
 
     const req = httpMock.expectOne(`${apiUrl}/login`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ cpf: '12345678900', senha: 'minhasenha' });
+    expect(req.request.body).toEqual({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente' });
     expect(req.request.withCredentials).toBeTrue();
 
     req.flush(null);

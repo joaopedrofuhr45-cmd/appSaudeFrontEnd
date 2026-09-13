@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.errorMessage = null;
 
     const { cpf, senha } = this.loginForm.value;
-    this.authService.login({ cpf, senha }).subscribe({
+    this.authService.login({ cpf, senha, tipoUsuario: this.perfil }).subscribe({
       next: () => {
         this.IsLoading = false;
         this.router.navigate([`/${this.perfil}/dashboard`]);

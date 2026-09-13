@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, provideRouter } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { LoginComponent } from './login.component';
 import { AuthService } from '../../../service/auth/auth.service';
@@ -8,23 +8,24 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let router: Router;
 
   beforeEach(async () => {
     authServiceSpy = jasmine.createSpyObj('AuthService', ['login']);
-    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
       imports: [LoginComponent],
       providers: [
+        provideRouter([]),
         { provide: AuthService, useValue: authServiceSpy },
-        { provide: Router, useValue: routerSpy },
         { provide: ActivatedRoute, useValue: { snapshot: { data: { perfil: 'paciente' } } } },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -38,8 +39,8 @@ describe('LoginComponent', () => {
     component.loginForm.setValue({ cpf: '12345678900', senha: 'minhasenha' });
     component.onSubmit();
 
-    expect(authServiceSpy.login).toHaveBeenCalledWith({ cpf: '12345678900', senha: 'minhasenha' });
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/paciente/dashboard']);
+    expect(authServiceSpy.login).toHaveBeenCalledWith({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente'});
+    expect(router.navigate).toHaveBeenCalledWith(['/paciente/dashboard']);
     expect(component.errorMessage).toBeNull();
     expect(component.IsLoading).toBeFalse();
   });
@@ -52,6 +53,6 @@ describe('LoginComponent', () => {
 
     expect(component.errorMessage).toBe('CPF ou senha inválidos');
     expect(component.IsLoading).toBeFalse();
-    expect(routerSpy.navigate).not.toHaveBeenCalled();
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 });
