@@ -8,36 +8,42 @@
   </div>
 
   <div class="painel-form">
-    <div class="card-login">
+    <form class="card-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h1>Entrar na sua conta</h1>
       <p class="subtitulo">Acesse sua área de saúde.</p>
 
       <div class="campo">
         <label>CPF</label>
-        <input type="text" placeholder="000.000.000-00" />
+        <input type="text" formControlName="cpf" placeholder="000.000.000-00" />
       </div>
 
       <div class="campo">
         <label>Senha</label>
-        <input type="password" placeholder="Digite sua senha" />
+        <input type="password" formControlName="senha" placeholder="Digite sua senha" />
       </div>
+
+      @if (errorMessage) {
+        <p class="erro-campo">{{ errorMessage }}</p>
+      }
 
       <div class="linha-opcoes">
         <label class="lembrar"><input type="checkbox" /> Lembrar de mim</label>
         <a class="esqueci">Esqueci minha senha</a>
       </div>
 
-      <app-button variante="primario">Entrar</app-button>
+      <app-button variante="primario" type="submit" [disabled]="IsLoading">
+        {{ IsLoading ? 'Entrando...' : 'Entrar' }}
+      </app-button>
 
       <div class="divisor"><span>ou</span></div>
 
-      <button class="btn-google">Continuar com Google</button>
+      <button type="button" class="btn-google">Continuar com Google</button>
 
       @if (perfil === 'paciente') {
         <p class="rodape-login">Ainda não tem uma conta? <a class="cadastrar" routerLink="/cadastro">Criar conta</a></p>
       }
 
       <a class="voltar" routerLink="/menu-inicial">Voltar</a>
-    </div>
+    </form>
   </div>
 </div>

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.invalid) {
-      this.errorMessage = 'Preencha email e senha corretamente';
+      this.errorMessage = 'Preencha CPF e senha corretamente';
       return;
     }
 
@@ -47,18 +47,18 @@ export class LoginComponent implements OnInit {
     this.errorMessage = null;
 
     const { cpf, senha } = this.loginForm.value;
-    try {
-      this.authService.login({ cpf, senha }).subscribe({
-        next:()=>{
-          this.IsLoading = false
-          this.router.navigate([`/${this.perfil}/dashboard`])
-        }
-      });
-    } catch (error) {
-          this.IsLoading = false;
-        this.errorMessage = error === 401
-          ? 'Email ou senha inválidos'
-          : 'Erro ao fazer login, tente novamente';
-    }
+    this.authService.login({ cpf, senha }).subscribe({
+      next: () => {
+        this.IsLoading = false;
+        this.router.navigate([`/${this.perfil}/dashboard`]);
+      },
+      error: (error) => {
+        this.IsLoading = false;
+        this.errorMessage =
+          error.status === 401
+            ? 'CPF ou senha inválidos'
+            : 'Erro ao fazer login, tente novamente';
+      },
+    });
   }
 }
