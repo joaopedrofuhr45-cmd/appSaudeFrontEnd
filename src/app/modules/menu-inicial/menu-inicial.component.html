@@ -1,17 +1,38 @@
-<div class="tela">
-  <h1>Menu Inicial</h1>
+<header class="topo">
+  <a routerLink="/" class="voltar">← Voltar</a>
+  <span class="logo">✚ Saúde+</span>
+</header>
 
-  <app-button variante="menu" routerLink="/login-paciente">
-    👤 Paciente
-  </app-button>
+<main class="conteudo">
+  <h1>Como você vai usar a plataforma?</h1>
+  <p class="subtitulo">Escolha o seu perfil para continuar</p>
 
-  <app-button variante="menu" routerLink="/login-atendente">
-    👥 Atendente
-  </app-button>
+  <div class="cards">
+    <div class="card-perfil">
+      <div class="icone">👤</div>
+      <h3>Sou paciente</h3>
+      <p>Acompanhe sua saúde e suas consultas</p>
+      <app-button variante="primario" routerLink="/login-paciente">Selecionar</app-button>
+    </div>
 
-  <app-button variante="menu" routerLink="/login-medico">
-    🩺 Médico
-  </app-button>
+    <div class="card-perfil">
+      <div class="icone">🩺</div>
+      <h3>Sou médico</h3>
+      <p>Gerencie atendimentos e pacientes</p>
+      <app-button variante="primario" routerLink="/login-medico">Selecionar</app-button>
+    </div>
 
-  <a class="voltar" routerLink="/">Voltar</a>
-</div>
+    <div class="card-perfil">
+      <div class="icone">👥</div>
+      <h3>Sou atendente</h3>
+      <p>Organize agendas e recepção</p>
+      <app-button variante="primario" routerLink="/login-atendente">Selecionar</app-button>
+    </div>
+  </div>
+
+  <p class="aviso">ⓘ Você poderá alterar algumas preferências depois</p>
+</main>
+
+<footer class="rodape">
+  <span>Ajuda</span> | <span>Privacidade</span> | <span>Sair</span>
+</footer>

@@ -1,21 +1,43 @@
-<div class="tela">
-  <h1>Login</h1>
-
-  <div class="campo">
-    <label>CPF</label>
-    <input type="text" />
+<div class="login-tela">
+  <div class="painel-marca">
+    <a routerLink="/" class="logo">✚ Saúde+</a>
+    <div class="ilustracao">
+      <span class="icone-coracao">♥</span>
+    </div>
+    <p>Sua saúde em um só lugar</p>
   </div>
 
-  <div class="campo">
-    <label>Senha</label>
-    <input type="password" />
+  <div class="painel-form">
+    <div class="card-login">
+      <h1>Entrar na sua conta</h1>
+      <p class="subtitulo">Acesse sua área de saúde.</p>
+
+      <div class="campo">
+        <label>CPF</label>
+        <input type="text" placeholder="000.000.000-00" />
+      </div>
+
+      <div class="campo">
+        <label>Senha</label>
+        <input type="password" placeholder="Digite sua senha" />
+      </div>
+
+      <div class="linha-opcoes">
+        <label class="lembrar"><input type="checkbox" /> Lembrar de mim</label>
+        <a class="esqueci">Esqueci minha senha</a>
+      </div>
+
+      <app-button variante="primario">Entrar</app-button>
+
+      <div class="divisor"><span>ou</span></div>
+
+      <button class="btn-google">Continuar com Google</button>
+
+      @if (perfil === 'paciente') {
+        <p class="rodape-login">Ainda não tem uma conta? <a class="cadastrar" routerLink="/cadastro">Criar conta</a></p>
+      }
+
+      <a class="voltar" routerLink="/menu-inicial">Voltar</a>
+    </div>
   </div>
-
-  <app-button variante="primario">Entrar</app-button>
-
-  @if (perfil === 'paciente') {
-    <a class="cadastrar" routerLink="/cadastro">Cadastrar</a>
-  }
-
-  <a class="voltar" routerLink="/menu-inicial">Voltar</a>
 </div>

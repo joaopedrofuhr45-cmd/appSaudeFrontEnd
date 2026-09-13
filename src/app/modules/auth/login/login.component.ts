@@ -1,20 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { AuthService } from './../../../service/auth/auth.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../shared/button/button.component';
+import { CommonModule } from '@angular/common';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ButtonComponent],
+  imports: [ReactiveFormsModule, RouterLink, ButtonComponent, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+
+  loginForm: FormGroup = this.fb.group({
+    cpf: ['', Validators.required],
+    senha: ['', Validators.required],
+  });
+
+  errorMessage: string | null = null;
+  IsLoading = false;
   perfil: 'paciente' | 'atendente' | 'medico' = 'paciente';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.perfil = this.route.snapshot.data['perfil'];
+  }
+
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      this.errorMessage = 'Preencha email e senha corretamente';
+      return;
+    }
+
+    this.IsLoading = true;
+    this.errorMessage = null;
+
+    const { cpf, senha } = this.loginForm.value;
+    try {
+      this.authService.login({ cpf, senha }).subscribe({
+        next:()=>{
+          this.IsLoading = false
+          this.router.navigate([`/${this.perfil}/dashboard`])
+        }
+      });
+    } catch (error) {
+          this.IsLoading = false;
+        this.errorMessage = error === 401
+          ? 'Email ou senha inválidos'
+          : 'Erro ao fazer login, tente novamente';
+    }
   }
 }

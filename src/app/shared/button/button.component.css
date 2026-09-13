@@ -11,9 +11,9 @@
 .btn:hover { opacity: 0.9; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.btn-primario { background: #1a5278; color: #fff; }
+.btn-primario { background: var(--cor-primaria); color: #fff; }
+.btn-secundario { background: transparent; color: var(--cor-primaria); border: 1px solid var(--cor-primaria); }
 .btn-perigo { background: #dc2626; color: #fff; }
-.btn-secundario { background: transparent; color: #1a5278; border: 1px solid #1a5278; }
 .btn-sucesso { background: #16a34a; color: #fff; }
 
 .btn-menu {

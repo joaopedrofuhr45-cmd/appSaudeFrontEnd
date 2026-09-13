@@ -1,51 +1,83 @@
-.tela {
+.login-tela {
   display: flex;
   flex-direction: column;
-  padding: 48px 24px;
-  max-width: 400px;
-  margin: 0 auto;
-  gap: 24px;
+  min-height: 100vh;
 }
 
-h1 {
-  color: #1a5276;
-  font-size: 28px;
-  font-weight: bold;
-  margin: 0 0 24px;
+.painel-marca { display: none; }
+
+.painel-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
 }
 
-label {
-  font-size: 13px;
-  color: #000;
-  margin-bottom: 8px;
+.card-login {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+h1 { font-size: 24px; color: var(--cor-texto); margin: 0; }
+.subtitulo { color: var(--cor-texto-secundario); font-size: 14px; margin: -12px 0 0; }
+
+.campo { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 13px; color: var(--cor-texto); }
 input {
-  border: none;
-  border-bottom: 1px solid #999;
-  padding: 8px 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 10px 12px;
   font-size: 15px;
   outline: none;
 }
-input:focus {
-  border-bottom-color: #1a5276;
+input:focus { border-color: var(--cor-primaria); }
+
+.linha-opcoes { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.lembrar { display: flex; align-items: center; gap: 6px; color: var(--cor-texto-secundario); }
+.esqueci { color: var(--cor-primaria); text-decoration: none; }
+
+.divisor { text-align: center; color: var(--cor-texto-secundario); font-size: 13px; position: relative; }
+.divisor::before, .divisor::after {
+  content: ''; position: absolute; top: 50%; width: 40%; border-top: 1px solid var(--cor-borda);
+}
+.divisor::before { left: 0; }
+.divisor::after { right: 0; }
+
+.btn-google {
+  padding: 10px; border-radius: 8px; border: 1px solid var(--cor-borda);
+  background: white; font-size: 14px; cursor: pointer;
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-}
+.rodape-login { text-align: center; font-size: 13px; color: var(--cor-texto-secundario); margin: 0; }
+.cadastrar { color: var(--cor-primaria); font-weight: 500; text-decoration: none; }
+.voltar { text-align: center; color: var(--cor-texto-secundario); font-size: 13px; text-decoration: none; }
 
-.cadastrar {
-  text-align: center;
-  color: #004caf;
-  font-weight: bold;
-  text-decoration: none;
-}
+@media (min-width: 768px) {
+  .login-tela { flex-direction: row; }
 
-.voltar {
-  text-align: center;
-  color: #1a5276;
-  font-size: 15px;
-  text-decoration: none;
+  .painel-marca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 48px;
+    position: relative;
+  }
+  .painel-marca .logo { position: absolute; top: 32px; left: 32px; text-decoration: none; color: var(--cor-texto); font-weight: bold; }
+  .ilustracao {
+    width: 160px; height: 160px; border: 2px solid var(--cor-primaria-clara);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+  }
+  .icone-coracao { font-size: 56px; color: var(--cor-primaria); }
+  .painel-marca p { color: var(--cor-texto-secundario); font-size: 16px; }
+
+  .painel-form { flex: 1; }
 }

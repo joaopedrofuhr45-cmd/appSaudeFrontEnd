@@ -9,6 +9,4 @@ import { ButtonComponent } from '../../shared/button/button.component';
   templateUrl: './menu-inicial.component.html',
   styleUrl: './menu-inicial.component.css'
 })
-export class MenuInicialComponent {
-
-}
+export class MenuInicialComponent {}

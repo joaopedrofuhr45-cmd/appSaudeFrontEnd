@@ -1,29 +1,49 @@
-<div class="tela">
-  <div class="hero-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
-    </svg>
-  </div>
+<app-header></app-header>
 
-  <h1>Bem-vindo!</h1>
-  <p class="subtitulo">Cuidar da sua saúde nunca foi tão fácil</p>
-
-  <div class="features">
-    <div class="feature">
-      <div class="feature-icone">📅</div>
-      <span>Agende consultas com facilidade</span>
-    </div>
-    <div class="feature">
-      <div class="feature-icone">📋</div>
-      <span>Acompanhe seu histórico médico</span>
-    </div>
-    <div class="feature">
-      <div class="feature-icone">🔔</div>
-      <span>Receba lembretes e notificações</span>
+<section class="hero">
+  <div class="hero-texto">
+    <h1>Cuidado com a sua saúde,<br>de forma simples</h1>
+    <p>Conecte pacientes, médicos e atendentes em um só lugar.</p>
+    <div class="hero-botoes">
+      <a routerLink="/menu-inicial" class="btn-header btn-header-solido">Entrar na plataforma</a>
+      <a routerLink="/cadastro" class="btn-header btn-header-outline">Criar minha conta</a>
     </div>
   </div>
 
-  <app-button variante="primario" routerLink="/menu-inicial">
-    Vamos começar
-  </app-button>
-</div>
+  <div class="hero-icones">
+    <div class="icone-flutuante topo"><span>👤</span></div>
+    <div class="icone-central"><span>➕</span></div>
+    <div class="icone-flutuante lado"><span>📅</span></div>
+  </div>
+</section>
+
+<section class="perfis">
+  <div class="card-perfil">
+    <div class="icone-perfil"><span>👤</span></div>
+    <h3>Para pacientes</h3>
+    <p>Agende consultas, acompanhe seus atendimentos e tenha mais praticidade no cuidado com a sua saúde.</p>
+  </div>
+  <div class="card-perfil">
+    <div class="icone-perfil"><span>🩺</span></div>
+    <h3>Para médicos</h3>
+    <p>Organize sua agenda, atenda seus pacientes e gerencie seus atendimentos de forma simples e segura.</p>
+  </div>
+  <div class="card-perfil">
+    <div class="icone-perfil"><span>👥</span></div>
+    <h3>Para atendentes</h3>
+    <p>Facilite o agendamento, o atendimento e a comunicação entre pacientes e médicos com mais eficiência.</p>
+  </div>
+</section>
+
+<section class="sobre">
+  <span class="sobre-icone">♡</span>
+  <div>
+    <h2>Sobre nós</h2>
+    <p>Somos uma plataforma de saúde que acredita em um atendimento mais acessível, organizado e humano.</p>
+    <a class="link-sobre">Conheça nossa história →</a>
+  </div>
+</section>
+
+<footer class="rodape">
+  <span>Privacidade</span> | <span>Termos de uso</span> | <span>Contato</span>
+</footer>
