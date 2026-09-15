@@ -1,3 +1,4 @@
+
 <header class="topo">
   <a routerLink="/" class="voltar">← Voltar</a>
   <span class="logo">✚ Saúde+</span>
@@ -12,21 +13,21 @@
       <div class="icone">👤</div>
       <h3>Sou paciente</h3>
       <p>Acompanhe sua saúde e suas consultas</p>
-      <app-button variante="primario" routerLink="/login-paciente">Selecionar</app-button>
+      <app-button variante="primario" (clicked)="irPara('/login-paciente')">Selecionar</app-button>
     </div>
 
     <div class="card-perfil">
       <div class="icone">🩺</div>
       <h3>Sou médico</h3>
       <p>Gerencie atendimentos e pacientes</p>
-      <app-button variante="primario" routerLink="/login-medico">Selecionar</app-button>
+      <app-button variante="primario" (clicked)="irPara('/login-medico')">Selecionar</app-button>
     </div>
 
     <div class="card-perfil">
       <div class="icone">👥</div>
       <h3>Sou atendente</h3>
       <p>Organize agendas e recepção</p>
-      <app-button variante="primario" routerLink="/login-atendente">Selecionar</app-button>
+      <app-button variante="primario" (clicked)="irPara('/login-atendente')">Selecionar</app-button>
     </div>
   </div>
 
