@@ -7,6 +7,6 @@ import { HeaderComponent } from '../../shared/header/header.component';
   standalone: true,
   imports: [RouterLink, HeaderComponent],
   templateUrl: './tela-inicial.component.html',
-  styleUrl: './tela-inicial.component.css'
+  styleUrls: ['./tela-inicial.component.css']
 })
 export class TelaInicialComponent {}

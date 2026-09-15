@@ -7,7 +7,7 @@ import { ButtonComponent } from '../../shared/button/button.component';
   standalone: true,
   imports: [ButtonComponent],
   templateUrl: './menu-inicial.component.html',
-  styleUrl: './menu-inicial.component.css'
+  styleUrls: ['./menu-inicial.component.css']
 })
 export class MenuInicialComponent {
   constructor(private router: Router) {}
