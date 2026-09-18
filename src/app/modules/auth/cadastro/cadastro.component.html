@@ -1,1 +1,86 @@
-<p>cadastro works!</p>
+<main class="cadastro-page">
+        <section class="cadastro-layout" aria-labelledby="titulo-cadastro">
+            <div class="cadastro-card">
+                <div class="cadastro-heading">
+                    <h1 id="titulo-cadastro">Crie sua conta</h1>
+                    <p>Comece sua jornada de cuidado com Saúde+.</p>
+                </div>
+
+                <form id="form-cadastro" class="cadastro-form" novalidate>
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="nome">Nome completo</label>
+                            <input id="nome" name="nome" type="text" autocomplete="name"
+                                   placeholder="Digite seu nome completo" maxlength="150" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="email">E-mail</label>
+                            <input id="email" name="email" type="email" autocomplete="email"
+                                   placeholder="Digite seu e-mail" maxlength="150" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="cpf">CPF</label>
+                            <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off"
+                                   placeholder="Digite seu CPF" maxlength="14" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="telefone">Telefone</label>
+                            <input id="telefone" name="telefone" type="tel" autocomplete="tel"
+                                   placeholder="Digite seu telefone" maxlength="15" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="senha">Senha</label>
+                            <input id="senha" name="senha" type="password" autocomplete="new-password"
+                                   placeholder="Digite sua senha" minlength="6" maxlength="72" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="confirmar-senha">Confirmar senha</label>
+                            <input id="confirmar-senha" name="confirmar_senha" type="password"
+                                   autocomplete="new-password" placeholder="Confirme sua senha"
+                                   minlength="6" maxlength="72" required>
+                        </div>
+                    </div>
+
+                    <p id="mensagem" class="mensagem" role="alert" aria-live="polite"></p>
+                    <button id="btn-cadastrar" class="btn-cadastrar" type="submit">
+                        <span class="btn-texto">Criar conta</span>
+                        <span class="btn-carregando" hidden>Criando conta...</span>
+                    </button>
+                </form>
+            </div>
+
+            <aside class="beneficios" aria-label="Benefícios da plataforma">
+                <article class="beneficio">
+                    <div class="beneficio-icone" aria-hidden="true">♥</div>
+                    <div>
+                        <h2>Acompanhe sua saúde</h2>
+                        <p>Veja seus históricos, exames, medicamentos e acompanhe sua evolução.</p>
+                    </div>
+                </article>
+
+                <article class="beneficio">
+                    <div class="beneficio-icone" aria-hidden="true">▤</div>
+                    <div>
+                        <h2>Organize seus documentos</h2>
+                        <p>Tenha seus laudos, receitas e documentos sempre à mão, com segurança.</p>
+                    </div>
+                </article>
+
+                <article class="beneficio">
+                    <div class="beneficio-icone" aria-hidden="true">♟</div>
+                    <div>
+                        <h2>Conecte-se com profissionais</h2>
+                        <p>Encontre especialistas, agende consultas e tire suas dúvidas com mais facilidade.</p>
+                    </div>
+                </article>
+            </aside>
+        </section>
+    </main>
+
+    <script type="module" src="./script.js"></script>
+

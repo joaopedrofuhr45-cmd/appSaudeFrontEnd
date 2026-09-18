@@ -1,22 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CadastroRequest } from '../../model/cadastro/cadastro-request';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+export interface CadastroPacienteDto {
+  nome: string;
+  email: string;
+  cpf: string;
+  telefone: string;
+  senha: string;
+}
+
+@Injectable({ providedIn: 'root' })
 export class CadastroService {
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
-
-
-  private apiUrl = 'http://localhost:8080/api';
-
-
-  cadastro(cadastroCredentials: CadastroRequest){
-    return this.http.post<void>(`${this.apiUrl}/cadastro`,cadastroCredentials, {
-      withCredentials: true,
-    });
+  cadastrar(dto: CadastroPacienteDto): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/auth/cadastro`, dto);
   }
-
 }

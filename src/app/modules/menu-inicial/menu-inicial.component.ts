@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../shared/button/button.component';
 
 @Component({
   selector: 'app-menu-inicial',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, RouterLink],
   templateUrl: './menu-inicial.component.html',
   styleUrls: ['./menu-inicial.component.css']
 })

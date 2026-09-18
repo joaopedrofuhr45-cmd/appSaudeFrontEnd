@@ -1,39 +1,93 @@
-
 <header class="topo">
-  <a routerLink="/" class="voltar">← Voltar</a>
-  <span class="logo">✚ Saúde+</span>
+  <app-button
+    class="voltar"
+    variant="outline"
+    [routerLink]="['/']"
+    type="button"
+  >
+    Voltar
+  </app-button>
+
+  <span class="logo">Saúde+</span>
+
+  <span></span>
 </header>
 
 <main class="conteudo">
   <h1>Como você vai usar a plataforma?</h1>
-  <p class="subtitulo">Escolha o seu perfil para continuar</p>
+
+  <p class="subtitulo">
+    Escolha o seu perfil para continuar
+  </p>
 
   <div class="cards">
+    <!-- PACIENTE -->
     <div class="card-perfil">
       <div class="icone">👤</div>
+
       <h3>Sou paciente</h3>
-      <p>Acompanhe sua saúde e suas consultas</p>
-      <app-button variante="primario" (clicked)="irPara('/login-paciente')">Selecionar</app-button>
+
+      <p>
+        Acompanhe sua saúde e suas consultas
+      </p>
+
+      <app-button
+        variant="primary"
+        [routerLink]="['/login-paciente']"
+        type="button"
+      >
+        Selecionar
+      </app-button>
     </div>
 
+    <!-- MÉDICO -->
     <div class="card-perfil">
       <div class="icone">🩺</div>
+
       <h3>Sou médico</h3>
-      <p>Gerencie atendimentos e pacientes</p>
-      <app-button variante="primario" (clicked)="irPara('/login-medico')">Selecionar</app-button>
+
+      <p>
+        Gerencie atendimentos e pacientes
+      </p>
+
+      <app-button
+        variant="primary"
+        [routerLink]="['/login-medico']"
+        type="button"
+      >
+        Selecionar
+      </app-button>
     </div>
 
+    <!-- ATENDENTE -->
     <div class="card-perfil">
       <div class="icone">👥</div>
+
       <h3>Sou atendente</h3>
-      <p>Organize agendas e recepção</p>
-      <app-button variante="primario" (clicked)="irPara('/login-atendente')">Selecionar</app-button>
+
+      <p>
+        Organize agendas e recepção
+      </p>
+
+      <app-button
+        variant="primary"
+        [routerLink]="['/login-atendente']"
+        type="button"
+      >
+        Selecionar
+      </app-button>
     </div>
   </div>
 
-  <p class="aviso">ⓘ Você poderá alterar algumas preferências depois</p>
+  <p class="aviso">
+    ⓘ Você poderá alterar algumas preferências depois
+  </p>
 </main>
 
 <footer class="rodape">
-  <span>Ajuda</span> | <span>Privacidade</span> | <span>Sair</span>
+  <span>Ajuda</span>
+  |
+  <span>Privacidade</span>
+  |
+  <span>Sair</span>
 </footer>

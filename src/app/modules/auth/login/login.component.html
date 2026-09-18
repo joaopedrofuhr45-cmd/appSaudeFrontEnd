@@ -1,49 +1,106 @@
 <div class="login-tela">
   <div class="painel-marca">
     <a routerLink="/" class="logo">✚ Saúde+</a>
+
     <div class="ilustracao">
       <span class="icone-coracao">♥</span>
     </div>
+
     <p>Sua saúde em um só lugar</p>
   </div>
 
   <div class="painel-form">
-    <form class="card-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form
+      class="card-login"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
       <h1>Entrar na sua conta</h1>
-      <p class="subtitulo">Acesse sua área de saúde.</p>
+
+      <p class="subtitulo">
+        Acesse sua área de saúde.
+      </p>
 
       <div class="campo">
-        <label>CPF</label>
-        <input type="text" formControlName="cpf" placeholder="000.000.000-00" />
+        <label for="cpf">CPF</label>
+
+        <input
+          id="cpf"
+          type="text"
+          formControlName="cpf"
+          placeholder="000.000.000-00"
+        />
       </div>
 
       <div class="campo">
-        <label>Senha</label>
-        <input type="password" formControlName="senha" placeholder="Digite sua senha" />
+        <label for="senha">Senha</label>
+
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          placeholder="Digite sua senha"
+        />
       </div>
 
       @if (errorMessage) {
-        <p class="erro-campo">{{ errorMessage }}</p>
+        <p class="erro-campo">
+          {{ errorMessage }}
+        </p>
       }
 
       <div class="linha-opcoes">
-        <label class="lembrar"><input type="checkbox" /> Lembrar de mim</label>
-        <a class="esqueci">Esqueci minha senha</a>
+        <label class="lembrar">
+          <input type="checkbox" />
+          Lembrar de mim
+        </label>
+
+        <a class="esqueci">
+          Esqueci minha senha
+        </a>
       </div>
 
-      <app-button variante="primario" type="submit" [disabled]="IsLoading">
+      <app-button
+        variante="primario"
+        type="submit"
+        [disabled]="IsLoading"
+      >
         {{ IsLoading ? 'Entrando...' : 'Entrar' }}
       </app-button>
 
-      <div class="divisor"><span>ou</span></div>
+      <div class="divisor">
+        <span>ou</span>
+      </div>
 
-      <button type="button" class="btn-google">Continuar com Google</button>
+      <app-button
+        variante="secundario"
+        type="button"
+        class="btn-google"
+      >
+        Continuar com Google
+      </app-button>
 
       @if (perfil === 'paciente') {
-        <p class="rodape-login">Ainda não tem uma conta? <a class="cadastrar" routerLink="/cadastro">Criar conta</a></p>
+        <p class="rodape-login">
+          Ainda não tem uma conta?
+
+          <a
+            class="cadastrar"
+            routerLink="/cadastro"
+          >
+            Criar conta
+          </a>
+        </p>
       }
 
-      <a class="voltar" routerLink="/menu-inicial">Voltar</a>
+      <app-button
+        variante="voltar"
+        type="button"
+        class="voltar"
+        (clicked)="voltar()"
+      >
+        ← Voltar
+      </app-button>
     </form>
   </div>
 </div>
