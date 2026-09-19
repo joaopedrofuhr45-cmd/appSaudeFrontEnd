@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { TelaInicialComponent } from './modules/tela-inicial/tela-inicial.component';
 import { MenuInicialComponent } from './modules/menu-inicial/menu-inicial.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { CadastroComponent } from './modules/auth/cadastro/cadastro.component';
+import { CadastroPacienteComponent } from './modules/auth/cadastro/cadastro.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +32,6 @@ export const routes: Routes = [
   },
   {
     path: 'cadastro',
-    component: CadastroComponent,
+    component: CadastroPacienteComponent,
   },
 ];
