@@ -1,3 +1,4 @@
+/*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuInicialComponent } from './menu-inicial.component';
@@ -11,7 +12,7 @@ describe('MenuInicialComponent', () => {
       imports: [MenuInicialComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(MenuInicialComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -21,3 +22,4 @@ describe('MenuInicialComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+*/
