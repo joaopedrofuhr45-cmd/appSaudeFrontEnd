@@ -1,21 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface CadastroPacienteDto {
-  nome: string;
-  email: string;
-  cpf: string;
-  telefone: string;
-  senha: string;
-}
+import { environment } from '../../../environments/environment';
+import { LoginRequest, MeResponse } from '../../models/auth';
 
 @Injectable({ providedIn: 'root' })
-export class CadastroService {
-  private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:3000';
+export class AuthService {
+  private apiUrl = environment.apiUrl;
 
-  cadastrar(dto: CadastroPacienteDto): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/auth/cadastro`, dto);
+  constructor(private http: HttpClient) {}
+
+  login(credentials: LoginRequest): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/login`, credentials, { withCredentials: true });
+  }
+
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: true });
+  }
+
+  me(): Observable<MeResponse> {
+    return this.http.get<MeResponse>(`${this.apiUrl}/me`, { withCredentials: true });
   }
 }
