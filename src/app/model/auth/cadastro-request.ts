@@ -1,9 +1,7 @@
 export interface CadastroRequest {
-     
-          nome: String
-          email: String | null | undefined
-          cpf: String
-          telefone: String
-          senha: String
-    
+  nome: string;
+  email: string;
+  cpf: string;
+  telefone: string;
+  senha: string;
 }
