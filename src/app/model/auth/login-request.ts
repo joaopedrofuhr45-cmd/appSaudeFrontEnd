@@ -1,5 +1,4 @@
 export interface LoginRequest {
-    cpf: string;
-    senha: string;
-    tipoUsuario: 'paciente' | 'atendente' | 'medico';
+  cpf: string;
+  senha: string;
 }

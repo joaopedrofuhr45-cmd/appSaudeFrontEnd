@@ -1,9 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-  RouterLink,
-} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -18,12 +14,7 @@ import { ButtonComponent } from '../../../shared/button/button.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink,
-    ButtonComponent,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -74,14 +65,21 @@ export class LoginComponent implements OnInit {
 
     this.authService
       .login({
-        cpf,
+        cpf: String(cpf).replace(/\D/g, ''),
         senha,
-        tipoUsuario: this.perfil,
       })
       .subscribe({
         next: () => {
           this.IsLoading = false;
-          this.router.navigate([`/${this.perfil}/dashboard`]);
+
+          const rotaDestino =
+            this.perfil === 'atendente'
+              ? '/atendente/home'
+              : this.perfil === 'paciente'
+                ? '/paciente/dashboard'
+                : '/medico/dashboard';
+
+          this.router.navigate([rotaDestino]);
         },
         error: (error) => {
           this.IsLoading = false;

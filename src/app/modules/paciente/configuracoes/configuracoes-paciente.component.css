@@ -1,0 +1,16 @@
+:host { display: flex; flex-direction: column; gap: 18px; max-width: 950px; color: #1c262b; }
+h1, h2, p { margin: 0; }
+.titulo h1 { font-size: 22px; }
+.titulo p, .seguranca > p { margin-top: 6px; color: #69747a; font-size: 12px; }
+.dados { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 20px; padding: 2px 0 20px; border-bottom: 1px solid #e5e9ea; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 600; }
+input { min-height: 38px; padding: 8px 10px; border: 1px solid #dce3e5; border-radius: 7px; font: inherit; font-weight: 400; }
+button { grid-column: 1 / -1; min-height: 42px; border: 0; border-radius: 7px; background: #218f86; color: white; font-size: 12px; font-weight: 600; cursor: pointer; }
+.seguranca h2 { font-size: 14px; }
+.senha-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding: 16px; border: 1px solid #e6ebea; border-radius: 9px; background: #f8faf9; }
+.senha-form > strong, .amplo, .senha-form small, .senha-form .mensagem { grid-column: 1 / -1; }
+.senha-form > strong { font-size: 12px; }
+.senha-form small { color: #8a9498; font-size: 10px; }
+.senha-botao { grid-column: 2; justify-self: end; min-height: 36px; padding: 0 16px; }
+.mensagem { color: #188f87; font-size: 12px; }
+@media (max-width: 700px) { .dados { grid-template-columns: 1fr; } .dados button, .senha-form > strong, .amplo, .senha-form small, .senha-form .mensagem { grid-column: 1; } .senha-form { grid-template-columns: 1fr; } .senha-botao { grid-column: 1; justify-self: stretch; } }

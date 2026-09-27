@@ -1,0 +1,18 @@
+<app-page-header acaoLabel="Nova consulta" acaoRota="/paciente/agendar-consulta" />
+<section class="cabecalho-pagina"><h1>Agendar consulta</h1><p>Escolha a especialidade, o profissional e o melhor horário para atendimento.</p></section>
+<form class="painel formulario" [formGroup]="formulario" (ngSubmit)="solicitar()">
+  <label>Especialidade
+    <select formControlName="especialidade" (change)="carregarMedicos()" [disabled]="carregandoOpcoes">
+      <option value="">Selecione uma especialidade</option>
+      @for (especialidade of especialidades; track especialidade) { <option [value]="especialidade">{{ especialidade }}</option> }
+    </select>
+  </label>
+  <label>Médico
+    <select formControlName="medico"><option value="">Selecione um médico</option>@for (medico of medicos; track medico.id) { <option [value]="medico.id">{{ medico.nome }}</option> }</select>
+  </label>
+  <label>Data<input type="date" formControlName="data" /></label>
+  <label>Horário<input type="time" formControlName="horario" /></label>
+  <label class="observacao">Observação<textarea rows="3" formControlName="observacao" placeholder="Descreva rapidamente o motivo da consulta"></textarea></label>
+  @if (mensagem) { <p class="mensagem" role="status">{{ mensagem }}</p> }
+  <button class="solicitar" type="submit" [disabled]="enviando || carregandoOpcoes">{{ enviando ? 'Enviando…' : '▣ Solicitar agendamento' }}</button>
+</form>

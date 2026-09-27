@@ -1,0 +1,13 @@
+:host { display: flex; flex-direction: column; gap: 20px; color: #1c262b; }
+h1, p { margin: 0; }
+.cabecalho-pagina h1 { font-size: 22px; }
+.cabecalho-pagina p { margin-top: 8px; color: #69747a; font-size: 13px; }
+.painel { max-width: 900px; padding: 20px; border: 1px solid #e3e8e9; border-radius: 12px; }
+.formulario { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+label { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; }
+input, select, textarea { width: 100%; min-height: 40px; padding: 10px 12px; border: 1px solid #dce3e5; border-radius: 7px; background: #fff; color: #273238; font: inherit; font-weight: 400; }
+textarea { resize: vertical; }
+.observacao, .mensagem, .solicitar { grid-column: 1 / -1; }
+.solicitar { min-height: 44px; border: 0; border-radius: 7px; background: #218f86; color: #fff; font-weight: 600; cursor: pointer; }
+.mensagem { color: #197f77; font-size: 13px; }
+@media (max-width: 650px) { .formulario { grid-template-columns: 1fr; } .observacao, .mensagem, .solicitar { grid-column: auto; } }

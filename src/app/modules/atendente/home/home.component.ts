@@ -5,6 +5,7 @@ import { StatCardComponent } from '../../../shared/stat-card/stat-card.component
 import { ConsultaRowComponent } from '../../../shared/consulta-row/consulta-row.component';
 import { ConsultaService } from '../../../service/consulta/consulta.service';
 import { Consulta } from '../../../model/consulta/consulta-request';
+import { StatusConsulta } from '../../../shared/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-atendente-home',
@@ -33,7 +34,7 @@ export class AtendenteHomeComponent implements OnInit {
     });
   }
 
-  get statusParaBadge() {
-    return (status: string) => status.toLowerCase().replace('_', '-');
+  statusParaBadge(status: Consulta['status']): StatusConsulta {
+    return status.toLowerCase().replace('_', '-') as StatusConsulta;
   }
 }

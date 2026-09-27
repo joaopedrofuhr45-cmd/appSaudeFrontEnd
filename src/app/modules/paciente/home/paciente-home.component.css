@@ -1,0 +1,20 @@
+:host { display: flex; flex-direction: column; gap: 20px; color: #1c262b; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 22px; }
+.boas-vindas { display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: center; }
+.boas-vindas > div p { max-width: 470px; margin-top: 8px; color: #69747a; font-size: 13px; line-height: 1.55; }
+.proxima-destaque, .painel { border: 1px solid #e3e8e9; border-radius: 12px; background: #fff; padding: 16px; }
+.rotulo { color: #188f87; font-size: 12px; }
+.proxima-destaque h2 { margin: 6px 0; font-size: 16px; }
+.proxima-destaque p { color: #68747a; font-size: 12px; }
+.proxima-destaque a, .painel-titulo a { display: inline-block; margin-top: 10px; color: #188f87; font-size: 12px; font-weight: 600; text-decoration: none; }
+.estatisticas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.painel h2, .painel-titulo h2 { font-size: 14px; }
+.atalhos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+.atalhos a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 58px; border-radius: 9px; background: #eaf4f3; color: #1c262b; font-size: 12px; text-decoration: none; }
+.atalhos span { color: #168f87; }
+.painel-titulo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.painel-titulo a { margin: 0; }
+.proximas-lista { display: flex; flex-direction: column; gap: 8px; }
+@media (max-width: 900px) { .boas-vindas { grid-template-columns: 1fr; } .estatisticas { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .atalhos { grid-template-columns: repeat(2, 1fr); } }

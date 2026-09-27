@@ -1,0 +1,11 @@
+:host { display: flex; flex-direction: column; gap: 20px; color: #1c262b; }
+h1, p { margin: 0; }
+.titulo h1 { font-size: 22px; }
+.titulo p { margin-top: 7px; color: #69747a; font-size: 13px; }
+.registros { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 920px; padding: 16px; border: 1px solid #e3e8e9; border-radius: 12px; }
+.registro { display: flex; align-items: flex-start; gap: 12px; min-height: 88px; padding: 14px; border: 1px solid #e2e8e9; border-radius: 8px; }
+.icone { display: grid; flex: 0 0 30px; height: 30px; place-items: center; border-radius: 50%; background: #e8f4f2; color: #188f87; }
+.registro strong { font-size: 12px; }
+.registro p { margin-top: 5px; font-size: 10px; }
+.registro small { display: block; margin-top: 5px; color: #758085; font-size: 10px; line-height: 1.4; }
+@media (max-width: 650px) { .registros { grid-template-columns: 1fr; } }

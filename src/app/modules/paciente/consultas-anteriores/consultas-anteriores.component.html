@@ -1,0 +1,19 @@
+<app-page-header acaoLabel="Nova consulta" acaoRota="/paciente/agendar-consulta" />
+<section class="titulo"><h1>Consultas anteriores</h1><p>Atendimentos já realizados, com médico, especialidade e situação.</p></section>
+<section class="painel filtros">
+  <label class="busca">Buscar<input [(ngModel)]="busca" placeholder="⌕ Médico ou especialidade" /></label>
+  <label>Período<select [(ngModel)]="periodo"><option>Últimos 12 meses</option><option>Últimos 6 meses</option><option>Últimos 30 dias</option></select></label>
+  <label>Situação<select [(ngModel)]="situacao"><option>Todas</option><option>Concluída</option><option>Cancelada</option></select></label>
+</section>
+<section class="painel resultados">
+  <div class="cabecalho"><strong>{{ filtradas.length }} consultas encontradas</strong><button type="button" (click)="busca = ''; situacao = 'Todas'">Baixar histórico</button></div>
+  @if (carregando) { <p class="vazio">Carregando consultas…</p> }
+  @if (erro) { <p class="vazio erro">{{ erro }}</p> }
+  @for (consulta of filtradas; track consulta.id) {
+    <article class="consulta" [class]="classe(consulta.status)">
+      <strong class="horario">{{ horario(consulta.dataHora) }}</strong><div class="detalhe"><strong>{{ consulta.medico }}</strong><span>{{ consulta.especialidade }} · {{ consulta.dataHora | date:'dd/MM/yyyy' }}</span></div>
+      <app-status-badge [status]="statusParaBadge(consulta.status)" [texto]="statusTexto(consulta.status)" />
+      <span class="chevron">›</span>
+    </article>
+  } @empty { <p class="vazio">Nenhuma consulta corresponde aos filtros.</p> }
+</section>

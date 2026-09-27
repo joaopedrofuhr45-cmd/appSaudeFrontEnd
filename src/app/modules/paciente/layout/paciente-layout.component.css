@@ -1,0 +1,6 @@
+.paciente-layout { display: flex; min-height: 100vh; background: #fff; }
+.paciente-conteudo { flex: 1; min-width: 0; padding: 24px 32px 40px; }
+@media (max-width: 760px) {
+  .paciente-layout { flex-direction: column; }
+  .paciente-conteudo { padding: 20px 16px 32px; }
+}

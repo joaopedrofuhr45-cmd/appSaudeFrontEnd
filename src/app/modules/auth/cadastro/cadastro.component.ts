@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
@@ -9,10 +10,8 @@ import {
 } from '@angular/forms';
 import { finalize } from 'rxjs';
 
-import {
-  CadastroPacienteDto,
-  CadastroService,
-} from '../../../service/cadastro/cadastro.service';
+import {CadastroService} from '../../../service/cadastro/cadastro.service';
+import { CadastroRequest } from './../../../model/auth/cadastro-request';
 
 function cpfValidator(control: AbstractControl): ValidationErrors | null {
   const cpf = String(control.value ?? '').replace(/\D/g, '');
@@ -99,8 +98,7 @@ export class CadastroPacienteComponent {
 
     this.enviando = true;
 
-    this.cadastroService
-      .cadastrar(this.cadastroForm.value as CadastroPacienteDto)
+    this.cadastroService.cadastrar(this.cadastroForm.value as CadastroRequest)
       .pipe(finalize(() => (this.enviando = false)))
       .subscribe({
         next: () => {

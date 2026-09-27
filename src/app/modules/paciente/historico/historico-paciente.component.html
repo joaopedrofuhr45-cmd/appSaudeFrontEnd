@@ -1,0 +1,10 @@
+<app-page-header acaoLabel="Nova consulta" acaoRota="/paciente/agendar-consulta" />
+<section class="titulo"><h1>Histórico</h1><p>Veja consultas finalizadas, retornos e registros recentes do seu atendimento.</p></section>
+<section class="registros">
+  @if (carregando) { <p>Carregando histórico…</p> }
+  @if (erro) { <p role="alert">{{ erro }}</p> }
+  @for (registro of registros; track registro.titulo) {
+    <article class="registro"><span class="icone">✓</span><div><strong>{{ registro.titulo }}</strong><p>{{ registro.detalhe }} · {{ registro.dataHora | date:'dd/MM/yyyy' }}</p><small>{{ registro.descricao }}</small></div></article>
+  }
+  @empty { @if (!carregando && !erro) { <p>Seu histórico ainda não tem registros.</p> } }
+</section>

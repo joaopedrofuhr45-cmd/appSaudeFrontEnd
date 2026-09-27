@@ -1,0 +1,23 @@
+<app-page-header />
+<section class="titulo"><h1>Configurações</h1><p>Gerencie suas informações de acesso e segurança da conta.</p></section>
+@if (carregando) { <p>Carregando seus dados…</p> }
+<form class="dados" [formGroup]="dados" (ngSubmit)="salvarDados()">
+  <label>Nome completo<input formControlName="nome" /></label>
+  <label>E-mail<input type="email" formControlName="email" /></label>
+  <label>Telefone<input type="tel" formControlName="telefone" /></label>
+  <p class="ajuda">&nbsp;</p>
+  @if (mensagemDados) { <p class="mensagem">{{ mensagemDados }}</p> }
+  <button type="submit" [disabled]="salvandoDados">{{ salvandoDados ? 'Salvando…' : '▣ Salvar alterações' }}</button>
+</form>
+<section class="seguranca">
+  <h2>Segurança</h2><p>Atualize sua senha periodicamente para manter sua conta protegida.</p>
+  <form [formGroup]="senha" (ngSubmit)="salvarSenha()" class="senha-form">
+    <strong>Mudar senha</strong>
+    <label class="amplo">Senha atual<input type="password" formControlName="atual" /></label>
+    <label>Nova senha<input type="password" formControlName="nova" /></label>
+    <label>Confirmar nova senha<input type="password" formControlName="confirmar" /></label>
+    <small>A senha deve ter pelo menos 8 caracteres, incluindo letras e números.</small>
+    @if (mensagemSenha) { <p class="mensagem">{{ mensagemSenha }}</p> }
+    <button class="senha-botao" type="submit" [disabled]="salvandoSenha">{{ salvandoSenha ? 'Salvando…' : 'Salvar nova senha' }}</button>
+  </form>
+</section>

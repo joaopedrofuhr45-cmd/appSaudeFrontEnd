@@ -1,0 +1,46 @@
+<app-page-header acaoLabel="Nova consulta" acaoRota="/paciente/agendar-consulta" />
+
+<section class="boas-vindas">
+  <div>
+    <h1>Olá. Como está sua saúde hoje?</h1>
+    <p>Acompanhe suas próximas consultas, agende novos atendimentos e mantenha seus dados sempre atualizados.</p>
+  </div>
+  @if (proximas[0]; as proxima) {
+    <article class="proxima-destaque">
+      <span class="rotulo">◷ Próxima consulta</span>
+      <h2>{{ proxima.especialidade }}</h2>
+      <p>{{ proxima.medico }} · {{ proxima.dataHora | date:'EEEE, dd/MM' }} às {{ hora(proxima) }}.</p>
+      <a routerLink="/paciente/agendar-consulta">Agendar outra →</a>
+    </article>
+  } @else {
+    <article class="proxima-destaque"><span class="rotulo">◷ Próxima consulta</span><h2>Nenhuma consulta agendada</h2><a routerLink="/paciente/agendar-consulta">Agendar consulta →</a></article>
+  }
+</section>
+
+<section class="estatisticas" aria-label="Resumo da sua saúde">
+  <app-stat-card icone="▣" [valor]="'' + consultas.length" label="consultas encontradas" />
+  <app-stat-card icone="▤" [valor]="'' + totalRealizadas" label="atendimentos realizados" />
+  <app-stat-card icone="◷" [valor]="proximas.length ? hora(proximas[0]) : '—'" label="próximo horário" />
+  <app-stat-card icone="◇" [valor]="'' + proximas.length" label="consultas futuras" />
+</section>
+
+@if (carregando) { <p class="estado">Carregando suas consultas…</p> }
+@if (erro) { <p class="erro" role="alert">{{ erro }}</p> }
+
+<section class="painel acesso">
+  <h2>Acesso rápido</h2>
+  <div class="atalhos">
+    @for (especialidade of especialidades; track especialidade) {
+      <a routerLink="/paciente/agendar-consulta"><span>♡</span>{{ especialidade }}</a>
+    }
+    @empty { <p class="estado">Especialidades indisponíveis no momento.</p> }
+  </div>
+</section>
+
+<section class="painel proximas-lista">
+  <div class="painel-titulo"><h2>Próximas consultas</h2><a routerLink="/paciente/agendar-consulta">Agendar nova</a></div>
+  @for (consulta of proximas; track consulta.id) {
+    <app-consulta-row [horario]="hora(consulta)" [nome]="consulta.medico" [detalhe]="detalhe(consulta)" [status]="statusParaBadge(consulta.status)" [statusTexto]="statusTexto(consulta.status)" />
+  }
+  @empty { <p class="estado">Você não tem consultas futuras.</p> }
+</section>
