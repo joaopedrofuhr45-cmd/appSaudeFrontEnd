@@ -1,0 +1,63 @@
+<div class="layout">
+  <app-sidebar
+    nome="Camila Reis"
+    subtitulo="Atendente · Recepção"
+    [itens]="[
+      { label: 'Atendimentos', rota: '/atendente/home' },
+      { label: 'Configurações', rota: '/atendente/configuracoes' },
+    ]"
+    rotaLogout="/menu-inicial"
+  />
+
+  <main class="conteudo">
+    <app-page-header
+      acaoLabel="Novo agendamento"
+      acaoRota="/atendente/novo-agendamento"
+    />
+
+    <h1>Atendimentos</h1>
+    <p class="subtitulo">Todas as consultas do hospital na data selecionada.</p>
+
+    <div class="filtros">
+      <div class="campo">
+        <label>Data</label>
+        <div class="input">📅 08/06/2026</div>
+      </div>
+      <div class="campo campo-grande">
+        <label>Buscar paciente</label>
+        <div class="input">🔍 Nome do paciente</div>
+      </div>
+      <div class="campo">
+        <label>Situação</label>
+        <div class="input">Todas</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <app-stat-card icone="📅" valor="4" label="consultas no dia" />
+      <app-stat-card icone="✓" valor="4" label="agendadas" />
+      <app-stat-card icone="⏱" valor="08:00" label="próximo horário" />
+    </div>
+
+    <div class="lista">
+      <div class="lista-cabecalho">
+        <span>Agenda de 08 de junho</span>
+        <a class="exportar">Exportar lista</a>
+      </div>
+
+      @if (carregando) {
+        <p>Carregando...</p>
+      } @else {
+        @for (c of consultas; track c.dataHora) {
+          <app-consulta-row
+            [horario]="c.horario"
+            [nome]="c.nomePaciente"
+            [detalhe]="c.detalhe"
+            [status]="statusParaBadge(c.status)"
+            [statusTexto]="c.status"
+          />
+        }
+      }
+    </div>
+  </main>
+</div>

@@ -4,6 +4,7 @@ import { TelaInicialComponent } from './modules/tela-inicial/tela-inicial.compon
 import { MenuInicialComponent } from './modules/menu-inicial/menu-inicial.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { CadastroPacienteComponent } from './modules/auth/cadastro/cadastro.component';
+import { AtendenteHomeComponent } from './modules/atendente/home/home.component';
 
 export const routes: Routes = [
   {
@@ -34,4 +35,5 @@ export const routes: Routes = [
     path: 'cadastro',
     component: CadastroPacienteComponent,
   },
+  { path: 'atendente/home', component: AtendenteHomeComponent},
 ];

@@ -1,0 +1,9 @@
+<div class="topbar">
+  <a class="voltar" [routerLink]="rotaVoltar"><span>‹</span> {{ textoVoltar }}</a>
+  <div class="acoes">
+    <button class="icone-btn" type="button">🔔</button>
+    @if (acaoLabel && acaoRota) {
+      <a class="btn-acao" [routerLink]="acaoRota">+ {{ acaoLabel }}</a>
+    }
+  </div>
+</div>

@@ -1,0 +1,4 @@
+.stat { display: flex; flex-direction: column; gap: 8px; padding: 18px; background: white; border: 1px solid #e3e5e8; border-radius: 12px; flex: 1; }
+.bubble { width: 36px; height: 36px; border-radius: 999px; background: #e6f2ef; color: #1c8b84; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.valor { margin: 0; font-weight: bold; font-size: 20px; color: #1c262b; }
+.label { margin: 0; font-size: 11px; color: #666e73; }

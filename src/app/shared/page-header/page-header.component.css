@@ -1,0 +1,5 @@
+.topbar { display: flex; align-items: center; justify-content: space-between; height: 40px; }
+.voltar { display: flex; align-items: center; gap: 6px; color: #1c8b84; font-size: 13px; font-weight: 600; text-decoration: none; }
+.acoes { display: flex; align-items: center; gap: 12px; }
+.icone-btn { width: 40px; height: 40px; border: 1px solid #e3e5e8; border-radius: 8px; background: white; cursor: pointer; font-size: 16px; }
+.btn-acao { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; background: #1c8b84; color: white; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }

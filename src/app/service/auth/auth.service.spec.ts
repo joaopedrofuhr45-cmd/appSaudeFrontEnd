@@ -1,12 +1,14 @@
+
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environment/environment';
 
 describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
-  const apiUrl = 'http://localhost:8080/api';
+  const apiUrl = environment.apiUrl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

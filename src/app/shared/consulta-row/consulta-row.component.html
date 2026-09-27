@@ -1,0 +1,9 @@
+<div class="row" [class.destaque]="destaque">
+  <p class="horario">{{ horario }}</p>
+  <div class="who">
+    <p class="nome">{{ nome }}</p>
+    <p class="detalhe">{{ detalhe }}</p>
+  </div>
+  <app-status-badge [status]="status" [texto]="statusTexto" />
+  <span class="chevron">›</span>
+</div>

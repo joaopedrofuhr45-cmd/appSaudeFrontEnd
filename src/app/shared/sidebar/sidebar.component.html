@@ -1,0 +1,26 @@
+<aside class="side">
+  <div class="logo">
+    <span class="icone">♥</span>
+    <span class="titulo">Saúde</span>
+    <span class="icone">+</span>
+  </div>
+
+  <div class="who">
+    <p class="nome">{{ nome }}</p>
+    <p class="subtitulo">{{ subtitulo }}</p>
+  </div>
+
+  <nav class="nav">
+    @for (item of itens; track item.rota) {
+      <a class="navitem" [routerLink]="item.rota" routerLinkActive="ativo">
+        <span class="dot"></span>
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+
+  <div class="rodape">
+    <hr class="regua" />
+    <a class="sair" [routerLink]="rotaLogout">Sair da conta</a>
+  </div>
+</aside>

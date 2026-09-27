@@ -1,0 +1,7 @@
+.row { display: flex; align-items: center; gap: 16px; height: 52px; padding: 13px 16px; border-radius: 8px; background: #f9fafa; }
+.row.destaque { background: white; border: 1px solid #1c8b84; }
+.horario { margin: 0; font-weight: bold; font-size: 15px; color: #1c8b84; width: 45px; }
+.who { flex: 1; }
+.nome { margin: 0; font-weight: 600; font-size: 13px; color: #1c262b; }
+.detalhe { margin: 2px 0 0; font-size: 11px; color: #666e73; }
+.chevron { color: #9ca3af; font-size: 18px; font-weight: 600; }

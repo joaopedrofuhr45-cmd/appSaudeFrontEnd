@@ -1,0 +1,13 @@
+.layout { display: flex; min-height: 100vh; }
+.conteudo { flex: 1; padding: 24px 32px 32px; display: flex; flex-direction: column; gap: 20px; }
+h1 { margin: 0; font-size: 22px; color: #1c262b; }
+.subtitulo { margin: 0; font-size: 13px; color: #666e73; }
+.filtros { display: flex; gap: 20px; padding: 20px; background: white; border: 1px solid #e3e5e8; border-radius: 12px; }
+.campo { display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+.campo label { font-weight: 600; color: #1c262b; }
+.campo-grande { flex: 1; }
+.input { height: 35px; display: flex; align-items: center; padding: 0 12px; border: 1px solid #e3e5e8; border-radius: 8px; color: #1c262b; }
+.stats { display: flex; gap: 16px; }
+.lista { display: flex; flex-direction: column; gap: 10px; padding: 20px; background: white; border: 1px solid #e3e5e8; border-radius: 12px; }
+.lista-cabecalho { display: flex; justify-content: space-between; font-weight: bold; font-size: 15px; color: #1c262b; }
+.lista-cabecalho .exportar { font-weight: 600; font-size: 12px; color: #1c8b84; text-decoration: none; }

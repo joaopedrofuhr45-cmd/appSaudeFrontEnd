@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  width: 250px;
+  height: 100%;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 250px;
+  height: 100%;
+  padding: 24px 20px;
+  background: white;
+  border-right: 1px solid #e3e5e8;
+  box-sizing: border-box;
+}
+
+.logo { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 18px; }
+.logo .icone { color: #1c8b84; }
+.logo .titulo { color: #1c262b; }
+
+.who {
+  background: #e6f2ef;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.who .nome { margin: 0; font-weight: 600; font-size: 13px; color: #1c262b; }
+.who .subtitulo { margin: 0; font-size: 11px; color: #666e73; }
+
+.nav { display: flex; flex-direction: column; gap: 4px; }
+
+.navitem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c262b;
+  text-decoration: none;
+}
+.navitem .dot { width: 6px; height: 6px; border-radius: 50%; background: #666e73; }
+.navitem.ativo { background: #e6f2ef; color: #1c8b84; font-weight: 600; }
+.navitem.ativo .dot { background: #1c8b84; }
+
+.rodape { margin-top: auto; }
+.regua { border: none; border-top: 1px solid #e3e5e8; margin: 0 0 12px; }
+.sair { font-size: 12px; color: #666e73; text-decoration: none; }
