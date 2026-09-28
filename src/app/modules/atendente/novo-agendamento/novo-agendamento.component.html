@@ -1,0 +1,92 @@
+<div class="layout">
+  <app-sidebar
+    nome="Camila Reis"
+    subtitulo="Atendente · Recepção"
+    [itens]="[
+      { label: 'Atendimentos', rota: '/atendente/home' },
+      { label: 'Configurações', rota: '/atendente/configuracoes' }
+    ]"
+    rotaLogout="/menu-inicial"
+  />
+
+  <main class="conteudo">
+    <app-page-header />
+
+    <section class="cabecalho">
+      <h1>Novo agendamento</h1>
+      <p>Preencha os dados abaixo para agendar uma nova consulta.</p>
+    </section>
+
+    <form class="card" [formGroup]="formulario" (ngSubmit)="confirmar()">
+      <div class="grid">
+        <label class="campo campo-largo">
+          <span>Paciente</span>
+          <input type="number" formControlName="pacienteId" placeholder="Buscar paciente pelo nome" />
+          <small>O backend espera o ID do paciente nesta etapa.</small>
+        </label>
+
+        <label class="campo">
+          <span>Tipo de consulta</span>
+          <select formControlName="tipoConsulta" (change)="carregarMedicos()">
+            <option value="">Selecionar</option>
+            @for (especialidade of especialidades; track especialidade) {
+              <option [value]="especialidade">{{ especialidade }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="campo">
+          <span>Profissional</span>
+          <select formControlName="medicoId">
+            <option [ngValue]="null">Selecionar profissional</option>
+            @for (medico of medicos; track medico.id) {
+              <option [ngValue]="medico.id">{{ medico.nome }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="campo">
+          <span>Unidade / Teleconsulta</span>
+          <select formControlName="unidade">
+            <option value="">Selecionar unidade</option>
+            <option value="Centro">Centro</option>
+            <option value="Teleconsulta">Teleconsulta</option>
+          </select>
+        </label>
+
+        <label class="campo">
+          <span>Data</span>
+          <input type="date" formControlName="data" />
+        </label>
+
+        <label class="campo">
+          <span>Horário</span>
+          <input type="time" formControlName="horario" />
+        </label>
+
+        <label class="campo">
+          <span>Situação</span>
+          <select formControlName="situacao">
+            <option value="AGENDADO">Agendado</option>
+          </select>
+        </label>
+
+        <label class="campo campo-largo">
+          <span>Observações</span>
+          <textarea formControlName="observacao" placeholder="Adicione informações relevantes sobre a consulta"></textarea>
+        </label>
+      </div>
+
+      @if (mensagem) {
+        <p class="mensagem">{{ mensagem }}</p>
+      }
+
+      <div class="acoes">
+        <button type="button" class="secundario" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="primario" [disabled]="carregando || carregandoOpcoes">
+          {{ carregando ? 'Confirmando...' : 'Confirmar agendamento' }}
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
