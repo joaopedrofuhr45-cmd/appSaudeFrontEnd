@@ -4,7 +4,7 @@ import { PageHeaderComponent } from '../../../shared/page-header/page-header.com
 import { StatCardComponent } from '../../../shared/stat-card/stat-card.component';
 import { ConsultaRowComponent } from '../../../shared/consulta-row/consulta-row.component';
 import { ConsultaService } from '../../../service/consulta/consulta.service';
-import { Consulta } from '../../../model/consulta/consulta-request';
+import { Consulta } from '../../../model/consulta/consulta.model';
 import { StatusConsulta } from '../../../shared/status-badge/status-badge.component';
 
 @Component({
