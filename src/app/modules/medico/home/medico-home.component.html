@@ -1,0 +1,54 @@
+<div class="layout">
+  <app-sidebar
+    nome="Dr. Carlos Almeida"
+    subtitulo="Clínica Geral"
+    [itens]="[
+      { label: 'Consultas do dia', rota: '/medico/dashboard' },
+      { label: 'Configurações', rota: '/medico/configuracoes' }
+    ]"
+    rotaLogout="/menu-inicial"
+  />
+
+  <main class="conteudo">
+    <app-page-header />
+
+    <h1>Consultas do dia</h1>
+    <p class="subtitulo">Acompanhe os atendimentos e prepare-se para cada paciente.</p>
+
+    <div class="filtros">
+      <label>Buscar paciente<input [(ngModel)]="busca" placeholder="Nome do paciente" /></label>
+      <label>Situação
+        <select [(ngModel)]="situacao">
+          <option value="">Todas</option>
+          <option value="CONFIRMADO">Confirmado</option>
+          <option value="EM_ESPERA">Em espera</option>
+          <option value="CONCLUIDO">Finalizado</option>
+          <option value="CANCELADO">Cancelado</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="lista">
+      <div class="lista-topo">
+        <strong>{{ filtradas.length }} consultas agendadas</strong>
+        <span>Atualizar</span>
+      </div>
+
+      @if (carregando) {
+        <p>Carregando consultas...</p>
+      } @else {
+        @for (consulta of filtradas; track consulta.dataHora) {
+          <app-consulta-row
+            [horario]="consulta.horario"
+            [nome]="consulta.nomePaciente"
+            [detalhe]="consulta.detalhe"
+            [status]="statusParaBadge(consulta.status)"
+            [statusTexto]="statusTexto(consulta.status)"
+          />
+        } @empty {
+          <p>Nenhuma consulta encontrada.</p>
+        }
+      }
+    </div>
+  </main>
+</div>
