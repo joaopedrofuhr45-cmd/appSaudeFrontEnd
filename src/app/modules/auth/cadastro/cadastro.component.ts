@@ -1,5 +1,6 @@
 
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
@@ -106,11 +107,13 @@ export class CadastroPacienteComponent {
             this.cadastroForm.get('email')?.value || '',
           )}; path=/`;
 
-          window.location.href = '/app-saude/paciente/verificacao-email';
+          window.location.href = '/login-paciente';
         },
-        error: (erro: Error) => {
+        error: (erro: HttpErrorResponse) => {
           this.mensagem =
-            erro.message || 'Não foi possível concluir o cadastro.';
+            erro.error?.message ||
+            erro.message ||
+            'Não foi possível concluir o cadastro.';
         },
       });
   }
