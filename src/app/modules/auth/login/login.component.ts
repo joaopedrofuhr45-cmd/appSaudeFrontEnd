@@ -70,16 +70,22 @@ export class LoginComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.IsLoading = false;
-
-          const rotaDestino =
-            this.perfil === 'atendente'
-              ? '/atendente/home'
-              : this.perfil === 'paciente'
-                ? '/paciente/dashboard'
-                : '/medico/dashboard';
-
-          this.router.navigate([rotaDestino]);
+          this.authService.me().subscribe({
+            next: (me) => {
+              this.IsLoading = false;
+              const rotaDestino =
+                me.role === 'ATENDENTE'
+                  ? '/atendente/home'
+                  : me.role === 'USUARIO'
+                    ? '/paciente/dashboard'
+                    : '/medico/dashboard';
+              this.router.navigate([rotaDestino]);
+            },
+            error: () => {
+              this.IsLoading = false;
+              this.errorMessage = 'Não foi possível identificar o perfil autenticado.';
+            }
+          });
         },
         error: (error) => {
           this.IsLoading = false;

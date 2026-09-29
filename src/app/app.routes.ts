@@ -16,6 +16,7 @@ import { AgendarConsultaComponent } from './modules/paciente/agendar-consulta/ag
 import { ConsultasAnterioresComponent } from './modules/paciente/consultas-anteriores/consultas-anteriores.component';
 import { HistoricoPacienteComponent } from './modules/paciente/historico/historico-paciente.component';
 import { ConfiguracoesPacienteComponent } from './modules/paciente/configuracoes/configuracoes-paciente.component';
+import { roleGuard } from './service/auth/role.guard';
 
 export const routes: Routes = [
  {path:'',component:TelaInicialComponent,pathMatch:'full'},
@@ -24,20 +25,20 @@ export const routes: Routes = [
  {path:'login-atendente',component:LoginComponent,data:{perfil:'atendente'}},
  {path:'login-medico',component:LoginComponent,data:{perfil:'medico'}},
  {path:'cadastro',component:CadastroPacienteComponent},
- {path:'atendente',children:[
+ {path:'atendente',canActivate:[roleGuard],data:{roles:['ATENDENTE']},children:[
    {path:'',pathMatch:'full',redirectTo:'home'},
    {path:'home',component:AtendenteHomeComponent},
    {path:'novo-agendamento',component:NovoAgendamentoComponent},
    {path:'configuracoes',component:ConfiguracoesAtendenteComponent}
  ]},
- {path:'medico',children:[
+ {path:'medico',canActivate:[roleGuard],data:{roles:['MEDICO']},children:[
    {path:'',pathMatch:'full',redirectTo:'dashboard'},
    {path:'dashboard',component:MedicoHomeComponent},
    {path:'consulta/:id',component:DadosConsultaComponent},
    {path:'consulta/:id/atendimento',component:AtendimentoMedicoComponent},
    {path:'configuracoes',component:ConfiguracoesMedicoComponent}
  ]},
- {path:'paciente',component:PacienteLayoutComponent,children:[
+ {path:'paciente',component:PacienteLayoutComponent,canActivate:[roleGuard],data:{roles:['USUARIO']},children:[
    {path:'',pathMatch:'full',redirectTo:'dashboard'},
    {path:'dashboard',component:PacienteHomeComponent},
    {path:'agendar-consulta',component:AgendarConsultaComponent},

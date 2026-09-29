@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { SidebarComponent } from '../../../shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '../../../shared/page-header/page-header.component';
@@ -7,16 +8,20 @@ import { ConsultaRowComponent } from '../../../shared/consulta-row/consulta-row.
 import { StatusBadgeComponent, StatusConsulta } from '../../../shared/status-badge/status-badge.component';
 import { ConsultaService } from '../../../service/consulta/consulta.service';
 import { Consulta } from '../../../model/consulta/consulta.model';
+import { MedicoService } from '../../../service/auth/medico.service';
 
 @Component({
   selector: 'app-medico-home',
   standalone: true,
-  imports: [FormsModule, SidebarComponent, PageHeaderComponent, ConsultaRowComponent, StatusBadgeComponent],
+  imports: [FormsModule, RouterLink, SidebarComponent, PageHeaderComponent, ConsultaRowComponent, StatusBadgeComponent],
   templateUrl: './medico-home.component.html',
   styleUrl: './medico-home.component.css',
 })
 export class MedicoHomeComponent implements OnInit {
   private readonly consultaService = inject(ConsultaService);
+  private readonly perfilService = inject(MedicoService);
+  nome = 'Médico';
+  subtitulo = 'Área médica';
 
   consultas: Consulta[] = [];
   carregando = true;
@@ -24,6 +29,7 @@ export class MedicoHomeComponent implements OnInit {
   situacao = '';
 
   ngOnInit(): void {
+    this.perfilService.obterMeuPerfil().subscribe({ next: p => { this.nome = p.nome; this.subtitulo = p.especialidade; } });
     const hoje = new Date().toISOString().split('T')[0];
 
     this.consultaService.listarPorData(hoje).subscribe({

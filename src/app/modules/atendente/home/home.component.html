@@ -1,7 +1,7 @@
 <div class="layout">
   <app-sidebar
-    nome="Camila Reis"
-    subtitulo="Atendente · Recepção"
+    [nome]="nome"
+    [subtitulo]="subtitulo"
     [itens]="[
       { label: 'Atendimentos', rota: '/atendente/home' },
       { label: 'Configurações', rota: '/atendente/configuracoes' },

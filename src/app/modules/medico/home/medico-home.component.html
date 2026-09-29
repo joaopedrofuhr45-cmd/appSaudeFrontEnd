@@ -1,7 +1,7 @@
 <div class="layout">
   <app-sidebar
-    nome="Dr. Carlos Almeida"
-    subtitulo="Clínica Geral"
+    [nome]="nome"
+    [subtitulo]="subtitulo"
     [itens]="[
       { label: 'Consultas do dia', rota: '/medico/dashboard' },
       { label: 'Configurações', rota: '/medico/configuracoes' }
@@ -38,13 +38,15 @@
         <p>Carregando consultas...</p>
       } @else {
         @for (consulta of filtradas; track consulta.dataHora) {
-          <app-consulta-row
-            [horario]="consulta.horario"
-            [nome]="consulta.nomePaciente"
-            [detalhe]="consulta.detalhe"
-            [status]="statusParaBadge(consulta.status)"
-            [statusTexto]="statusTexto(consulta.status)"
-          />
+          <a [routerLink]="['/medico/consulta', consulta.id]" class="consulta-link">
+            <app-consulta-row
+              [horario]="consulta.horario"
+              [nome]="consulta.nomePaciente"
+              [detalhe]="consulta.detalhe"
+              [status]="statusParaBadge(consulta.status)"
+              [statusTexto]="statusTexto(consulta.status)"
+            />
+          </a>
         } @empty {
           <p>Nenhuma consulta encontrada.</p>
         }

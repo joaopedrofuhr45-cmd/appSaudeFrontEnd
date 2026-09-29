@@ -6,7 +6,7 @@ export type StatusConsulta =
   | 'CONCLUIDO';
 
 export interface Consulta {
-  id?: number;
+  id: number;
   dataHora: string;
   horario: string;
   nomePaciente: string;
@@ -43,4 +43,20 @@ export interface ConsultaAgendamento {
 export interface MedicoOpcao {
   id: number | string;
   nome: string;
+}
+
+export interface PacienteOpcao {
+  id: number;
+  nome: string;
+}
+
+export interface ConsultaDetalhe {
+  id: number;
+  paciente: string;
+  medico: string;
+  especialidade: string;
+  tipoConsulta: string;
+  dataHora: string;
+  status: StatusConsulta;
+  observacao: string;
 }
