@@ -1,7 +1,7 @@
 <div class="layout">
   <app-sidebar
-    nome="Dr. Carlos Almeida"
-    subtitulo="Clínica Geral"
+    [nome]="nome"
+    [subtitulo]="subtitulo"
     [itens]="[
       { label: 'Consultas do dia', rota: '/medico/dashboard' },
       { label: 'Configurações', rota: '/medico/configuracoes' }
