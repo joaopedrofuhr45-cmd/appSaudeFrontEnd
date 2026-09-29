@@ -18,7 +18,7 @@
             <div>Especialidade<strong>{{ consulta.especialidade }}</strong></div>
             <div>Tipo<strong>{{ consulta.tipoConsulta }}</strong></div>
             <div>Data e hora<strong>{{ consulta.dataHora | date:'dd/MM/yyyy HH:mm' }}</strong></div>
-            <div>Situação><app-status-badge [status]="consulta.status.toLowerCase().replace('_','-')" [texto]="consulta.status" /></div>
+            <div>Situação<app-status-badge [status]="statusParaBadge(consulta.status)" [texto]="consulta.status" /></div>
           </div>
           <div class="observacao"><strong>Observação</strong><p>{{ consulta.observacao || 'Nenhuma observação registrada.' }}</p></div>
         </section>
