@@ -21,8 +21,15 @@
       <div class="grid">
         <label class="campo campo-largo">
           <span>Paciente</span>
-          <input type="number" formControlName="pacienteId" placeholder="Buscar paciente pelo nome" />
-          <small>O backend espera o ID do paciente nesta etapa.</small>
+          <input type="text" [ngModel]="buscaPaciente" (ngModelChange)="buscaPaciente=$event; buscarPaciente()" [ngModelOptions]="{standalone:true}" placeholder="Buscar paciente pelo nome" />
+          @if (pacientes.length) {
+            <div class="opcoes-paciente">
+              @for (paciente of pacientes; track paciente.id) {
+                <button type="button" (click)="selecionarPaciente(paciente)">{{ paciente.nome }}</button>
+              }
+            </div>
+          }
+          <small>Selecione um paciente da lista.</small>
         </label>
 
         <label class="campo">
