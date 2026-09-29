@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { SidebarComponent } from '../../../shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '../../../shared/page-header/page-header.component';
 import { ConsultaService } from '../../../service/consulta/consulta.service';
-import { MedicoOpcao } from '../../../model/consulta/consulta.model';
+import { MedicoOpcao, PacienteOpcao } from '../../../model/consulta/consulta.model';
 
 @Component({
   selector: 'app-novo-agendamento',
@@ -22,6 +22,8 @@ export class NovoAgendamentoComponent implements OnInit {
 
   especialidades: string[] = [];
   medicos: MedicoOpcao[] = [];
+  pacientes: PacienteOpcao[] = [];
+  buscaPaciente = '';
   carregando = false;
   carregandoOpcoes = true;
   mensagem = '';
@@ -49,6 +51,21 @@ export class NovoAgendamentoComponent implements OnInit {
           this.mensagem = 'Não foi possível carregar os tipos de consulta.';
         },
       });
+  }
+
+  buscarPaciente(): void {
+    const termo = this.buscaPaciente.trim();
+    if (termo.length < 2) { this.pacientes = []; return; }
+    this.consultaService.buscarPacientes(termo).subscribe({
+      next: dados => this.pacientes = dados,
+      error: () => this.mensagem = 'Não foi possível buscar pacientes.'
+    });
+  }
+
+  selecionarPaciente(paciente: PacienteOpcao): void {
+    this.formulario.controls.pacienteId.setValue(paciente.id);
+    this.buscaPaciente = paciente.nome;
+    this.pacientes = [];
   }
 
   carregarMedicos(): void {
