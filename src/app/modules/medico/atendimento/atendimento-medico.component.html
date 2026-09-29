@@ -1,1 +1,38 @@
-<div class="layout"><app-sidebar nome="Dr. Carlos Almeida" subtitulo="Clínica Geral" [itens]="[{label:'Consultas do dia',rota:'/medico/dashboard'},{label:'Configurações',rota:'/medico/configuracoes'}]" rotaLogout="/menu-inicial"/><main class="conteudo"><app-page-header rotaVoltar="/medico/dashboard" textoVoltar="Voltar para consultas do dia"/><div class="titulo"><div><h1>Atendimento de João Silva</h1><p>Registre a evolução e finalize quando terminar a consulta.</p></div><span>Consulta #{{id||'—'}}</span></div><div class="colunas"><section class="card"><h2>Prontuário</h2><label>Queixa principal<textarea>Dor de cabeça frequente há 1 semana.</textarea></label><label>Histórico clínico<textarea>Hipertensão arterial controlada.</textarea></label><label>Exame físico<textarea>PA: 120/80 mmHg · FC: 72 bpm</textarea></label><label>Observações<textarea placeholder="Digite suas observações..."></textarea></label></section><aside class="card"><h2>João Silva</h2><p>35 anos · Masculino</p><dl><dt>Convênio</dt><dd>Unimed</dd><dt>Horário</dt><dd>08:00</dd><dt>Situação</dt><dd>Em atendimento</dd></dl><button disabled>Emitir receita</button><button class="primario" disabled>Finalizar consulta</button><small>Receita e finalização aguardam endpoints do backend.</small></aside></div></main></div>
+<div class="layout">
+  <app-sidebar nome="Médico" subtitulo="Área médica"
+    [itens]="[{label:'Consultas do dia',rota:'/medico/dashboard'},{label:'Configurações',rota:'/medico/configuracoes'}]"
+    rotaLogout="/menu-inicial" />
+  <main class="conteudo">
+    <app-page-header rotaVoltar="/medico/dashboard" textoVoltar="Voltar para consultas do dia" />
+    @if (carregando) { <p>Carregando atendimento...</p> }
+    @if (erro) { <p class="erro">{{ erro }}</p> }
+    @if (consulta) {
+      <div class="titulo">
+        <div><h1>Atendimento de {{ consulta.paciente }}</h1><p>Registre a evolução e finalize quando terminar a consulta.</p></div>
+        <span>{{ consulta.dataHora | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="colunas">
+        <section class="card">
+          <h2>Prontuário</h2>
+          <label>Observações<textarea [(ngModel)]="observacao" rows="10" placeholder="Digite suas observações do atendimento..."></textarea></label>
+        </section>
+        <aside class="card">
+          <h2>{{ consulta.paciente }}</h2>
+          <dl>
+            <dt>Médico</dt><dd>{{ consulta.medico }}</dd>
+            <dt>Especialidade</dt><dd>{{ consulta.especialidade }}</dd>
+            <dt>Tipo</dt><dd>{{ consulta.tipoConsulta }}</dd>
+            <dt>Situação</dt><dd>{{ consulta.status }}</dd>
+          </dl>
+          @if (consulta.status !== 'CONCLUIDO' && consulta.status !== 'CANCELADO') {
+            <button class="primario" [disabled]="finalizando" (click)="finalizar()">
+              {{ finalizando ? 'Finalizando...' : 'Finalizar consulta' }}
+            </button>
+          } @else {
+            <p>Consulta finalizada.</p>
+          }
+        </aside>
+      </div>
+    }
+  </main>
+</div>
