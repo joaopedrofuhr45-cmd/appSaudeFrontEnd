@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { SidebarComponent } from '../../../shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '../../../shared/page-header/page-header.component';
-import { StatusBadgeComponent } from '../../../shared/status-badge/status-badge.component';
+import { StatusBadgeComponent, StatusConsulta } from '../../../shared/status-badge/status-badge.component';
 import { ConsultaService } from '../../../service/consulta/consulta.service';
 import { ConsultaDetalhe } from '../../../model/consulta/consulta.model';
 
@@ -31,6 +31,10 @@ export class DadosConsultaComponent implements OnInit {
       next: c => this.consulta = c,
       error: e => this.erro = e?.error?.message ?? 'Não foi possível carregar a consulta.'
     });
+  }
+
+  statusParaBadge(status: string): StatusConsulta {
+    return status.toLowerCase().replace('_', '-') as StatusConsulta;
   }
 
   abrirAtendimento(): void {
