@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { SidebarComponent } from '../../../shared/sidebar/sidebar.component';
@@ -10,7 +11,7 @@ import { ConsultaDetalhe } from '../../../model/consulta/consulta.model';
 @Component({
   selector: 'app-dados-consulta',
   standalone: true,
-  imports: [SidebarComponent, PageHeaderComponent, StatusBadgeComponent],
+  imports: [DatePipe, SidebarComponent, PageHeaderComponent, StatusBadgeComponent],
   templateUrl: './dados-consulta.component.html',
   styleUrl: './dados-consulta.component.css'
 })
