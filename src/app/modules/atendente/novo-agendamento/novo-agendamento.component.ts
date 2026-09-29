@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { MedicoOpcao, PacienteOpcao } from '../../../model/consulta/consulta.mod
 @Component({
   selector: 'app-novo-agendamento',
   standalone: true,
-  imports: [ReactiveFormsModule, SidebarComponent, PageHeaderComponent],
+  imports: [ReactiveFormsModule, FormsModule, SidebarComponent, PageHeaderComponent],
   templateUrl: './novo-agendamento.component.html',
   styleUrl: './novo-agendamento.component.css',
 })
