@@ -1,1 +1,36 @@
-<div class="layout"><app-sidebar nome="Dr. Carlos Almeida" subtitulo="Clínica Geral" [itens]="[{label:'Consultas do dia',rota:'/medico/dashboard'},{label:'Configurações',rota:'/medico/configuracoes'}]" rotaLogout="/menu-inicial"/><main class="conteudo"><app-page-header rotaVoltar="/medico/dashboard" textoVoltar="Voltar para consultas do dia"/><h1>Dados da consulta</h1><p>Consulta #{{id||'—'}}</p><div class="colunas"><section class="card"><h2>Informações</h2><div class="dados"><div>Paciente<strong>João Silva</strong></div><div>Médico<strong>Dr. Carlos</strong></div><div>Especialidade<strong>Clínica Geral</strong></div><div>Data e hora<strong>08/06/2026 às 08:00</strong></div><div>Convênio<strong>Unimed</strong></div><div>Situação<app-status-badge status="confirmado" texto="Confirmada"/></div></div><div class="observacao">Observação<p>Nenhuma observação registrada.</p></div></section><aside class="card"><h2>Ações</h2><button disabled>Editar consulta</button><button disabled>Cancelar consulta</button><small>As ações serão ligadas quando os endpoints existirem no backend.</small></aside></div></main></div>
+<div class="layout">
+  <app-sidebar nome="Médico" subtitulo="Área médica"
+    [itens]="[{label:'Consultas do dia',rota:'/medico/dashboard'},{label:'Configurações',rota:'/medico/configuracoes'}]"
+    rotaLogout="/menu-inicial" />
+  <main class="conteudo">
+    <app-page-header rotaVoltar="/medico/dashboard" textoVoltar="Voltar para consultas do dia" />
+    @if (carregando) { <p>Carregando consulta...</p> }
+    @if (erro) { <p class="erro">{{ erro }}</p> }
+    @if (consulta) {
+      <h1>Dados da consulta</h1>
+      <p>Consulta de {{ consulta.dataHora | date:'dd/MM/yyyy' }} às {{ consulta.dataHora | date:'HH:mm' }}.</p>
+      <div class="colunas">
+        <section class="card">
+          <h2>Informações</h2>
+          <div class="dados">
+            <div>Paciente<strong>{{ consulta.paciente }}</strong></div>
+            <div>Médico<strong>{{ consulta.medico }}</strong></div>
+            <div>Especialidade<strong>{{ consulta.especialidade }}</strong></div>
+            <div>Tipo<strong>{{ consulta.tipoConsulta }}</strong></div>
+            <div>Data e hora<strong>{{ consulta.dataHora | date:'dd/MM/yyyy HH:mm' }}</strong></div>
+            <div>Situação><app-status-badge [status]="consulta.status.toLowerCase().replace('_','-')" [texto]="consulta.status" /></div>
+          </div>
+          <div class="observacao"><strong>Observação</strong><p>{{ consulta.observacao || 'Nenhuma observação registrada.' }}</p></div>
+        </section>
+        <aside class="card">
+          <h2>Ações</h2>
+          @if (consulta.status !== 'CONCLUIDO' && consulta.status !== 'CANCELADO') {
+            <button class="primario" (click)="abrirAtendimento()">Iniciar atendimento</button>
+          } @else {
+            <p>Esta consulta já foi encerrada.</p>
+          }
+        </aside>
+      </div>
+    }
+  </main>
+</div>
