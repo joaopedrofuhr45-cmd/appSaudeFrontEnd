@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { SidebarComponent } from '../../../shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '../../../shared/page-header/page-header.component';
@@ -11,7 +12,7 @@ import { Consulta } from '../../../model/consulta/consulta.model';
 @Component({
   selector: 'app-medico-home',
   standalone: true,
-  imports: [FormsModule, SidebarComponent, PageHeaderComponent, ConsultaRowComponent, StatusBadgeComponent],
+  imports: [FormsModule, RouterLink, SidebarComponent, PageHeaderComponent, ConsultaRowComponent, StatusBadgeComponent],
   templateUrl: './medico-home.component.html',
   styleUrl: './medico-home.component.css',
 })
