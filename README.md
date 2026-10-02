@@ -14,6 +14,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+### Production API URL
+
+Before a production build, set `apiUrl` in `src/environment/environment.prod.ts` to the public backend URL, including `/auth` (for example, `https://api.example.com/auth`). Production builds replace the development environment file through `angular.json`; localhost is used only in development.
+
+Run `ng build --configuration production` to create the deployable bundle.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
