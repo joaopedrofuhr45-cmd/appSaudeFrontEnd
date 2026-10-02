@@ -11,7 +11,8 @@ describe('LoginComponent', () => {
   let router: Router;
 
   beforeEach(async () => {
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['login']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['login', 'me', 'loginWithGoogle']);
+    authServiceSpy.me.and.returnValue(of({ email: 'joao@email.com', role: 'USUARIO' }));
 
     await TestBed.configureTestingModule({
       imports: [LoginComponent],
@@ -36,10 +37,10 @@ describe('LoginComponent', () => {
   it('deve navegar para o dashboard quando o login der certo', () => {
     authServiceSpy.login.and.returnValue(of(undefined));
 
-    component.loginForm.setValue({ cpf: '12345678900', senha: 'minhasenha' });
+    component.loginForm.setValue({ email: 'joao@email.com', senha: 'minhasenha' });
     component.onSubmit();
 
-    expect(authServiceSpy.login).toHaveBeenCalledWith({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente'});
+    expect(authServiceSpy.login).toHaveBeenCalledWith({ email: 'joao@email.com', senha: 'minhasenha' });
     expect(router.navigate).toHaveBeenCalledWith(['/paciente/dashboard']);
     expect(component.errorMessage).toBeNull();
     expect(component.IsLoading).toBeFalse();
@@ -48,10 +49,10 @@ describe('LoginComponent', () => {
   it('deve mostrar mensagem de erro quando o login falhar', () => {
     authServiceSpy.login.and.returnValue(throwError(() => ({ status: 401 })));
 
-    component.loginForm.setValue({ cpf: '12345678900', senha: 'senhaerrada' });
+    component.loginForm.setValue({ email: 'joao@email.com', senha: 'senhaerrada' });
     component.onSubmit();
 
-    expect(component.errorMessage).toBe('CPF ou senha inválidos');
+    expect(component.errorMessage).toBe('E-mail ou senha inválidos');
     expect(component.IsLoading).toBeFalse();
     expect(router.navigate).not.toHaveBeenCalled();
   });

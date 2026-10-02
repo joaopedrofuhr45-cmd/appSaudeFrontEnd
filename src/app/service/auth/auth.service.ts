@@ -15,6 +15,10 @@ export class AuthService {
     return this.http.post<void>(`${this.apiUrl}/login`, credentials, { withCredentials: true });
   }
 
+  loginWithGoogle(credential: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/google`, { credential }, { withCredentials: true });
+  }
+
   logout(): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: true });
   }

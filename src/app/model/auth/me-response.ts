@@ -1,4 +1,4 @@
 export interface MeResponse {
-  cpf: string;
+  email: string;
   role: 'USUARIO' | 'MEDICO' | 'ATENDENTE';
 }

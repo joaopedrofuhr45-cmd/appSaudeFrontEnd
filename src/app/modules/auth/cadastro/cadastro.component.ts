@@ -1,39 +1,15 @@
 
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { AfterViewInit, Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 
 import {CadastroService} from '../../../service/cadastro/cadastro.service';
 import { CadastroRequest } from './../../../model/auth/cadastro-request';
-
-function cpfValidator(control: AbstractControl): ValidationErrors | null {
-  const cpf = String(control.value ?? '').replace(/\D/g, '');
-
-  if (!cpf) return null;
-
-  return cpf.length === 11 && !/^([0-9])\1{10}$/.test(cpf)
-    ? null
-    : { cpfInvalido: true };
-}
-
-function senhasIguaisValidator(
-  control: AbstractControl,
-): ValidationErrors | null {
-  const senha = control.get('senha')?.value;
-  const confirmacao = control.get('confirmarSenha')?.value;
-
-  return senha && confirmacao && senha !== confirmacao
-    ? { senhasDiferentes: true }
-    : null;
-}
+import { AuthService } from '../../../service/auth/auth.service';
+import { Router } from '@angular/router';
+import { renderGoogleIdentityButton } from '../../../service/auth/google-identity';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -42,19 +18,18 @@ function senhasIguaisValidator(
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css',
 })
-export class CadastroPacienteComponent {
+export class CadastroPacienteComponent implements AfterViewInit {
   private readonly fb = inject(FormBuilder);
   private readonly cadastroService = inject(CadastroService);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
-  readonly cadastroForm = this.fb.group(
-    {
+  readonly cadastroForm = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(150)],
       ],
-      cpf: ['', [Validators.required, cpfValidator]],
-      telefone: ['', [Validators.required, Validators.maxLength(20)]],
       senha: [
         '',
         [
@@ -63,13 +38,15 @@ export class CadastroPacienteComponent {
           Validators.maxLength(72),
         ],
       ],
-      confirmarSenha: ['', [Validators.required]],
-    },
-    { validators: senhasIguaisValidator },
-  );
+  });
 
   mensagem = '';
   enviando = false;
+
+  ngAfterViewInit(): void {
+    void renderGoogleIdentityButton(document.getElementById('google-signup-button'), (credential) => this.entrarComGoogle(credential))
+      .catch(() => { this.mensagem = 'Não foi possível carregar o acesso pelo Google.'; });
+  }
 
   campoInvalido(nome: string): boolean {
     const campo = this.cadastroForm.get(nome);
@@ -80,20 +57,12 @@ export class CadastroPacienteComponent {
     this.cadastroForm.markAllAsTouched();
   }
 
-  limparCpf(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    input.value = input.value.replace(/\D/g, '').slice(0, 11);
-    this.cadastroForm.controls.cpf.setValue(input.value);
-  }
-
   enviar(): void {
     this.mensagem = '';
     this.marcarCamposComoTocados();
 
     if (this.cadastroForm.invalid) {
-      this.mensagem = this.cadastroForm.hasError('senhasDiferentes')
-        ? 'As senhas não coincidem.'
-        : 'Confira os campos destacados e tente novamente.';
+      this.mensagem = 'Confira os campos destacados e tente novamente.';
       return;
     }
 
@@ -116,5 +85,17 @@ export class CadastroPacienteComponent {
             'Não foi possível concluir o cadastro.';
         },
       });
+  }
+
+  private entrarComGoogle(credential: string): void {
+    this.mensagem = '';
+    this.enviando = true;
+    this.authService.loginWithGoogle(credential).pipe(finalize(() => (this.enviando = false))).subscribe({
+      next: () => this.authService.me().subscribe({
+        next: (me) => this.router.navigate([me.role === 'ATENDENTE' ? '/atendente/home' : me.role === 'USUARIO' ? '/paciente/dashboard' : '/medico/dashboard']),
+        error: () => { this.mensagem = 'Não foi possível identificar o perfil autenticado.'; },
+      }),
+      error: (erro: HttpErrorResponse) => { this.mensagem = erro.error?.message || 'Não foi possível entrar com Google. Tente novamente.'; },
+    });
   }
 }

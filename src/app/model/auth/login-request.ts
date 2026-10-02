@@ -1,4 +1,4 @@
 export interface LoginRequest {
-  cpf: string;
+  email: string;
   senha: string;
 }

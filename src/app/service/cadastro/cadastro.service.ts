@@ -14,8 +14,6 @@ export class CadastroService {
     const payload: CadastroRequest = {
       nome: dados.nome,
       email: dados.email,
-      cpf: dados.cpf,
-      telefone: dados.telefone,
       senha: dados.senha,
     };
 

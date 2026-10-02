@@ -39,8 +39,6 @@ describe('CadastroService', () => {
   const paciente = {
     nome: 'João Pedro',
     email: 'joao@email.com',
-    cpf: '52998224725',
-    telefone: '11999999999',
     senha: '123456',
     confirmarSenha: '123456'
   };

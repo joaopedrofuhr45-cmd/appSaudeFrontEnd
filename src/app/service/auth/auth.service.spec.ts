@@ -26,14 +26,23 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('deve enviar CPF e senha via POST para /login com withCredentials', () => {
-    service.login({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente' }).subscribe();
+  it('deve enviar e-mail e senha via POST para /login com withCredentials', () => {
+    service.login({ email: 'joao@email.com', senha: 'minhasenha' }).subscribe();
 
     const req = httpMock.expectOne(`${apiUrl}/login`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ cpf: '12345678900', senha: 'minhasenha', tipoUsuario: 'paciente' });
+    expect(req.request.body).toEqual({ email: 'joao@email.com', senha: 'minhasenha' });
     expect(req.request.withCredentials).toBeTrue();
 
+    req.flush(null);
+  });
+
+  it('deve enviar a credencial Google para /google com cookies', () => {
+    service.loginWithGoogle('google-id-token').subscribe();
+    const req = httpMock.expectOne(`${apiUrl}/google`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({ credential: 'google-id-token' });
+    expect(req.request.withCredentials).toBeTrue();
     req.flush(null);
   });
 

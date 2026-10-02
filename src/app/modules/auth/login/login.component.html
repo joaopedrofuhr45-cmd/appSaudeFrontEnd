@@ -22,13 +22,13 @@
       </p>
 
       <div class="campo">
-        <label for="cpf">CPF</label>
+        <label for="email">E-mail</label>
 
         <input
-          id="cpf"
-          type="text"
-          formControlName="cpf"
-          placeholder="000.000.000-00"
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Digite seu e-mail"
         />
       </div>
 
@@ -72,13 +72,8 @@
         <span>ou</span>
       </div>
 
-      <app-button
-        variante="secundario"
-        type="button"
-        class="btn-google"
-      >
-        Continuar com Google
-      </app-button>
+      <div id="google-signin-button" class="google-signin-button"></div>
+      @if (googleError) { <p class="erro-campo" role="alert">{{ googleError }}</p> }
 
       @if (perfil === 'paciente') {
         <p class="rodape-login">

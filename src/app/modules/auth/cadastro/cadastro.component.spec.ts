@@ -1,4 +1,5 @@
 import { CadastroService } from './../../../service/cadastro/cadastro.service';
+import { AuthService } from '../../../service/auth/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CadastroPacienteComponent } from './cadastro.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +18,8 @@ describe('CadastroPacienteComponent', () => {
         {
           provide: CadastroService,
           useValue: {}
-        }
+        },
+        { provide: AuthService, useValue: {} }
       ]
     }).compileComponents();
 
@@ -72,25 +74,7 @@ describe('CadastroPacienteComponent', () => {
     expect(campo?.hasError('email')).toBeTrue();
   });
 
-  // 7 - CPF obrigatório
-  it('deve invalidar o CPF quando estiver vazio', () => {
-    const campo = component.cadastroForm.get('cpf');
-
-    campo?.setValue('');
-
-    expect(campo?.hasError('required')).toBeTrue();
-  });
-
-  // 8 - Telefone obrigatório
-  it('deve invalidar o telefone quando estiver vazio', () => {
-    const campo = component.cadastroForm.get('telefone');
-
-    campo?.setValue('');
-
-    expect(campo?.hasError('required')).toBeTrue();
-  });
-
-  // 9 - Senha obrigatória
+  // 7 - Senha obrigatória
   it('deve invalidar a senha quando estiver vazia', () => {
     const campo = component.cadastroForm.get('senha');
 
@@ -99,7 +83,7 @@ describe('CadastroPacienteComponent', () => {
     expect(campo?.hasError('required')).toBeTrue();
   });
 
-  // 10 - Senha com menos de 6 caracteres
+  // 8 - Senha com menos de 6 caracteres
   it('deve invalidar a senha com menos de 6 caracteres', () => {
     const campo = component.cadastroForm.get('senha');
 
@@ -108,24 +92,12 @@ describe('CadastroPacienteComponent', () => {
     expect(campo?.hasError('minlength')).toBeTrue();
   });
 
-  // 11 - Confirmação de senha obrigatória
-  it('deve invalidar confirmarSenha quando estiver vazio', () => {
-    const campo = component.cadastroForm.get('confirmarSenha');
-
-    campo?.setValue('');
-
-    expect(campo?.hasError('required')).toBeTrue();
-  });
-
-  // 12 - Formulário válido
+  // 9 - Formulário válido
   it('deve ficar válido quando todos os dados estiverem corretos', () => {
     component.cadastroForm.setValue({
       nome: 'João Pedro',
       email: 'joao@email.com',
-      cpf: '52998224725',
-      telefone: '11999999999',
       senha: '123456',
-      confirmarSenha: '123456'
     });
 
     expect(component.cadastroForm.valid).toBeTrue();
