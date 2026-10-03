@@ -45,6 +45,7 @@ export async function renderGoogleIdentityButton(
     callback: ({ credential }) => onCredential(credential),
   });
   window.google.accounts.id.renderButton(element, {
-    theme: 'outline', size: 'large', width: 320, text: 'continue_with',
+    theme: 'outline', size: 'large', width: Math.min(400, Math.floor(element.getBoundingClientRect().width) || 320), text: 'continue_with',
   });
 }
+
