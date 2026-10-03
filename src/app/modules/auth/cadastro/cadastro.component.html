@@ -1,65 +1,71 @@
-<main class="cadastro-container">
-  <div class="cadastro-conteudo">
-    <section class="cadastro-card">
-      <div class="cadastro-header">
-        <h1>Crie sua conta</h1>
-        <p>Comece sua jornada de cuidado com Saúde+.</p>
+<main class="signup-page">
+  <section class="brand-panel" aria-label="appSaúde">
+    <a href="/" class="brand-logo" aria-label="appSaúde, início">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 42S5 30.8 5 17.7C5 9.8 14.3 5.4 21 11l3 2.6 3-2.6c6.7-5.6 16-1.2 16 6.7C43 30.8 24 42 24 42Z" />
+        <path class="brand-pulse" d="M10 24h8l3.5-7 5 15 4-9H39" />
+      </svg>
+      <span>app<span>Saúde</span></span>
+    </a>
+
+    <div class="brand-message">
+      <div class="hero-art" aria-hidden="true">
+        <span class="hero-plus plus-one">+</span>
+        <span class="hero-plus plus-two">+</span>
+        <span class="hero-plus plus-three">+</span>
+        <svg class="hero-heart" viewBox="0 0 180 160">
+          <path class="heart-shape" d="M90 148S13 103 13 52C13 22 47 7 70 28l20 18 20-18c23-21 57-6 57 24 0 51-77 96-77 96Z" />
+          <path class="heart-pulse" d="M26 83h39l12-27 19 54 16-35 10 8h35" />
+        </svg>
       </div>
+      <h1>Juntos por uma<br />vida mais saudável</h1>
+      <p>Cadastre-se e tenha acesso a um atendimento mais rápido e prático.</p>
+    </div>
+    <div class="brand-decoration" aria-hidden="true"></div>
+  </section>
 
-      <form class="cadastro-form" [formGroup]="cadastroForm" (ngSubmit)="enviar()">
-        <div class="campos-grid">
-          <div class="campo">
-            <label for="nome">Nome completo</label>
-            <input type="text" id="nome" formControlName="nome" placeholder="Digite seu nome completo" maxlength="150">
-          </div>
+  <section class="form-panel">
+    <form class="signup-card" [formGroup]="cadastroForm" (ngSubmit)="enviar()">
+      <header class="form-header">
+        <h2>Criar uma conta</h2>
+        <p>Preencha os dados abaixo para se cadastrar.</p>
+      </header>
 
-          <div class="campo">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" maxlength="150">
-          </div>
-
-          <div class="campo">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" formControlName="senha" placeholder="Digite sua senha" maxlength="72">
-          </div>
-
-        </div>
-
-        @if (mensagem) {
-          <p class="mensagem-erro" role="alert">{{ mensagem }}</p>
-        }
-
-        <button type="submit" class="btn-criar" [disabled]="enviando">
-          {{ enviando ? 'Criando conta...' : 'Criar conta' }}
-        </button>
-
-        <div class="divisor"><span>ou</span></div>
-        <div id="google-signup-button" class="google-signin-button"></div>
-      </form>
-    </section>
-
-    <aside class="informativo-card">
-      <div class="informativo-item">
-        <div class="informativo-icone"><span>♥</span></div>
-        <div class="informativo-texto">
-          <h3>Acompanhe sua saúde</h3>
-          <p>Veja seus históricos, exames, medicamentos e acompanhe sua evolução.</p>
+      <div class="field">
+        <label for="nome">Nome</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z" /></svg>
+          <input type="text" id="nome" formControlName="nome" placeholder="Digite seu nome completo" maxlength="150" autocomplete="name">
         </div>
       </div>
-      <div class="informativo-item">
-        <div class="informativo-icone"><span>▤</span></div>
-        <div class="informativo-texto">
-          <h3>Organize seus documentos</h3>
-          <p>Tenha seus laudos, receitas e documentos sempre à mão, com segurança.</p>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v.4l-10 6.3L2 8.4V8a2 2 0 0 1 2-2Zm-2 4.8 9.5 6a1 1 0 0 0 1 0l9.5-6V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.2Z" /></svg>
+          <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" maxlength="150" autocomplete="email">
         </div>
       </div>
-      <div class="informativo-item">
-        <div class="informativo-icone"><span>♟</span></div>
-        <div class="informativo-texto">
-          <h3>Conecte-se com profissionais</h3>
-          <p>Encontre especialistas, agende consultas e tire suas dúvidas com mais facilidade.</p>
+
+      <div class="field">
+        <label for="senha">Senha</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1Zm2 0h6V7a3 3 0 0 0-6 0v3Zm3 4a2 2 0 0 0-1 3.7V19h2v-1.3a2 2 0 0 0-1-3.7Z" /></svg>
+          <input type="password" id="senha" formControlName="senha" placeholder="Digite sua senha" maxlength="72" autocomplete="new-password">
         </div>
       </div>
-    </aside>
-  </div>
+
+      @if (mensagem) {
+        <p class="form-error" role="alert">{{ mensagem }}</p>
+      }
+
+      <button type="submit" class="btn-criar" [disabled]="enviando">
+        {{ enviando ? 'Criando conta...' : 'Criar conta' }}
+      </button>
+
+      <div class="divider"><span>ou</span></div>
+      <div id="google-signup-button" class="google-button-host"></div>
+      <p class="login-prompt">Já tem uma conta? <a href="/login-paciente">Entrar</a></p>
+    </form>
+  </section>
 </main>
