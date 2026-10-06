@@ -1,25 +1,14 @@
-/*
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { MenuInicialComponent } from './menu-inicial.component';
 
 describe('MenuInicialComponent', () => {
-  let component: MenuInicialComponent;
-  let fixture: ComponentFixture<MenuInicialComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MenuInicialComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(MenuInicialComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('navigates to the selected route', async () => {
+    await TestBed.configureTestingModule({ imports: [MenuInicialComponent], providers: [provideRouter([])] }).compileComponents();
+    const fixture = TestBed.createComponent(MenuInicialComponent);
+    const router = TestBed.inject(Router);
+    spyOn(router, 'navigate').and.resolveTo(true);
+    fixture.componentInstance.irPara('/login-paciente');
+    expect(router.navigate).toHaveBeenCalledWith(['/login-paciente']);
   });
 });
-*/

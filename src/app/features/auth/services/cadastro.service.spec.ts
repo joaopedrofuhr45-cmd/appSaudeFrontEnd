@@ -47,10 +47,14 @@ describe('CadastroService', () => {
     expect(resposta).toBeTruthy();
   });
 
-  const req = httpMock.expectOne('URL_DO_SEU_BACKEND');
+  const req = httpMock.expectOne('http://localhost:8080/auth/cadastro');
 
   expect(req.request.method).toBe('POST');
-  expect(req.request.body).toEqual(paciente);
+  expect(req.request.body).toEqual({
+    nome: paciente.nome,
+    email: paciente.email,
+    senha: paciente.senha
+  });
 
   req.flush({
     mensagem: 'Cadastro realizado com sucesso'
