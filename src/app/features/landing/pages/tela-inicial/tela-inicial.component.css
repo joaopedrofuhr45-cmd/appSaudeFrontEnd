@@ -89,3 +89,97 @@
   .perfis { flex-direction: row; padding: 24px 48px; }
   .card-perfil { flex: 1; }
 }
+.como-funciona,
+.beneficios {
+  padding: 64px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.secao-intro {
+  max-width: 650px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.secao-etiqueta {
+  color: #17866f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.secao-intro h2,
+.beneficios-texto h2,
+.chamada-final h2 {
+  margin: 12px 0;
+  color: #183b36;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.secao-intro > p:last-child,
+.beneficios-texto > p:last-child,
+.chamada-final > p:not(.secao-etiqueta) {
+  color: #5d6b68;
+  line-height: 1.7;
+}
+
+.etapa-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #e4f4ef;
+  color: #17866f;
+  font-weight: 700;
+}
+
+.beneficios-texto {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.beneficios .perfis {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.chamada-final {
+  margin: 24px;
+  padding: 48px 24px;
+  border-radius: 20px;
+  background: #eaf6f2;
+  text-align: center;
+}
+
+.chamada-final > p:not(.secao-etiqueta) {
+  max-width: 550px;
+  margin: 0 auto 24px;
+}
+
+.chamada-final .btn-header {
+  display: inline-flex;
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .como-funciona,
+  .beneficios {
+    padding: 80px 48px;
+  }
+
+  .como-funciona > .perfis {
+    padding-top: 0;
+  }
+
+  .chamada-final {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 64px 48px;
+  }
+}
