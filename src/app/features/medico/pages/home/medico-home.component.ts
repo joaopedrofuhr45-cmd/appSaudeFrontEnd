@@ -30,7 +30,7 @@ export class MedicoHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.perfilService.obterMeuPerfil().subscribe({ next: p => { this.nome = p.nome; this.subtitulo = p.especialidade; } });
-    const hoje = new Date().toISOString().split('T')[0];
+    const hoje = new Date().toLocaleDateString('en-CA');
 
     this.consultaService.listarPorData(hoje).subscribe({
       next: (dados) => {

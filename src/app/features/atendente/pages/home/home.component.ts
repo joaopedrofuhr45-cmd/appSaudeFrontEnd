@@ -26,7 +26,7 @@ export class AtendenteHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.perfilService.obterMeuPerfil().subscribe({ next: p => { this.nome = p.nome; this.subtitulo = `Atendente · ${p.setor}`; } });
-    const hoje = new Date().toISOString().split('T')[0]; // "2026-06-08"
+     const hoje = new Date().toLocaleDateString('en-CA');; // "2026-06-08"
 
     this.consultaService.listarPorData(hoje).subscribe({
       next: (dados) => {
