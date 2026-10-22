@@ -20,42 +20,55 @@
 
     <div class="filtros">
       <div class="campo">
-        <label>Data</label>
-        <div class="input">📅 08/06/2026</div>
+        <label for="filtro-data">Data</label>
+        <input id="filtro-data" class="input" type="date"
+               [(ngModel)]="dataSelecionada" (ngModelChange)="carregarConsultas()" />
       </div>
       <div class="campo campo-grande">
-        <label>Buscar paciente</label>
-        <div class="input">🔍 Nome do paciente</div>
+        <label for="filtro-busca">Buscar paciente</label>
+        <input id="filtro-busca" class="input" type="text" placeholder="Nome do paciente"
+               [(ngModel)]="busca" />
       </div>
       <div class="campo">
-        <label>Situação</label>
-        <div class="input">Todas</div>
+        <label for="filtro-situacao">Situação</label>
+        <select id="filtro-situacao" class="input" [(ngModel)]="situacao">
+          <option value="">Todas</option>
+          <option value="AGENDADO">Agendada</option>
+          <option value="CONFIRMADO">Confirmada</option>
+          <option value="EM_ESPERA">Em espera</option>
+          <option value="CONCLUIDO">Concluída</option>
+          <option value="CANCELADO">Cancelada</option>
+        </select>
       </div>
     </div>
 
     <div class="stats">
-      <app-stat-card icone="📅" valor="4" label="consultas no dia" />
-      <app-stat-card icone="✓" valor="4" label="agendadas" />
-      <app-stat-card icone="⏱" valor="08:00" label="próximo horário" />
+      <app-stat-card icone="📅" [valor]="'' + consultas.length" label="consultas no dia" />
+      <app-stat-card icone="✓" [valor]="'' + totalAgendadas" label="agendadas" />
+      <app-stat-card icone="⏱" [valor]="proximoHorario" label="próximo horário" />
     </div>
 
     <div class="lista">
       <div class="lista-cabecalho">
-        <span>Agenda de 08 de junho</span>
+        <span>Agenda de {{ dataFormatada }}</span>
         <a class="exportar">Exportar lista</a>
       </div>
 
       @if (carregando) {
         <p>Carregando...</p>
+      } @else if (erro) {
+        <p class="erro" role="alert">{{ erro }}</p>
       } @else {
-        @for (c of consultas; track c.dataHora) {
+        @for (c of consultasFiltradas; track c.id) {
           <app-consulta-row
             [horario]="c.horario"
             [nome]="c.nomePaciente"
             [detalhe]="c.detalhe"
             [status]="statusParaBadge(c.status)"
-            [statusTexto]="c.status"
+            [statusTexto]="statusTexto(c.status)"
           />
+        } @empty {
+          <p class="vazio">Nenhum atendimento encontrado.</p>
         }
       }
     </div>
