@@ -1,6 +1,30 @@
-.badge { padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; }
-.badge-agendado { background: #ddebf7; color: #1d5fa8; }
-.badge-confirmado { background: #e6f2ef; color: #1c8b84; }
-.badge-em-espera { background: #fef3c7; color: #92400e; }
-.badge-cancelado { background: #fee2e2; color: #991b1b; }
-.badge-concluido { background: #e5e7eb; color: #374151; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-agendado { background: #dbeafe; color: #1d4ed8; }
+.badge-confirmado { background: #d1fae5; color: #047857; }
+.badge-em-espera { background: #fef3c7; color: #b45309; }
+.badge-cancelado { background: #fee2e2; color: #b91c1c; }
+.badge-concluido { background: #e2e8f0; color: #334155; }
+
+/* "em espera" pisca de leve pra chamar atenção */
+.badge-em-espera::before { animation: ponto 1.4s ease-in-out infinite; }
+@keyframes ponto {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .35; transform: scale(.7); }
+}

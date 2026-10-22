@@ -1,17 +1,31 @@
 .btn {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 50px;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 10px;
+  font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform .15s var(--ease), box-shadow .25s var(--ease), filter .2s ease, background .2s ease, color .2s ease;
 }
 
-.btn:hover {
-  opacity: 0.9;
+/* brilho que passa por cima no hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .35) 50%, transparent 70%);
+  transform: translateX(-120%);
 }
+
+@media (hover: hover) {
+  .btn:hover:not(:disabled) { transform: translateY(-2px); }
+  .btn:hover:not(:disabled)::after { transform: translateX(120%); transition: transform .7s var(--ease); }
+}
+.btn:active:not(:disabled) { transform: translateY(0) scale(.98); }
 
 .btn:disabled {
   opacity: 0.5;
@@ -19,24 +33,29 @@
 }
 
 .btn-primario {
-  background: var(--cor-primaria);
+  background: var(--grad-primario);
   color: #ffffff;
+  box-shadow: var(--sombra-brilho);
 }
+.btn-primario:hover:not(:disabled) { background: var(--grad-primario-hover); }
 
 .btn-secundario {
   background: transparent;
   color: var(--cor-primaria);
-  border: 1px solid var(--cor-primaria);
+  border: 1.5px solid var(--cor-primaria);
 }
+.btn-secundario:hover:not(:disabled) { background: var(--cor-superficie); }
 
 .btn-perigo {
-  background: #dc2626;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #ffffff;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, .3);
 }
 
 .btn-sucesso {
-  background: #16a34a;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #ffffff;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, .3);
 }
 
 .btn-menu {
@@ -50,6 +69,7 @@
   font-weight: normal;
   font-size: 16px;
 }
+.btn-menu:hover:not(:disabled) { background: #1f6291; }
 
 /* Variante específica do botão voltar */
 .btn-voltar {
@@ -60,13 +80,12 @@
   background: transparent;
   color: var(--cor-primaria);
   border: 1px solid var(--cor-primaria);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
 }
 
-.btn-voltar:hover {
+.btn-voltar:hover:not(:disabled) {
   background: var(--cor-primaria);
   color: #ffffff;
-  opacity: 1;
 }

@@ -14,7 +14,6 @@ import { PacienteLayoutComponent } from './features/paciente/pages/layout/pacien
 import { PacienteHomeComponent } from './features/paciente/pages/home/paciente-home.component';
 import { AgendarConsultaComponent } from './features/paciente/pages/agendar-consulta/agendar-consulta.component';
 import { ConsultasAnterioresComponent } from './features/paciente/pages/consultas-anteriores/consultas-anteriores.component';
-import { HistoricoPacienteComponent } from './features/paciente/pages/historico/historico-paciente.component';
 import { ConfiguracoesPacienteComponent } from './features/paciente/pages/configuracoes/configuracoes-paciente.component';
 import { roleGuard } from './core/auth/role.guard';
 
@@ -73,7 +72,6 @@ export const routes: Routes = [
       { path: 'dashboard', component: PacienteHomeComponent },
       { path: 'agendar-consulta', component: AgendarConsultaComponent },
       { path: 'consultas-anteriores', component: ConsultasAnterioresComponent },
-      { path: 'historico', component: HistoricoPacienteComponent },
       { path: 'configuracoes', component: ConfiguracoesPacienteComponent },
     ],
   },
