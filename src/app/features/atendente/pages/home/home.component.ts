@@ -4,6 +4,8 @@ import { SidebarComponent } from '@shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '@shared/page-header/page-header.component';
 import { StatCardComponent } from '@shared/stat-card/stat-card.component';
 import { ConsultaRowComponent } from '@shared/consulta-row/consulta-row.component';
+import { SeletorDiaComponent } from '@shared/seletor-dia/seletor-dia.component';
+import { RevealDirective } from '@shared/reveal/reveal.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { Consulta, StatusConsulta } from '@features/consulta/models/consulta.model';
 import { StatusConsulta as StatusBadge } from '@shared/status-badge/status-badge.component';
@@ -14,7 +16,15 @@ const STATUS_ATIVOS: StatusConsulta[] = ['AGENDADO', 'CONFIRMADO', 'EM_ESPERA'];
 @Component({
   selector: 'app-atendente-home',
   standalone: true,
-  imports: [FormsModule, SidebarComponent, PageHeaderComponent, StatCardComponent, ConsultaRowComponent],
+  imports: [
+    FormsModule,
+    SidebarComponent,
+    PageHeaderComponent,
+    StatCardComponent,
+    ConsultaRowComponent,
+    SeletorDiaComponent,
+    RevealDirective,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -40,6 +50,11 @@ export class AtendenteHomeComponent implements OnInit {
         this.subtitulo = `Atendente · ${p.setor}`;
       },
     });
+    this.carregarConsultas();
+  }
+
+  selecionarData(iso: string): void {
+    this.dataSelecionada = iso;
     this.carregarConsultas();
   }
 

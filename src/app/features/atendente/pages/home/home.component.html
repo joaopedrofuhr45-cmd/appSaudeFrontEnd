@@ -18,11 +18,10 @@
     <h1>Atendimentos</h1>
     <p class="subtitulo">Todas as consultas do hospital na data selecionada.</p>
 
-    <div class="filtros">
-      <div class="campo">
-        <label for="filtro-data">Data</label>
-        <input id="filtro-data" class="input" type="date"
-               [(ngModel)]="dataSelecionada" (ngModelChange)="carregarConsultas()" />
+    <section class="filtros" appReveal>
+      <div class="campo campo-dia">
+        <label>Data</label>
+        <app-seletor-dia [valor]="dataSelecionada" (escolher)="selecionarData($event)" />
       </div>
       <div class="campo campo-grande">
         <label for="filtro-busca">Buscar paciente</label>
@@ -40,12 +39,12 @@
           <option value="CANCELADO">Cancelada</option>
         </select>
       </div>
-    </div>
+    </section>
 
     <div class="stats">
-      <app-stat-card icone="📅" [valor]="'' + consultas.length" label="consultas no dia" />
-      <app-stat-card icone="✓" [valor]="'' + totalAgendadas" label="agendadas" />
-      <app-stat-card icone="⏱" [valor]="proximoHorario" label="próximo horário" />
+      <app-stat-card appReveal [appRevealDelay]="0"   icone="📅" [valor]="'' + consultas.length" label="consultas no dia" />
+      <app-stat-card appReveal [appRevealDelay]="80"  icone="✓" [valor]="'' + totalAgendadas" label="agendadas" />
+      <app-stat-card appReveal [appRevealDelay]="160" icone="⏱" [valor]="proximoHorario" label="próximo horário" />
     </div>
 
     <div class="lista">
@@ -55,12 +54,13 @@
       </div>
 
       @if (carregando) {
-        <p>Carregando...</p>
+        <p class="vazio">Carregando...</p>
       } @else if (erro) {
         <p class="erro" role="alert">{{ erro }}</p>
       } @else {
-        @for (c of consultasFiltradas; track c.id) {
+        @for (c of consultasFiltradas; track c.id; let i = $index) {
           <app-consulta-row
+            appReveal [appRevealDelay]="i * 60"
             [horario]="c.horario"
             [nome]="c.nomePaciente"
             [detalhe]="c.detalhe"

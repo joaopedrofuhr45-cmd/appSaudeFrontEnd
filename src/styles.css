@@ -39,3 +39,35 @@ router-outlet + * { display: block; animation: fade-up .35s var(--ease) both; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* aparecer ao rolar */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-visivel { opacity: 1; transform: none; }
+
+/* hover */
+.hover-elevar { transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.hover-elevar:hover { transform: translateY(-3px); box-shadow: var(--sombra-md); }
+.hover-elevar:active { transform: translateY(0); }
+
+/* keyframes */
+@keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulso {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, .4); }
+  50%      { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.flutuar { animation: flutuar 3.5s ease-in-out infinite; }
+.pulso   { animation: pulso 2s ease-out infinite; }
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  border-radius: 8px;
+}

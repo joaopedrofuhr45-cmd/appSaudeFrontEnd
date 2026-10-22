@@ -23,12 +23,15 @@
     </select>
   </label>
 
-  <label>Data
-    <input type="date" formControlName="data" [min]="hoje"
-           (change)="formulario.controls.horario.reset('')" />
-  </label>
+  <div class="bloco">
+    <span>Data</span>
+    <app-seletor-dia
+      [valor]="formulario.controls.data.value ?? ''"
+      [minimo]="hoje"
+      (escolher)="escolherDia($event)" />
+  </div>
 
-  <div class="horario">
+  <div class="bloco">
     <span>Horário</span>
     <app-seletor-horario
       [data]="formulario.controls.data.value ?? ''"

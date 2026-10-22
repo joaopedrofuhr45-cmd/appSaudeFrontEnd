@@ -7,8 +7,11 @@ h1, p { margin: 0; }
 label { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; }
 input, select, textarea { width: 100%; min-height: 40px; padding: 10px 12px; border: 1px solid #dce3e5; border-radius: 7px; background: #fff; color: #273238; font: inherit; font-weight: 400; }
 textarea { resize: vertical; }
-.horario { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; }
-.horario, .observacao, .mensagem, .solicitar { grid-column: 1 / -1; }
-.solicitar { min-height: 44px; border: 0; border-radius: 7px; background: #218f86; color: #fff; font-weight: 600; cursor: pointer; }
+.bloco { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; }
+.bloco, .observacao, .mensagem, .solicitar { grid-column: 1 / -1; }
+.solicitar { min-height: 44px; border: 0; border-radius: 7px; background: #218f86; color: #fff; font-weight: 600; cursor: pointer; transition: filter .15s ease, transform .1s ease; }
+.solicitar:hover:not(:disabled) { filter: brightness(1.08); }
+.solicitar:active:not(:disabled) { transform: scale(.99); }
+.solicitar:disabled { opacity: .6; cursor: not-allowed; }
 .mensagem { color: #197f77; font-size: 13px; }
-@media (max-width: 650px) { .formulario { grid-template-columns: 1fr; } .horario, .observacao, .mensagem, .solicitar { grid-column: auto; } }
+@media (max-width: 650px) { .formulario { grid-template-columns: 1fr; } .bloco, .observacao, .mensagem, .solicitar { grid-column: auto; } }

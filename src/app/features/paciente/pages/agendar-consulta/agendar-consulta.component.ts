@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { PageHeaderComponent } from '@shared/page-header/page-header.component';
+import { SeletorDiaComponent } from '@shared/seletor-dia/seletor-dia.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { MedicoOpcao } from '@features/consulta/models/consulta.model';
 import { SeletorHorarioComponent } from '@shared/seletor-horario/seletor-de-horario.component';
@@ -9,7 +10,7 @@ import { SeletorHorarioComponent } from '@shared/seletor-horario/seletor-de-hora
 @Component({
   selector: 'app-agendar-consulta',
   standalone: true,
-  imports: [ReactiveFormsModule, PageHeaderComponent, SeletorHorarioComponent],
+  imports: [ReactiveFormsModule, PageHeaderComponent, SeletorDiaComponent, SeletorHorarioComponent ],
   templateUrl: './agendar-consulta.component.html',
   styleUrl: './agendar-consulta.component.css',
 })
@@ -62,6 +63,11 @@ export class AgendarConsultaComponent implements OnInit {
       next: (d) => (this.medicos = d),
       error: () => (this.mensagem = 'Não foi possível carregar os médicos disponíveis.'),
     });
+  }
+
+  escolherDia(iso: string): void {
+    this.formulario.controls.data.setValue(iso);
+    this.formulario.controls.horario.reset('');
   }
 
   solicitar(): void {

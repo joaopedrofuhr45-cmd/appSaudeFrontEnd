@@ -7,11 +7,13 @@ import { StatusConsulta } from '@shared/status-badge/status-badge.component';
 import { PageHeaderComponent } from '@shared/page-header/page-header.component';
 import { StatCardComponent } from '@shared/stat-card/stat-card.component';
 import { ConsultaRowComponent } from '@shared/consulta-row/consulta-row.component';
+import { RevealDirective } from '@shared/reveal/reveal.component';
+
 
 @Component({
   selector: 'app-paciente-home',
   standalone: true,
-  imports: [CommonModule, PageHeaderComponent, StatCardComponent, ConsultaRowComponent, RouterLink],
+  imports: [CommonModule, PageHeaderComponent, StatCardComponent, ConsultaRowComponent, RouterLink, RevealDirective],
   templateUrl: './paciente-home.component.html',
   styleUrl: './paciente-home.component.css',
 })
@@ -51,8 +53,7 @@ export class PacienteHomeComponent implements OnInit {
     return this.consultas
       .filter((c) => ['AGENDADO', 'CONFIRMADO', 'EM_ESPERA'].includes(c.status))
       .filter((c) => new Date(c.dataHora) >= agora)
-      .sort((a, b) => new Date(a.dataHora).getTime() - new Date(b.dataHora).getTime())
-      .slice(0, 2);
+      .sort((a, b) => new Date(a.dataHora).getTime() - new Date(b.dataHora).getTime());
   }
 
   get totalRealizadas(): number {
