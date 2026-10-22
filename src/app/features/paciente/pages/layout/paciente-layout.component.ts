@@ -35,6 +35,7 @@ export class PacienteLayoutComponent implements OnInit {
     { label: 'Início', rota: '/paciente/dashboard' },
     { label: 'Agendar consulta', rota: '/paciente/agendar-consulta' },
     { label: 'Consultas anteriores', rota: '/paciente/consultas-anteriores' },
+    { label: 'Histórico', rota: '/paciente/historico' },
     { label: 'Configurações', rota: '/paciente/configuracoes' },
   ];
 }

@@ -17,8 +17,6 @@ describe('PacienteLayoutComponent', () => {
   it('loads the patient name and exposes the patient navigation', () => {
     expect(paciente.obterMeuPerfil).toHaveBeenCalled();
     expect(fixture.componentInstance.nomePaciente).toBe('Ana');
-    const rotas = fixture.componentInstance.itens.map(item => item.rota);
-    expect(rotas).toContain('/paciente/consultas-anteriores');
-    expect(rotas).not.toContain('/paciente/historico');
+    expect(fixture.componentInstance.itens.map(item => item.rota)).toContain('/paciente/historico');
   });
 });

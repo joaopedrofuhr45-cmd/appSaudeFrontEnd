@@ -1,152 +1,73 @@
 * { box-sizing: border-box; }
 
 :root {
-  /* marca */
   --cor-primaria: #0d9488;
   --cor-primaria-escura: #0f766e;
   --cor-primaria-media: #14b8a6;
   --cor-primaria-clara: #ccfbf1;
-  --cor-secundaria: #0891b2;
-  --cor-superficie: #ecfeff;
-  --cor-destaque: #f97316;
-  --cor-destaque-clara: #ffedd5;
-  --cor-coracao: #f43f5e;
-
-  /* gradientes */
-  --grad-primario: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
-  --grad-primario-hover: linear-gradient(135deg, #0f766e 0%, #0e7490 100%);
-  --grad-suave: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-
-  /* texto, fundo e bordas */
+  --cor-superficie: #f0fdfa;
   --cor-texto: #0f172a;
   --cor-texto-secundario: #475569;
-  --cor-texto-suave: #94a3b8;
-  --cor-fundo: #f1f8fb;
-  --cor-borda: #dbe7ee;
-
-  /* status */
+  --cor-fundo: #f8fafc;
+  --cor-borda: #e2e8f0;
   --cor-sucesso: #16a34a;
-  --cor-aviso: #f59e0b;
-  --cor-erro: #ef4444;
-  --cor-info: #0ea5e9;
-
-  /* forma e movimento */
+  --cor-aviso: #d97706;
+  --cor-erro: #dc2626;
+  --cor-info: #0284c7;
   --raio: 12px;
   --sombra-sm: 0 1px 2px rgba(15, 23, 42, .06);
-  --sombra-md: 0 10px 28px rgba(8, 145, 178, .16);
-  --sombra-brilho: 0 8px 22px rgba(13, 148, 136, .35);
+  --sombra-md: 0 8px 24px rgba(15, 23, 42, .08);
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
+  background: var(--cor-fundo);
   color: var(--cor-texto);
-  background-color: var(--cor-fundo);
-  background-image:
-    radial-gradient(900px 420px at 100% -10%, rgba(8, 145, 178, .10), transparent 60%),
-    radial-gradient(800px 380px at -10% 0%, rgba(13, 148, 136, .10), transparent 60%);
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: var(--cor-primaria-clara); color: var(--cor-primaria-escura); }
-
-/* foco consistente em todos os campos */
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--cor-primaria-media) !important;
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, .18) !important;
-}
-a:focus-visible, button:focus-visible {
-  outline: 3px solid rgba(20, 184, 166, .45);
-  outline-offset: 2px;
-}
-
-/* ---------- keyframes ---------- */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: none; }
-}
-@keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes batimento {
-  0%, 100% { transform: scale(1); }
-  14%      { transform: scale(1.1); }
-  28%      { transform: scale(1); }
-  42%      { transform: scale(1.07); }
-  70%      { transform: scale(1); }
-}
-@keyframes pulso {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, .4); }
-  50%      { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
-}
-@keyframes shimmer { to { background-position: -200% 0; } }
-@keyframes gradiente-andando {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-@keyframes pop {
-  0%   { opacity: 0; transform: scale(.85); }
-  60%  { opacity: 1; transform: scale(1.04); }
-  100% { opacity: 1; transform: scale(1); }
 }
 
 /* fade em toda troca de rota, sem precisar de @angular/animations */
 router-outlet + * { display: block; animation: fade-up .35s var(--ease) both; }
 
-/* ---------- aparecer ao rolar (diretiva appReveal) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* aparecer ao rolar */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity .55s var(--ease), transform .55s var(--ease);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.reveal-esquerda { transform: translateX(-24px); }
-.reveal-direita  { transform: translateX(24px); }
-.reveal-escala   { transform: scale(.92); }
-.reveal-visivel  { opacity: 1; transform: none; }
+.reveal-visivel { opacity: 1; transform: none; }
 
-/* ---------- hover ---------- */
-@media (hover: hover) {
-  .hover-elevar { transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s ease; }
-  .hover-elevar:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); border-color: var(--cor-primaria-media); }
-  .hover-elevar:active { transform: translateY(-1px); }
+/* hover */
+.hover-elevar { transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.hover-elevar:hover { transform: translateY(-3px); box-shadow: var(--sombra-md); }
+.hover-elevar:active { transform: translateY(0); }
 
-  .hover-brilho { transition: box-shadow .25s var(--ease), transform .2s var(--ease); }
-  .hover-brilho:hover { box-shadow: var(--sombra-brilho); transform: translateY(-2px); }
+/* keyframes */
+@keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulso {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, .4); }
+  50%      { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
 }
+@keyframes shimmer { to { background-position: -200% 0; } }
 
-/* ---------- utilitários de efeito ---------- */
 .flutuar { animation: flutuar 3.5s ease-in-out infinite; }
-.batimento { animation: batimento 1.8s ease-in-out infinite; transform-origin: center; }
-.pulso { animation: pulso 2s ease-out infinite; }
-.pop { animation: pop .45s var(--ease) both; }
-
-.texto-gradiente {
-  background: var(--grad-primario);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.fundo-animado {
-  background: linear-gradient(120deg, #0d9488, #0891b2, #14b8a6, #0ea5e9);
-  background-size: 300% 300%;
-  animation: gradiente-andando 10s ease infinite;
-}
-
+.pulso   { animation: pulso 2s ease-out infinite; }
 .skeleton {
   background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.2s linear infinite;
   border-radius: 8px;
-}
-
-/* quem prefere menos movimento fica com tudo estático */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
 }
