@@ -3,16 +3,39 @@
 :root {
   --cor-primaria: #0d9488;
   --cor-primaria-escura: #0f766e;
+  --cor-primaria-media: #14b8a6;
   --cor-primaria-clara: #ccfbf1;
-  --cor-texto: #1e293b;
-  --cor-texto-secundario: #64748b;
+  --cor-superficie: #f0fdfa;
+  --cor-texto: #0f172a;
+  --cor-texto-secundario: #475569;
   --cor-fundo: #f8fafc;
   --cor-borda: #e2e8f0;
+  --cor-sucesso: #16a34a;
+  --cor-aviso: #d97706;
+  --cor-erro: #dc2626;
+  --cor-info: #0284c7;
+  --raio: 12px;
+  --sombra-sm: 0 1px 2px rgba(15, 23, 42, .06);
+  --sombra-md: 0 8px 24px rgba(15, 23, 42, .08);
+  --ease: cubic-bezier(.2, .8, .2, 1);
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--cor-fundo);
   color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* fade em toda troca de rota, sem precisar de @angular/animations */
+router-outlet + * { display: block; animation: fade-up .35s var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

@@ -63,13 +63,17 @@
 
         <label class="campo">
           <span>Data</span>
-          <input type="date" formControlName="data" />
+          <input type="date" formControlName="data" [min]="hoje"
+                 (change)="formulario.controls.horario.reset('')" />
         </label>
 
-        <label class="campo">
+        <div class="campo campo-largo">
           <span>Horário</span>
-          <input type="time" formControlName="horario" />
-        </label>
+          <app-seletor-horario
+            [data]="formulario.controls.data.value ?? ''"
+            [valor]="formulario.controls.horario.value ?? ''"
+            (escolher)="formulario.controls.horario.setValue($event)" />
+        </div>
 
         <label class="campo">
           <span>Situação</span>

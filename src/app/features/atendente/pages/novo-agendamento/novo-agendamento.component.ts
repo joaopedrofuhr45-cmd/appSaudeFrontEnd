@@ -7,11 +7,12 @@ import { SidebarComponent } from '@shared/sidebar/sidebar.component';
 import { PageHeaderComponent } from '@shared/page-header/page-header.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { MedicoOpcao, PacienteOpcao } from '@features/consulta/models/consulta.model';
+import { SeletorHorarioComponent } from '@shared/seletor-horario/seletor-de-horario.component';
 
 @Component({
   selector: 'app-novo-agendamento',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, SidebarComponent, PageHeaderComponent],
+  imports: [ReactiveFormsModule, FormsModule, SidebarComponent, PageHeaderComponent, SeletorHorarioComponent],
   templateUrl: './novo-agendamento.component.html',
   styleUrl: './novo-agendamento.component.css',
 })
@@ -19,6 +20,8 @@ export class NovoAgendamentoComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly consultaService = inject(ConsultaService);
   private readonly router = inject(Router);
+
+  readonly hoje = new Date().toLocaleDateString('en-CA');
 
   especialidades: string[] = [];
   medicos: MedicoOpcao[] = [];
