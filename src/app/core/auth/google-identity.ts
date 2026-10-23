@@ -1,3 +1,4 @@
+import { NgZone } from '@angular/core';
 import { environment } from '@environment/environment';
 
 declare global {
@@ -16,6 +17,7 @@ declare global {
 export async function renderGoogleIdentityButton(
   element: HTMLElement | null,
   onCredential: (credential: string) => void,
+  zone: NgZone,
 ): Promise<void> {
   if (!element || !environment.googleClientId || environment.googleClientId === 'YOUR_GOOGLE_CLIENT_ID') return;
 
@@ -42,7 +44,9 @@ export async function renderGoogleIdentityButton(
 
   window.google.accounts.id.initialize({
     client_id: environment.googleClientId,
-    callback: ({ credential }) => onCredential(credential),
+    // O Google chama esse callback fora da zona do Angular; sem zone.run o router navega
+    // mas o Angular não roda change detection e a tela fica só com o esqueleto.
+    callback: ({ credential }) => zone.run(() => onCredential(credential)),
   });
   window.google.accounts.id.renderButton(element, {
     theme: 'outline', size: 'large', width: Math.min(400, Math.floor(element.getBoundingClientRect().width) || 320), text: 'continue_with',

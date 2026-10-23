@@ -1,7 +1,7 @@
 
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, NgZone, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 
@@ -23,6 +23,7 @@ export class CadastroPacienteComponent implements AfterViewInit {
   private readonly cadastroService = inject(CadastroService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly zone = inject(NgZone);
 
   readonly cadastroForm = this.fb.group({
       nome: ['', [Validators.required, Validators.maxLength(150)]],
@@ -44,7 +45,7 @@ export class CadastroPacienteComponent implements AfterViewInit {
   enviando = false;
 
   ngAfterViewInit(): void {
-    void renderGoogleIdentityButton(document.getElementById('google-signup-button'), (credential) => this.entrarComGoogle(credential))
+    void renderGoogleIdentityButton(document.getElementById('google-signup-button'), (credential) => this.entrarComGoogle(credential), this.zone)
       .catch(() => { this.mensagem = 'Não foi possível carregar o acesso pelo Google.'; });
   }
 

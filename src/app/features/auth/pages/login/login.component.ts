@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   private readonly router = inject(Router);
   private readonly formBuilder = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
+  private readonly zone = inject(NgZone);
 
   loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   googleError: string | null = null;
 
   ngAfterViewInit(): void {
-    void renderGoogleIdentityButton(document.getElementById('google-signin-button'), (credential) => this.entrarComGoogle(credential))
+    void renderGoogleIdentityButton(document.getElementById('google-signin-button'), (credential) => this.entrarComGoogle(credential), this.zone)
       .catch(() => { this.googleError = 'Não foi possível carregar o acesso pelo Google.'; });
   }
 
