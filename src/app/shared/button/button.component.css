@@ -8,7 +8,7 @@
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-  transition: transform .15s var(--ease), box-shadow .25s var(--ease), filter .2s ease, background .2s ease, color .2s ease;
+  transition: transform .25s var(--ease), box-shadow .3s var(--ease), filter .25s ease, background .25s ease, color .25s ease;
 }
 
 /* brilho que passa por cima no hover */
@@ -22,10 +22,10 @@
 }
 
 @media (hover: hover) {
-  .btn:hover:not(:disabled) { transform: translateY(-2px); }
-  .btn:hover:not(:disabled)::after { transform: translateX(120%); transition: transform .7s var(--ease); }
+  .btn:hover:not(:disabled) { transform: translateY(-1px); }
+  .btn:hover:not(:disabled)::after { transform: translateX(120%); transition: transform .9s var(--ease); }
 }
-.btn:active:not(:disabled) { transform: translateY(0) scale(.98); }
+.btn:active:not(:disabled) { transform: translateY(0) scale(.99); }
 
 .btn:disabled {
   opacity: 0.5;

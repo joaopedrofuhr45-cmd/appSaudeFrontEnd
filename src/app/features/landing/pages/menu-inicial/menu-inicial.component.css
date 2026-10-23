@@ -35,8 +35,10 @@ h1 { color: var(--cor-texto); font-size: 26px; margin: 0 0 8px; }
 }
 .icone { font-size: 36px; margin-bottom: 8px; }
 .card-perfil h3 { margin: 0; color: var(--cor-texto); font-size: 18px; }
-.card-perfil p { margin: 0 0 16px; color: var(--cor-texto-secundario); font-size: 14px; }
-.card-perfil app-button { width: 100%; }
+/* o texto ocupa o espaço que sobra, assim os botões ficam alinhados na base dos 3 cards
+   mesmo quando a descrição de um deles quebra em duas linhas */
+.card-perfil p { flex: 1; margin: 0 0 16px; color: var(--cor-texto-secundario); font-size: 14px; }
+.card-perfil app-button { width: 100%; margin-top: auto; }
 
 .aviso {
   margin-top: 40px;

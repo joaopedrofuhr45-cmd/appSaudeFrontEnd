@@ -195,26 +195,26 @@
   border: 1px solid var(--cor-borda);
   box-shadow: var(--sombra-md);
 }
-.icone-flutuante.topo { animation: flutuar 3.6s ease-in-out infinite; }
+.icone-flutuante.topo { animation: flutuar 5s ease-in-out infinite; }
 .icone-flutuante.lado.atraso { animation-delay: -1.8s; }
 /* o .topo usa transform pra centralizar, então o flutuar dele usa translate */
 .icone-flutuante.topo.flutuar { animation-name: flutuar-translate; }
-@keyframes flutuar-translate { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@keyframes flutuar-translate { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
 
 .card-perfil {
   border-radius: 16px;
   transition:
-    opacity .55s var(--ease) var(--reveal-delay, 0ms),
-    transform .55s var(--ease) var(--reveal-delay, 0ms),
-    translate .2s var(--ease),
-    box-shadow .2s var(--ease),
-    border-color .2s ease;
+    opacity .7s var(--ease) var(--reveal-delay, 0ms),
+    transform .7s var(--ease) var(--reveal-delay, 0ms),
+    translate .3s var(--ease),
+    box-shadow .3s var(--ease),
+    border-color .3s ease;
 }
 @media (hover: hover) {
-  .card-perfil:hover { translate: 0 -6px; box-shadow: var(--sombra-md); border-color: var(--cor-primaria-media); }
+  .card-perfil:hover { translate: 0 -3px; box-shadow: var(--sombra-md); border-color: var(--cor-primaria-media); }
 }
-.icone-perfil { background: var(--grad-suave); border: 1px solid var(--cor-borda); transition: transform .3s var(--ease); }
-@media (hover: hover) { .card-perfil:hover .icone-perfil { transform: scale(1.12) rotate(-6deg); } }
+.icone-perfil { background: var(--grad-suave); border: 1px solid var(--cor-borda); transition: transform .4s var(--ease); }
+@media (hover: hover) { .card-perfil:hover .icone-perfil { transform: scale(1.06) rotate(-3deg); } }
 
 .etapa-numero { background: var(--grad-primario); color: #fff; box-shadow: var(--sombra-brilho); }
 .secao-etiqueta { color: var(--cor-primaria); }
@@ -223,7 +223,7 @@
 .chamada-final {
   background: linear-gradient(120deg, #0d9488, #0891b2, #14b8a6, #0ea5e9);
   background-size: 300% 300%;
-  animation: gradiente-andando 12s ease infinite;
+  animation: gradiente-andando 18s ease infinite;
   box-shadow: 0 24px 60px rgba(8, 145, 178, .28);
 }
 .chamada-final h2, .chamada-final .secao-etiqueta, .chamada-final > p:not(.secao-etiqueta) { color: #fff; }

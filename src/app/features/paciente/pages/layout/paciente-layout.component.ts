@@ -23,7 +23,7 @@ import { PacienteService } from '@features/paciente/services/paciente.service';
 export class PacienteLayoutComponent implements OnInit {
   private readonly pacienteService = inject(PacienteService);
   nomePaciente = 'Paciente';
-  subtitulo = '';
+  subtitulo = 'Área do paciente';
 
   ngOnInit(): void {
     this.pacienteService.obterMeuPerfil().subscribe({

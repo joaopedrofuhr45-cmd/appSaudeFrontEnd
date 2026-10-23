@@ -1,26 +1,68 @@
 <aside class="side">
   <div class="logo">
-    <span class="icone">♥</span>
-    <span class="titulo">Saúde</span>
-    <span class="icone">+</span>
+    <span class="marca" aria-hidden="true">♥</span>
+    <span class="titulo">Saúde<span class="mais">+</span></span>
   </div>
 
   <div class="who">
-    <p class="nome">{{ nome }}</p>
-    <p class="subtitulo">{{ subtitulo }}</p>
+    <span class="avatar" aria-hidden="true">
+      {{ iniciais }}
+      <span class="online"></span>
+    </span>
+    <div class="dados">
+      <p class="nome" [title]="nome">{{ nome }}</p>
+      <p class="subtitulo" [title]="subtitulo">{{ subtitulo }}</p>
+    </div>
   </div>
 
-  <nav class="nav">
+  <nav class="nav" aria-label="Menu principal">
+    <span class="secao">Menu</span>
     @for (item of itens; track item.rota) {
       <a class="navitem" [routerLink]="item.rota" routerLinkActive="ativo">
-        <span class="dot"></span>
-        {{ item.label }}
+        <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          @switch (icone(item)) {
+            @case ('agenda') {
+              <rect x="3" y="4.5" width="18" height="16" rx="3" /><path d="M3 9.5h18M8 3v3M16 3v3" /><path d="m9 15 2.2 2.2L15.5 13" />
+            }
+            @case ('agendar') {
+              <rect x="3" y="4.5" width="18" height="16" rx="3" /><path d="M3 9.5h18M8 3v3M16 3v3M12 12.5v5M9.5 15h5" />
+            }
+            @case ('historico') {
+              <path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5" /><path d="M3.5 4v4.5H8M12 7.5V12l3 2" />
+            }
+            @case ('prancheta') {
+              <rect x="5" y="4" width="14" height="17" rx="3" /><path d="M9 4.5h6V7H9zM9 12h6M9 16h4" />
+            }
+            @case ('ajustes') {
+              <path d="M4 7h10M18 7h2M4 17h2M10 17h10" /><circle cx="16" cy="7" r="2" /><circle cx="8" cy="17" r="2" />
+            }
+            @default {
+              <path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V20h14V9.5" /><path d="M10 20v-6h4v6" />
+            }
+          }
+        </svg>
+        <span class="rotulo">{{ item.label }}</span>
       </a>
     }
   </nav>
 
+  <div class="ajuda">
+    <svg class="ecg" viewBox="0 0 120 32" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M2 17h26l6-12 9 24 8-18 5 6h62" />
+    </svg>
+    <p class="ajuda-titulo">Precisa de ajuda?</p>
+    <p class="ajuda-texto">Fale com a recepção da unidade.</p>
+  </div>
+
   <div class="rodape">
-    <hr class="regua" />
-    <a class="sair" [routerLink]="rotaLogout">Sair da conta</a>
+    <a class="sair" [routerLink]="rotaLogout">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3" /><path d="M16 8l4 4-4 4M20 12H9" />
+      </svg>
+      Sair da conta
+    </a>
   </div>
 </aside>

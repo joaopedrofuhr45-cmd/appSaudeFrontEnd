@@ -8,16 +8,16 @@
   border: 1px solid transparent;
   border-left: 3px solid var(--cor-primaria-media);
   background: #f8fbfc;
-  transition: background .15s ease, transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s ease;
+  transition: background .25s ease, transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s ease;
 }
 .row.destaque { background: white; border-color: var(--cor-primaria); border-left-color: var(--cor-primaria); }
 .horario { margin: 0; font-weight: 700; font-size: 15px; color: var(--cor-primaria); width: 45px; font-variant-numeric: tabular-nums; }
 .who { flex: 1; }
 .nome { margin: 0; font-weight: 600; font-size: 13px; color: var(--cor-texto); }
 .detalhe { margin: 2px 0 0; font-size: 11px; color: var(--cor-texto-secundario); }
-.chevron { color: var(--cor-texto-suave); font-size: 18px; font-weight: 600; transition: transform .2s var(--ease), color .2s ease; }
+.chevron { color: var(--cor-texto-suave); font-size: 18px; font-weight: 600; transition: transform .3s var(--ease), color .3s ease; }
 
 @media (hover: hover) {
-  .row:hover { background: #fff; transform: translateX(4px); box-shadow: var(--sombra-md); border-color: var(--cor-primaria-media); }
-  .row:hover .chevron { transform: translateX(3px); color: var(--cor-primaria); }
+  .row:hover { background: #fff; transform: translateX(2px); box-shadow: var(--sombra-md); border-color: var(--cor-primaria-media); }
+  .row:hover .chevron { transform: translateX(2px); color: var(--cor-primaria); }
 }

@@ -23,8 +23,8 @@
 .badge-concluido { background: #e2e8f0; color: #334155; }
 
 /* "em espera" pisca de leve pra chamar atenção */
-.badge-em-espera::before { animation: ponto 1.4s ease-in-out infinite; }
+.badge-em-espera::before { animation: ponto 2.2s ease-in-out infinite; }
 @keyframes ponto {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: .35; transform: scale(.7); }
+  50%      { opacity: .55; transform: scale(.8); }
 }
