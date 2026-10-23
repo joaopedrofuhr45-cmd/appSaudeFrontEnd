@@ -38,6 +38,8 @@
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -149,6 +151,7 @@ router-outlet + * { display: block; animation: fade-up .5s var(--ease) backwards
 
 /* quem prefere menos movimento fica com tudo estático */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
