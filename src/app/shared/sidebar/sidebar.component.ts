@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export interface SidebarItem {
@@ -20,6 +20,14 @@ export class SidebarComponent {
   @Input() subtitulo = '';
   @Input() itens: SidebarItem[] = [];
   @Input() rotaLogout = '/';
+
+  /** Só vale no celular: a sidebar vira uma gaveta aberta pelo botão do menu. */
+  aberto = false;
+
+  alternar(): void { this.aberto = !this.aberto; }
+
+  @HostListener('document:keydown.escape')
+  fechar(): void { this.aberto = false; }
 
   /** Duas letras para o avatar: primeira e última palavra do nome. */
   get iniciais(): string {

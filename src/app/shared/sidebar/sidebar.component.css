@@ -8,14 +8,8 @@
   align-self: flex-start;
 }
 
-@media (max-width: 760px) {
-  :host {
-    position: static;
-    height: auto;
-    width: 100%;
-  }
-  .side { width: 100%; height: auto; }
-}
+/* barra superior e fundo escuro só existem no celular */
+.topo-mobile, .fundo { display: none; }
 
 .side {
   display: flex;
@@ -180,3 +174,76 @@
 }
 .sair .icone { width: 18px; height: 18px; }
 .sair:hover { color: var(--cor-erro); background: #fef2f2; }
+
+/* ---------- celular: barra no topo + sidebar vira gaveta ---------- */
+@media (max-width: 760px) {
+  /* o host não ocupa espaço no layout; barra e gaveta são fixed */
+  :host { position: static; width: 0; height: 0; }
+
+  .topo-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 56px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, .94);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cor-borda);
+  }
+  .topo-mobile .logo { flex: 1; font-size: 17px; }
+  .topo-mobile .logo .marca { width: 28px; height: 28px; font-size: 13px; border-radius: 9px; animation: none; }
+  .topo-mobile .avatar { width: 34px; height: 34px; font-size: 12px; }
+  .menu-btn {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: -8px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--cor-texto);
+    cursor: pointer;
+    transition: background .25s ease;
+  }
+  .menu-btn:active { background: var(--cor-superficie); }
+  .menu-btn svg { width: 24px; height: 24px; }
+
+  .fundo {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: rgba(15, 23, 42, .4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+  }
+  .fundo.visivel { opacity: 1; pointer-events: auto; }
+
+  .side {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 80;
+    width: min(300px, 84vw);
+    height: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform .35s var(--ease), visibility 0s linear .35s;
+  }
+  .side.aberto {
+    transform: none;
+    visibility: visible;
+    transition: transform .35s var(--ease), visibility 0s;
+    box-shadow: 0 0 40px rgba(15, 23, 42, .2);
+  }
+}

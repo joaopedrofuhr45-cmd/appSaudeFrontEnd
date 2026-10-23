@@ -1,4 +1,21 @@
-<aside class="side">
+<header class="topo-mobile">
+  <button type="button" class="menu-btn" (click)="alternar()" [attr.aria-expanded]="aberto"
+          aria-controls="menu-lateral" aria-label="Abrir menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  </button>
+  <div class="logo">
+    <span class="marca" aria-hidden="true">♥</span>
+    <span class="titulo">Saúde<span class="mais">+</span></span>
+  </div>
+  <span class="avatar" aria-hidden="true">{{ iniciais }}</span>
+</header>
+
+<div class="fundo" [class.visivel]="aberto" (click)="fechar()" aria-hidden="true"></div>
+
+<aside class="side" id="menu-lateral" [class.aberto]="aberto">
   <div class="logo">
     <span class="marca" aria-hidden="true">♥</span>
     <span class="titulo">Saúde<span class="mais">+</span></span>
@@ -18,7 +35,7 @@
   <nav class="nav" aria-label="Menu principal">
     <span class="secao">Menu</span>
     @for (item of itens; track item.rota) {
-      <a class="navitem" [routerLink]="item.rota" routerLinkActive="ativo">
+      <a class="navitem" [routerLink]="item.rota" routerLinkActive="ativo" (click)="fechar()">
         <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           @switch (icone(item)) {
@@ -57,7 +74,7 @@
   </div>
 
   <div class="rodape">
-    <a class="sair" [routerLink]="rotaLogout">
+    <a class="sair" [routerLink]="rotaLogout" (click)="fechar()">
       <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3" /><path d="M16 8l4 4-4 4M20 12H9" />
