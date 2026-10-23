@@ -38,6 +38,8 @@
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -142,6 +144,58 @@ router-outlet + * { display: block; animation: fade-up .5s var(--ease) backwards
   border-radius: 8px;
 }
 
+/* ---------- entrada subindo (todas as telas) ----------
+   Usa a propriedade `translate` (não `transform`), então não briga com os
+   transforms/hover que os componentes já têm. `backwards` = só vale durante
+   o delay + animação, depois o elemento volta ao estado normal.
+   Quem já usa appReveal (.reveal) fica de fora pra não animar duas vezes. */
+@keyframes subir {
+  from { opacity: 0; translate: 0 28px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* utilitário: <div class="anim-subir" style="--i: 2"> */
+.anim-subir {
+  animation: subir .7s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* elementos soltos que sobem sozinhos */
+header.topo,
+.brand-logo {
+  animation: subir .7s var(--ease) backwards;
+}
+
+/* filhos diretos desses contêineres sobem em sequência (efeito cascata).
+   .cards e .colunas não sobem sozinhos: os filhos deles é que sobem. */
+:is(
+  .conteudo,
+  .paciente-conteudo > *,
+  .cards,
+  .colunas,
+  .brand-message,
+  .login-card,
+  .signup-card
+) > :not(.reveal, router-outlet, .cards, .colunas) {
+  animation: subir .7s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 80ms + 80ms);
+}
+
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(2)  { --i: 1; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(3)  { --i: 2; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(4)  { --i: 3; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(5)  { --i: 4; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(6)  { --i: 5; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(7)  { --i: 6; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(8)  { --i: 7; }
+:is(.conteudo, .paciente-conteudo > *, .cards, .colunas, .brand-message, .login-card, .signup-card) > :nth-child(n+9) { --i: 8; }
+
+/* login e cadastro: coração pulsando e "+" flutuando */
+.hero-heart { animation: batimento 2.6s ease-in-out infinite; transform-origin: center; }
+.hero-plus { animation: flutuar 5s ease-in-out infinite; }
+.hero-plus.plus-two { animation-delay: -1.7s; }
+.hero-plus.plus-three { animation-delay: -3.2s; }
+
 /* celular: a sidebar vira barra fixa de 56px, então o conteúdo desce e ocupa a largura toda */
 @media (max-width: 760px) {
   app-sidebar + main { min-width: 0; padding: 72px 16px 32px !important; }
@@ -149,6 +203,7 @@ router-outlet + * { display: block; animation: fade-up .5s var(--ease) backwards
 
 /* quem prefere menos movimento fica com tudo estático */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
