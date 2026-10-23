@@ -2,6 +2,16 @@
   command = "npm run build"
   publish = "dist/app-saude-front-end/browser"
 
+# A API passa pelo próprio domínio do site (/api/*) em vez de ser chamada direto no Render.
+# Assim o cookie de login (auth_token) é "first-party" e não é bloqueado no celular
+# (Safari/iOS e Chrome com bloqueio de cookies de terceiros descartam cookie de outro domínio).
+# Esta regra precisa vir ANTES do /* abaixo.
+[[redirects]]
+  from = "/api/*"
+  to = "https://appsaudeback.onrender.com/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
