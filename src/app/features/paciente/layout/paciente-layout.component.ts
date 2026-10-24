@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
 import { PacienteService } from '@features/paciente/services/paciente.service';
 
 @Component({

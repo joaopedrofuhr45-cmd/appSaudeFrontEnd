@@ -3,11 +3,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { MedicoOpcao, PacienteOpcao } from '@features/consulta/models/consulta.model';
-import { SeletorHorarioComponent } from '@shared/seletor-horario/seletor-de-horario.component';
+import { SeletorHorarioComponent } from '@features/consulta/components/seletor-horario/seletor-de-horario.component';
 
 @Component({
   selector: 'app-novo-agendamento',

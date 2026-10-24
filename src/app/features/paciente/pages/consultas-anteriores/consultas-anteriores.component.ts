@@ -1,8 +1,8 @@
 import { Component,OnInit,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms'; import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { StatusBadgeComponent,StatusConsulta } from '@shared/status-badge/status-badge.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { StatusBadgeComponent,StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { ConsultaPaciente } from '@features/consulta/models/consulta.model';
 @Component({selector:'app-consultas-anteriores',standalone:true,imports:[CommonModule,FormsModule,RouterLink,PageHeaderComponent,StatusBadgeComponent],templateUrl:'./consultas-anteriores.component.html',styleUrl:'./consultas-anteriores.component.css'})

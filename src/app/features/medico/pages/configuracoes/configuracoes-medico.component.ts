@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { MedicoService } from '@features/medico/services/medico.service';
 
 @Component({selector:'app-configuracoes-medico',standalone:true,imports:[FormsModule,SidebarComponent,PageHeaderComponent],templateUrl:'./configuracoes-medico.component.html',styleUrl:'./configuracoes-medico.component.css'})

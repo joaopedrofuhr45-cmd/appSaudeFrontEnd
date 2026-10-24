@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { AuthService } from '@core/auth/auth.service';
-import { ButtonComponent } from '@shared/button/button.component';
+import { ButtonComponent } from '@shared/ui/button/button.component';
 import { renderGoogleIdentityButton } from '@core/auth/google-identity';
 
 @Component({

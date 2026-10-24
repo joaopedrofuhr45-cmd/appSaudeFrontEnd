@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { AtendenteService } from '@features/atendente/services/atendente.service';
 
 @Component({selector:'app-configuracoes-atendente',standalone:true,imports:[FormsModule,SidebarComponent,PageHeaderComponent],templateUrl:'./configuracoes-atendente.component.html',styleUrl:'./configuracoes-atendente.component.css'})
