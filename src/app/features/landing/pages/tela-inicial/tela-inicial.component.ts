@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HeaderComponent } from '@shared/header/header.component';
-import { RevealDirective } from '@shared/reveal/reveal.component';
+import { HeaderComponent } from '@features/landing/components/header/header.component';
+import { RevealDirective } from '@shared/ui/reveal/reveal.component';
 
 @Component({
   selector: 'app-tela-inicial',

@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { StatusBadgeComponent, StatusConsulta as StatusBadge } from '@shared/status-badge/status-badge.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { StatusBadgeComponent, StatusConsulta as StatusBadge } from '@features/consulta/components/status-badge/status-badge.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { ConsultaDetalhe } from '@features/consulta/models/consulta.model';
 

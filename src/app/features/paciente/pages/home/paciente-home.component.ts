@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { ConsultaPaciente } from '@features/consulta/models/consulta.model';
-import { StatusConsulta } from '@shared/status-badge/status-badge.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { StatCardComponent } from '@shared/stat-card/stat-card.component';
-import { ConsultaRowComponent } from '@shared/consulta-row/consulta-row.component';
-import { RevealDirective } from '@shared/reveal/reveal.component';
+import { StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { StatCardComponent } from '@shared/ui/stat-card/stat-card.component';
+import { ConsultaRowComponent } from '@features/consulta/components/consulta-row/consulta-row.component';
+import { RevealDirective } from '@shared/ui/reveal/reveal.component';
 
 
 @Component({
