@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { TelaInicialComponent } from './features/landing/pages/tela-inicial/tela-inicial.component';
-import { roleGuard } from './core/auth/role.guard';
+import { roleGuard } from './core/auth/guards/role.guard';
 
 export const routes: Routes = [
   // Tela inicial fica no bundle principal (primeira coisa que o usuário vê).
