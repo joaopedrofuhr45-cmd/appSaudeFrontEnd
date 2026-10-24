@@ -12,18 +12,18 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: LoginRequest): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/login`, credentials, { withCredentials: true });
+    return this.http.post<void>(`${this.apiUrl}/login`, credentials);
   }
 
   loginWithGoogle(credential: string): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/google`, { credential }, { withCredentials: true });
+    return this.http.post<void>(`${this.apiUrl}/google`, { credential });
   }
 
   logout(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/logout`, {}, { withCredentials: true });
+    return this.http.post<void>(`${this.apiUrl}/logout`, {});
   }
 
   me(): Observable<MeResponse> {
-    return this.http.get<MeResponse>(`${this.apiUrl}/me`, { withCredentials: true });
+    return this.http.get<MeResponse>(`${this.apiUrl}/me`);
   }
 }

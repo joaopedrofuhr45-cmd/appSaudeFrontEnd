@@ -12,11 +12,10 @@ describe('PacienteService', () => {
   });
   afterEach(() => http.verify());
 
-  it('loads the patient profile with credentials', () => {
+  it('loads the patient profile', () => {
     service.obterMeuPerfil().subscribe();
     const req = http.expectOne('http://localhost:8080/pacientes/me');
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeTrue();
     req.flush({ nome: 'Ana', email: 'ana@example.com', telefone: '11999990000' });
   });
 

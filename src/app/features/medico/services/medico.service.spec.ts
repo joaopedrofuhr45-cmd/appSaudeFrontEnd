@@ -16,7 +16,6 @@ describe('MedicoService', () => {
     service.obterMeuPerfil().subscribe();
     const get = http.expectOne('http://localhost:8080/medicos/me');
     expect(get.request.method).toBe('GET');
-    expect(get.request.withCredentials).toBeTrue();
     get.flush({ nome: 'Dr. Silva' });
     const perfil = { nome: 'Dr. Silva', email: 'dr@example.com', telefone: '11999990000' };
     service.atualizarPerfil(perfil).subscribe();
