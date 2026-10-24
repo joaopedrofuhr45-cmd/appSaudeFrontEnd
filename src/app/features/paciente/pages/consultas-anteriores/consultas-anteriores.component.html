@@ -10,10 +10,12 @@
   @if (carregando) { <p class="vazio">Carregando consultas…</p> }
   @if (erro) { <p class="vazio erro">{{ erro }}</p> }
   @for (consulta of filtradas; track consulta.id) {
-    <article class="consulta" [class]="classe(consulta.status)">
-      <strong class="horario">{{ horario(consulta.dataHora) }}</strong><div class="detalhe"><strong>{{ consulta.medico }}</strong><span>{{ consulta.especialidade }} · {{ consulta.dataHora | date:'dd/MM/yyyy' }}</span></div>
-      <app-status-badge [status]="statusParaBadge(consulta.status)" [texto]="statusTexto(consulta.status)" />
-      <span class="chevron">›</span>
-    </article>
+    <a class="link-consulta" [routerLink]="['/paciente/consulta', consulta.id]">
+      <article class="consulta" [class]="classe(consulta.status)">
+        <strong class="horario">{{ horario(consulta.dataHora) }}</strong><div class="detalhe"><strong>{{ consulta.medico }}</strong><span>{{ consulta.especialidade }} · {{ consulta.dataHora | date:'dd/MM/yyyy' }}</span></div>
+        <app-status-badge [status]="statusParaBadge(consulta.status)" [texto]="statusTexto(consulta.status)" />
+        <span class="chevron">›</span>
+      </article>
+    </a>
   } @empty { <p class="vazio">Nenhuma consulta corresponde aos filtros.</p> }
 </section>

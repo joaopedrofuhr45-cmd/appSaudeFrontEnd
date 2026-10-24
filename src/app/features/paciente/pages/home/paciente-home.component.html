@@ -10,7 +10,7 @@
       <span class="rotulo">◷ Próxima consulta</span>
       <h2>{{ proxima.especialidade }}</h2>
       <p>{{ proxima.medico }} · {{ proxima.dataHora | date:'EEEE, dd/MM' }} às {{ hora(proxima) }}.</p>
-      <a routerLink="/paciente/agendar-consulta">Agendar outra →</a>
+      <a [routerLink]="['/paciente/consulta', proxima.id]">Ver detalhes →</a>
     </article>
   } @else {
     <article class="proxima-destaque hover-elevar">
@@ -48,13 +48,15 @@
     <a routerLink="/paciente/agendar-consulta">Agendar nova</a>
   </div>
   @for (consulta of proximas; track consulta.id; let i = $index) {
-    <app-consulta-row
-      appReveal [appRevealDelay]="i * 70"
-      [horario]="hora(consulta)"
-      [nome]="consulta.medico"
-      [detalhe]="detalhe(consulta)"
-      [status]="statusParaBadge(consulta.status)"
-      [statusTexto]="statusTexto(consulta.status)" />
+    <a class="link-consulta" [routerLink]="['/paciente/consulta', consulta.id]">
+      <app-consulta-row
+        appReveal [appRevealDelay]="i * 70"
+        [horario]="hora(consulta)"
+        [nome]="consulta.medico"
+        [detalhe]="detalhe(consulta)"
+        [status]="statusParaBadge(consulta.status)"
+        [statusTexto]="statusTexto(consulta.status)" />
+    </a>
   } @empty {
     <p class="estado">Você não tem consultas futuras.</p>
   }
