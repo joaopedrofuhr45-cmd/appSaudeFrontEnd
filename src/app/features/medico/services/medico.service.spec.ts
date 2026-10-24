@@ -33,4 +33,11 @@ describe('MedicoService', () => {
     expect(req.request.body).toEqual(dados);
     req.flush(null);
   });
+
+  it('lists the doctor agenda for a date under /medicos/me/consultas', () => {
+    service.listarAgenda('2026-10-06').subscribe();
+    const req = http.expectOne(r => r.url === 'http://localhost:8080/medicos/me/consultas' && r.params.get('data') === '2026-10-06');
+    expect(req.request.method).toBe('GET');
+    req.flush([]);
+  });
 });

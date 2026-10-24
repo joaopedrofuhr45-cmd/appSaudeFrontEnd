@@ -38,15 +38,6 @@ describe('ConsultaService', () => {
     req.flush({});
   });
 
-  it('lists patient consultations and history', () => {
-    service.listarMinhasConsultas().subscribe();
-    const consultations = http.expectOne('http://localhost:8080/consultas/paciente');
-    expect(consultations.request.method).toBe('GET');
-    consultations.flush([]);
-    service.listarHistorico().subscribe();
-    http.expectOne('http://localhost:8080/consultas/paciente/historico').flush([]);
-  });
-
   it('creates a consultation', () => {
     const data = { medicoId: 4, tipoConsulta: 'Cardiologia', dataHora: '2026-10-07T09:00:00', observacao: '' };
     service.agendar(data).subscribe();

@@ -2,14 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { provideRouter } from '@angular/router';
 import { ConsultasAnterioresComponent } from './consultas-anteriores.component';
-import { ConsultaService } from '@features/consulta/services/consulta.service';
+import { PacienteService } from '@features/paciente/services/paciente.service';
 
 describe('ConsultasAnterioresComponent', () => {
   let fixture: ComponentFixture<ConsultasAnterioresComponent>;
   beforeEach(async () => {
-    const consulta = jasmine.createSpyObj<ConsultaService>('ConsultaService', ['listarMinhasConsultas']);
+    const consulta = jasmine.createSpyObj<PacienteService>('PacienteService', ['listarMinhasConsultas']);
     consulta.listarMinhasConsultas.and.returnValue(of([]));
-    await TestBed.configureTestingModule({ imports: [ConsultasAnterioresComponent], providers: [provideRouter([]), { provide: ConsultaService, useValue: consulta }] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [ConsultasAnterioresComponent], providers: [provideRouter([]), { provide: PacienteService, useValue: consulta }] }).compileComponents();
     fixture = TestBed.createComponent(ConsultasAnterioresComponent);
     fixture.detectChanges();
   });

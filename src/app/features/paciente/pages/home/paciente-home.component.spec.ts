@@ -3,20 +3,23 @@ import { of, throwError } from 'rxjs';
 import { provideRouter } from '@angular/router';
 import { PacienteHomeComponent } from './paciente-home.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
+import { PacienteService } from '@features/paciente/services/paciente.service';
 
 describe('PacienteHomeComponent', () => {
   let fixture: ComponentFixture<PacienteHomeComponent>;
   let service: jasmine.SpyObj<ConsultaService>;
+  let paciente: jasmine.SpyObj<PacienteService>;
   beforeEach(async () => {
-    service = jasmine.createSpyObj<ConsultaService>('ConsultaService', ['listarMinhasConsultas', 'listarEspecialidades']);
-    service.listarMinhasConsultas.and.returnValue(of([]));
+    service = jasmine.createSpyObj<ConsultaService>('ConsultaService', ['listarEspecialidades']);
+    paciente = jasmine.createSpyObj<PacienteService>('PacienteService', ['listarMinhasConsultas']);
+    paciente.listarMinhasConsultas.and.returnValue(of([]));
     service.listarEspecialidades.and.returnValue(of(['Clínica geral']));
-    await TestBed.configureTestingModule({ imports: [PacienteHomeComponent], providers: [provideRouter([]), { provide: ConsultaService, useValue: service }] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [PacienteHomeComponent], providers: [provideRouter([]), { provide: ConsultaService, useValue: service }, { provide: PacienteService, useValue: paciente }] }).compileComponents();
     fixture = TestBed.createComponent(PacienteHomeComponent);
     fixture.detectChanges();
   });
   it('loads consultations and specialties', () => {
-    expect(service.listarMinhasConsultas).toHaveBeenCalled();
+    expect(paciente.listarMinhasConsultas).toHaveBeenCalled();
     expect(fixture.componentInstance.carregando).toBeFalse();
     expect(fixture.componentInstance.especialidades).toEqual(['Clínica geral']);
   });
@@ -33,7 +36,7 @@ describe('PacienteHomeComponent', () => {
     expect(fixture.componentInstance.statusParaBadge('EM_ESPERA')).toBe('em-espera');
   });
   it('shows an error when consultations fail to load', () => {
-    service.listarMinhasConsultas.and.returnValue(throwError(() => new Error('offline')));
+    paciente.listarMinhasConsultas.and.returnValue(throwError(() => new Error('offline')));
     fixture.componentInstance.ngOnInit();
     expect(fixture.componentInstance.erro).toContain('Não foi possível');
     expect(fixture.componentInstance.carregando).toBeFalse();

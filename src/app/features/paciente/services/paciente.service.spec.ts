@@ -36,4 +36,13 @@ describe('PacienteService', () => {
     expect(req.request.body).toEqual(dados);
     req.flush(null);
   });
+
+  it('lists my consultations and history under /pacientes/me', () => {
+    service.listarMinhasConsultas().subscribe();
+    const consultations = http.expectOne('http://localhost:8080/pacientes/me/consultas');
+    expect(consultations.request.method).toBe('GET');
+    consultations.flush([]);
+    service.listarHistorico().subscribe();
+    http.expectOne('http://localhost:8080/pacientes/me/consultas/historico').flush([]);
+  });
 });
