@@ -8,9 +8,9 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { AuthService } from '@core/auth/auth.service';
+import { AuthService } from '@core/auth/services/auth.service';
 import { ButtonComponent } from '@shared/ui/button/button.component';
-import { renderGoogleIdentityButton } from '@core/auth/google-identity';
+import { renderGoogleIdentityButton } from '@core/auth/services/google-identity';
 
 @Component({
   selector: 'app-login',

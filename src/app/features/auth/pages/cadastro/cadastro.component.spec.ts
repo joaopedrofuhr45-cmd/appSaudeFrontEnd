@@ -1,5 +1,5 @@
 import { CadastroService } from '@features/auth/services/cadastro.service';
-import { AuthService } from '@core/auth/auth.service';
+import { AuthService } from '@core/auth/services/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CadastroPacienteComponent } from './cadastro.component';
 import { ReactiveFormsModule } from '@angular/forms';

@@ -7,9 +7,9 @@ import { finalize } from 'rxjs';
 
 import {CadastroService} from '@features/auth/services/cadastro.service';
 import { CadastroRequest } from '@features/auth/models/cadastro-request';
-import { AuthService } from '@core/auth/auth.service';
+import { AuthService } from '@core/auth/services/auth.service';
 import { Router } from '@angular/router';
-import { renderGoogleIdentityButton } from '@core/auth/google-identity';
+import { renderGoogleIdentityButton } from '@core/auth/services/google-identity';
 
 @Component({
   selector: 'app-cadastro-paciente',
