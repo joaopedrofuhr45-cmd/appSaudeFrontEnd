@@ -1,0 +1,26 @@
+:host { display: flex; flex-direction: column; gap: 20px; color: var(--cor-texto); }
+h1, h2, p { margin: 0; }
+.topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.rotulo { color: var(--cor-primaria); font-size: 12px; }
+h1 { font-size: 22px; margin-top: 4px; }
+.topo p { margin-top: 4px; font-size: 13px; color: var(--cor-texto-secundario); text-transform: capitalize; }
+.colunas { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 16px; align-items: start; }
+.coluna-principal { display: flex; flex-direction: column; gap: 16px; }
+.card { background: #fff; border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 16px; }
+.card h2 { font-size: 14px; margin-bottom: 12px; }
+.dados { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dados > div { border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px; font-size: 11px; color: var(--cor-texto-secundario); }
+.dados strong { display: block; margin-top: 5px; font-size: 13px; color: var(--cor-texto); }
+.observacao { font-size: 13px; line-height: 1.6; color: var(--cor-texto-secundario); }
+.acoes { display: flex; flex-direction: column; gap: 8px; }
+.acoes h2 { margin-bottom: 4px; }
+.btn { display: block; width: 100%; padding: 9px; border: 1px solid var(--cor-borda); border-radius: 8px; background: #fff; font: inherit; font-size: 13px; text-align: center; text-decoration: none; color: var(--cor-texto); cursor: pointer; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn.primario { background: var(--grad-primario); border-color: transparent; color: #fff; }
+.btn.perigo { color: var(--cor-erro); border-color: var(--cor-erro); }
+.btn.perigo.cheio { background: var(--cor-erro); color: #fff; }
+.confirmacao { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; border-top: 1px solid var(--cor-borda); }
+.confirmacao p { font-size: 12px; color: var(--cor-texto-secundario); }
+.estado { font-size: 13px; color: var(--cor-texto-secundario); }
+.erro { font-size: 12px; color: var(--cor-erro); }
+@media (max-width: 800px) { .colunas, .dados { grid-template-columns: 1fr; } }

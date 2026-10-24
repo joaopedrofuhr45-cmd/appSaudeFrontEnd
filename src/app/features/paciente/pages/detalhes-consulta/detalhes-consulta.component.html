@@ -1,0 +1,63 @@
+<app-page-header
+  rotaVoltar="/paciente/dashboard"
+  textoVoltar="Voltar para o início"
+  acaoLabel="Nova consulta"
+  acaoRota="/paciente/agendar-consulta" />
+
+@if (carregando) { <p class="estado">Carregando consulta…</p> }
+@if (erro) { <p class="erro" role="alert">{{ erro }}</p> }
+
+@if (consulta) {
+  <section class="topo">
+    <div>
+      <span class="rotulo">Detalhes da consulta</span>
+      <h1>{{ consulta.especialidade }}</h1>
+      <p>{{ consulta.dataHora | date:'EEEE, dd/MM/yyyy' }} às {{ consulta.dataHora | date:'HH:mm' }}</p>
+    </div>
+    <app-status-badge
+      [status]="statusParaBadge(consulta.status)"
+      [texto]="statusTexto(consulta.status)" />
+  </section>
+
+  <div class="colunas">
+    <div class="coluna-principal">
+      <section class="card">
+        <h2>Informações</h2>
+        <div class="dados">
+          <div>Médico<strong>{{ consulta.medico }}</strong></div>
+          <div>Especialidade<strong>{{ consulta.especialidade }}</strong></div>
+          <div>Tipo de consulta<strong>{{ consulta.tipoConsulta }}</strong></div>
+          <div>Paciente<strong>{{ consulta.paciente }}</strong></div>
+          <div>Data<strong>{{ consulta.dataHora | date:'dd/MM/yyyy' }}</strong></div>
+          <div>Horário<strong>{{ consulta.dataHora | date:'HH:mm' }}</strong></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>{{ concluida ? 'Observações do médico' : 'Observação' }}</h2>
+        <p class="observacao">{{ consulta.observacao || 'Nenhuma observação registrada.' }}</p>
+      </section>
+    </div>
+
+    <aside class="card acoes">
+      <h2>Ações</h2>
+      <a class="btn primario" routerLink="/paciente/agendar-consulta">Agendar outra consulta</a>
+      <a class="btn" routerLink="/paciente/consultas-anteriores">Ver consultas anteriores</a>
+
+      @if (podeCancelar) {
+        @if (!confirmandoCancelamento) {
+          <button type="button" class="btn perigo" (click)="pedirCancelamento()">Cancelar consulta</button>
+        } @else {
+          <div class="confirmacao" role="alertdialog" aria-label="Confirmar cancelamento">
+            <p>Tem certeza que deseja cancelar esta consulta?</p>
+            <button type="button" class="btn perigo cheio" [disabled]="cancelando" (click)="confirmarCancelamento()">
+              {{ cancelando ? 'Cancelando…' : 'Sim, cancelar' }}
+            </button>
+            <button type="button" class="btn" [disabled]="cancelando" (click)="desistirDoCancelamento()">Voltar</button>
+          </div>
+        }
+        @if (erroCancelamento) { <p class="erro" role="alert">{{ erroCancelamento }}</p> }
+      }
+    </aside>
+  </div>
+}
