@@ -11,20 +11,14 @@ export class PacienteService {
   private readonly baseUrl = environment.apiUrl.replace(/\/auth\/?$/, '');
 
   obterMeuPerfil(): Observable<PacientePerfil> {
-    return this.http.get<PacientePerfil>(`${this.baseUrl}/pacientes/me`, {
-      withCredentials: true,
-    });
+    return this.http.get<PacientePerfil>(`${this.baseUrl}/pacientes/me`);
   }
 
   atualizarPerfil(perfil: PacientePerfil): Observable<PacientePerfil> {
-    return this.http.put<PacientePerfil>(`${this.baseUrl}/pacientes/me`, perfil, {
-      withCredentials: true,
-    });
+    return this.http.put<PacientePerfil>(`${this.baseUrl}/pacientes/me`, perfil);
   }
 
   alterarSenha(dados: AlterarSenhaPaciente): Observable<void> {
-    return this.http.patch<void>(`${this.baseUrl}/pacientes/me/senha`, dados, {
-      withCredentials: true,
-    });
+    return this.http.patch<void>(`${this.baseUrl}/pacientes/me/senha`, dados);
   }
 }

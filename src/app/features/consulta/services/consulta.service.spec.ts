@@ -20,7 +20,6 @@ describe('ConsultaService', () => {
     service.listarPorData('2026-10-06').subscribe();
     const req = http.expectOne(r => r.url === 'http://localhost:8080/consultas' && r.params.get('data') === '2026-10-06');
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeTrue();
     req.flush([]);
   });
 
@@ -42,7 +41,7 @@ describe('ConsultaService', () => {
   it('lists patient consultations and history', () => {
     service.listarMinhasConsultas().subscribe();
     const consultations = http.expectOne('http://localhost:8080/consultas/paciente');
-    expect(consultations.request.withCredentials).toBeTrue();
+    expect(consultations.request.method).toBe('GET');
     consultations.flush([]);
     service.listarHistorico().subscribe();
     http.expectOne('http://localhost:8080/consultas/paciente/historico').flush([]);
@@ -73,7 +72,6 @@ describe('ConsultaService', () => {
     service.buscarPacientes('Maria').subscribe();
     const req = http.expectOne(r => r.url === 'http://localhost:8080/pacientes' && r.params.get('nome') === 'Maria');
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeTrue();
     req.flush([]);
   });
 });

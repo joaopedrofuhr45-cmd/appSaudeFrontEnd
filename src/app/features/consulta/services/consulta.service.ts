@@ -14,48 +14,47 @@ export class ConsultaService {
 
   listarPorData(data: string): Observable<Consulta[]> {
     return this.http.get<Consulta[]>(`${this.baseUrl}/consultas`, {
-      params: new HttpParams().set('data', data), withCredentials: true
+      params: new HttpParams().set('data', data)
     });
   }
 
   obter(id: number | string): Observable<ConsultaDetalhe> {
-    return this.http.get<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}`, { withCredentials: true });
+    return this.http.get<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}`);
   }
 
   finalizar(id: number | string, observacao: string): Observable<ConsultaDetalhe> {
-    return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/finalizar`, { observacao }, { withCredentials: true });
+    return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/finalizar`, { observacao });
   }
 
   cancelar(id: number | string): Observable<ConsultaDetalhe> {
-    return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/cancelar`, {}, { withCredentials: true });
+    return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/cancelar`, {});
   }
 
   listarMinhasConsultas(): Observable<ConsultaPaciente[]> {
-    return this.http.get<ConsultaPaciente[]>(`${this.baseUrl}/consultas/paciente`, { withCredentials: true });
+    return this.http.get<ConsultaPaciente[]>(`${this.baseUrl}/consultas/paciente`);
   }
 
   listarHistorico(): Observable<HistoricoConsulta[]> {
-    return this.http.get<HistoricoConsulta[]>(`${this.baseUrl}/consultas/paciente/historico`, { withCredentials: true });
+    return this.http.get<HistoricoConsulta[]>(`${this.baseUrl}/consultas/paciente/historico`);
   }
 
   agendar(dados: ConsultaAgendamento): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/consultas`, dados, { withCredentials: true });
+    return this.http.post<void>(`${this.baseUrl}/consultas`, dados);
   }
 
   listarEspecialidades(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/especialidades`, { withCredentials: true });
+    return this.http.get<string[]>(`${this.baseUrl}/especialidades`);
   }
 
   listarMedicos(especialidade?: string): Observable<MedicoOpcao[]> {
     let params = new HttpParams();
     if (especialidade) params = params.set('especialidade', especialidade);
-    return this.http.get<MedicoOpcao[]>(`${this.baseUrl}/medicos`, { params, withCredentials: true });
+    return this.http.get<MedicoOpcao[]>(`${this.baseUrl}/medicos`, { params });
   }
 
   buscarPacientes(nome: string): Observable<PacienteOpcao[]> {
     return this.http.get<PacienteOpcao[]>(`${this.baseUrl}/pacientes`, {
-      params: new HttpParams().set('nome', nome),
-      withCredentials: true
+      params: new HttpParams().set('nome', nome)
     });
   }
 }

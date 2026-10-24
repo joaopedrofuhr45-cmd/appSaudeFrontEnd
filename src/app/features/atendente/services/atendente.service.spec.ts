@@ -16,7 +16,6 @@ describe('AtendenteService', () => {
     service.obterMeuPerfil().subscribe();
     const get = http.expectOne('http://localhost:8080/atendentes/me');
     expect(get.request.method).toBe('GET');
-    expect(get.request.withCredentials).toBeTrue();
     get.flush({ nome: 'Ana', email: 'ana@example.com', telefone: '11999990000', setor: 'Recepção' });
     const perfil = { nome: 'Ana', email: 'ana@example.com', telefone: '11999990000' };
     service.atualizarPerfil(perfil).subscribe();

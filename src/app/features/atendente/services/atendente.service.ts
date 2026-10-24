@@ -6,7 +6,7 @@ import { AlterarSenha, AtualizarPerfil, PerfilAtendente } from "@shared/models/p
 @Injectable({ providedIn: "root" })
 export class AtendenteService {
  private readonly http=inject(HttpClient); private readonly baseUrl=environment.apiUrl.replace(/\/auth\/?$/, "");
- obterMeuPerfil(): Observable<PerfilAtendente> { return this.http.get<PerfilAtendente>(this.baseUrl + "/atendentes/me", {withCredentials:true}); }
- atualizarPerfil(perfil: AtualizarPerfil): Observable<PerfilAtendente> { return this.http.put<PerfilAtendente>(this.baseUrl + "/atendentes/me", perfil, {withCredentials:true}); }
- alterarSenha(dados: AlterarSenha): Observable<void> { return this.http.patch<void>(this.baseUrl + "/atendentes/me/senha", dados, {withCredentials:true}); }
+ obterMeuPerfil(): Observable<PerfilAtendente> { return this.http.get<PerfilAtendente>(this.baseUrl + "/atendentes/me"); }
+ atualizarPerfil(perfil: AtualizarPerfil): Observable<PerfilAtendente> { return this.http.put<PerfilAtendente>(this.baseUrl + "/atendentes/me", perfil); }
+ alterarSenha(dados: AlterarSenha): Observable<void> { return this.http.patch<void>(this.baseUrl + "/atendentes/me/senha", dados); }
 }
