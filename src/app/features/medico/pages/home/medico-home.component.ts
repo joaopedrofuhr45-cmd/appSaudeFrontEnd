@@ -2,10 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { ConsultaRowComponent } from '@shared/consulta-row/consulta-row.component';
-import { StatusBadgeComponent, StatusConsulta } from '@shared/status-badge/status-badge.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { ConsultaRowComponent } from '@features/consulta/components/consulta-row/consulta-row.component';
+import { StatusBadgeComponent, StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { Consulta } from '@features/consulta/models/consulta.model';
 import { MedicoService } from '@features/medico/services/medico.service';

@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { StatusBadgeComponent, StatusConsulta } from '@shared/status-badge/status-badge.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { StatusBadgeComponent, StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { ConsultaDetalhe } from '@features/consulta/models/consulta.model';
 

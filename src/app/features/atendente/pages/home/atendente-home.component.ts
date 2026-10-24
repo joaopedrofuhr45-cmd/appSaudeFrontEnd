@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SidebarComponent } from '@shared/sidebar/sidebar.component';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
-import { StatCardComponent } from '@shared/stat-card/stat-card.component';
-import { ConsultaRowComponent } from '@shared/consulta-row/consulta-row.component';
-import { SeletorDiaComponent } from '@shared/seletor-dia/seletor-dia.component';
-import { RevealDirective } from '@shared/reveal/reveal.component';
+import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
+import { StatCardComponent } from '@shared/ui/stat-card/stat-card.component';
+import { ConsultaRowComponent } from '@features/consulta/components/consulta-row/consulta-row.component';
+import { SeletorDiaComponent } from '@features/consulta/components/seletor-dia/seletor-dia.component';
+import { RevealDirective } from '@shared/ui/reveal/reveal.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { Consulta, StatusConsulta } from '@features/consulta/models/consulta.model';
-import { StatusConsulta as StatusBadge } from '@shared/status-badge/status-badge.component';
+import { StatusConsulta as StatusBadge } from '@features/consulta/components/status-badge/status-badge.component';
 import { AtendenteService } from '@features/atendente/services/atendente.service';
 
 const STATUS_ATIVOS: StatusConsulta[] = ['AGENDADO', 'CONFIRMADO', 'EM_ESPERA'];
@@ -25,8 +25,8 @@ const STATUS_ATIVOS: StatusConsulta[] = ['AGENDADO', 'CONFIRMADO', 'EM_ESPERA'];
     SeletorDiaComponent,
     RevealDirective,
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  templateUrl: './atendente-home.component.html',
+  styleUrl: './atendente-home.component.css',
 })
 export class AtendenteHomeComponent implements OnInit {
   private readonly consultaService = inject(ConsultaService);

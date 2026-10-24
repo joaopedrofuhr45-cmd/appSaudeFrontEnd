@@ -3,14 +3,14 @@ import { TelaInicialComponent } from './features/landing/pages/tela-inicial/tela
 import { MenuInicialComponent } from './features/landing/pages/menu-inicial/menu-inicial.component';
 import { LoginComponent } from './features/auth/pages/login/login.component';
 import { CadastroPacienteComponent } from './features/auth/pages/cadastro/cadastro.component';
-import { AtendenteHomeComponent } from './features/atendente/pages/home/home.component';
+import { AtendenteHomeComponent } from './features/atendente/pages/home/atendente-home.component';
 import { NovoAgendamentoComponent } from './features/atendente/pages/novo-agendamento/novo-agendamento.component';
 import { ConfiguracoesAtendenteComponent } from './features/atendente/pages/configuracoes/configuracoes-atendente.component';
 import { MedicoHomeComponent } from './features/medico/pages/home/medico-home.component';
 import { DadosConsultaComponent } from './features/medico/pages/consulta/dados-consulta.component';
 import { AtendimentoMedicoComponent } from './features/medico/pages/atendimento/atendimento-medico.component';
 import { ConfiguracoesMedicoComponent } from './features/medico/pages/configuracoes/configuracoes-medico.component';
-import { PacienteLayoutComponent } from './features/paciente/pages/layout/paciente-layout.component';
+import { PacienteLayoutComponent } from './features/paciente/layout/paciente-layout.component';
 import { PacienteHomeComponent } from './features/paciente/pages/home/paciente-home.component';
 import { AgendarConsultaComponent } from './features/paciente/pages/agendar-consulta/agendar-consulta.component';
 import { ConsultasAnterioresComponent } from './features/paciente/pages/consultas-anteriores/consultas-anteriores.component';

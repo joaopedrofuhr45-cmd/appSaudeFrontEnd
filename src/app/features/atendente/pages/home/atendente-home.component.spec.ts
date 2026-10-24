@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { provideRouter } from '@angular/router';
 
-import { AtendenteHomeComponent } from './home.component';
+import { AtendenteHomeComponent } from './atendente-home.component';
 import { AtendenteService } from '@features/atendente/services/atendente.service';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 

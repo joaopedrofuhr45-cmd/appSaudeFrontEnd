@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PageHeaderComponent } from '@shared/page-header/page-header.component';
+import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { finalize } from 'rxjs';
 import { PacienteService } from '@features/paciente/services/paciente.service';
 
