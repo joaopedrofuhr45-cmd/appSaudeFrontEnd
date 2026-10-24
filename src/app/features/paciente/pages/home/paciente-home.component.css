@@ -18,3 +18,4 @@ h1 { font-size: 22px; }
 .proximas-lista { display: flex; flex-direction: column; gap: 8px; }
 @media (max-width: 900px) { .boas-vindas { grid-template-columns: 1fr; } .estatisticas { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .atalhos { grid-template-columns: repeat(2, 1fr); } }
+.link-consulta { display: block; color: inherit; text-decoration: none; }

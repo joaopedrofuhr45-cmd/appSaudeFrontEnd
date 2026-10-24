@@ -26,6 +26,10 @@ export class ConsultaService {
     return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/finalizar`, { observacao }, { withCredentials: true });
   }
 
+  cancelar(id: number | string): Observable<ConsultaDetalhe> {
+    return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/cancelar`, {}, { withCredentials: true });
+  }
+
   listarMinhasConsultas(): Observable<ConsultaPaciente[]> {
     return this.http.get<ConsultaPaciente[]>(`${this.baseUrl}/consultas/paciente`, { withCredentials: true });
   }

@@ -1,10 +1,11 @@
 import { Component,OnInit,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms'; import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from '@shared/page-header/page-header.component';
 import { StatusBadgeComponent,StatusConsulta } from '@shared/status-badge/status-badge.component';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { ConsultaPaciente } from '@features/consulta/models/consulta.model';
-@Component({selector:'app-consultas-anteriores',standalone:true,imports:[CommonModule,FormsModule,PageHeaderComponent,StatusBadgeComponent],templateUrl:'./consultas-anteriores.component.html',styleUrl:'./consultas-anteriores.component.css'})
+@Component({selector:'app-consultas-anteriores',standalone:true,imports:[CommonModule,FormsModule,RouterLink,PageHeaderComponent,StatusBadgeComponent],templateUrl:'./consultas-anteriores.component.html',styleUrl:'./consultas-anteriores.component.css'})
 export class ConsultasAnterioresComponent implements OnInit {
  private readonly consultaService=inject(ConsultaService); busca='';periodo='Últimos 12 meses';situacao='Todas';consultas:ConsultaPaciente[]=[];carregando=true;erro='';
  ngOnInit():void{this.consultaService.listarMinhasConsultas().subscribe({next:d=>{this.consultas=d;this.carregando=false},error:()=>{this.erro='Não foi possível carregar suas consultas.';this.carregando=false}});}
