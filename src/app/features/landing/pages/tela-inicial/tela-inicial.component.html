@@ -144,10 +144,109 @@
       <a class="link-sobre">Conheça nossa história →</a>
     </div>
   </section>
+  <section class="contato" id="contato">
+    <div class="contato-cartao">
+      <div class="contato-imagem" appReveal="esquerda">
+        <img
+          src="assets/contato-ilustracao.svg"
+          alt="Ilustração de uma atendente da Saúde+ com headset, pronta para ajudar"
+          width="520"
+          height="440"
+          loading="lazy"
+        />
+        <div class="contato-selo">
+          <span class="contato-selo-ponto" aria-hidden="true"></span>
+          <div>
+            <strong>Estamos online</strong>
+            <span>{{ contato.horario }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contato-conteudo" appReveal="direita" [appRevealDelay]="100">
+        <p class="secao-etiqueta">Fale com a gente</p>
+        <h2>Estamos prontos para ajudar você</h2>
+        <p class="contato-intro">
+          Tem alguma dúvida sobre a plataforma ou precisa de apoio no seu
+          primeiro acesso? Escolha o canal que for mais conveniente.
+        </p>
+
+        <ul class="contato-lista">
+          <li>
+            <span class="contato-icone" aria-hidden="true">✉</span>
+            <div>
+              <strong>E-mail</strong>
+              <a [href]="'mailto:' + contato.email">{{ contato.email }}</a>
+            </div>
+          </li>
+          <li>
+            <span class="contato-icone" aria-hidden="true">☎</span>
+            <div>
+              <strong>Telefone</strong>
+              <a [href]="telefoneLink">{{ contato.telefone }}</a>
+            </div>
+          </li>
+          <li>
+            <span class="contato-icone" aria-hidden="true">◷</span>
+            <div>
+              <strong>Horário de atendimento</strong>
+              <span>{{ contato.horario }}</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="contato-acoes">
+          <a class="btn-contato btn-contato-solido" [href]="'mailto:' + contato.email">
+            Enviar e-mail
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn-contato btn-contato-outline" routerLink="/menu-inicial">
+            Entrar na plataforma
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="rodape" id="contato">
-  <span>Privacidade</span> |
-  <span>Termos de uso</span> |
-  <span>Contato</span>
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <div class="rodape-marca">
+      <a routerLink="/" fragment="inicio" class="rodape-logo">✚ Saúde+</a>
+      <p>
+        Uma plataforma de saúde que conecta pacientes, médicos e atendentes
+        para um atendimento mais acessível, organizado e humano.
+      </p>
+    </div>
+
+    <nav class="rodape-coluna" aria-label="Navegação do rodapé">
+      <h4>Navegação</h4>
+      <a routerLink="/" fragment="inicio">Início</a>
+      <a routerLink="/" fragment="sobre">Sobre nós</a>
+      <a routerLink="/" fragment="como-funciona">Como funciona</a>
+      <a routerLink="/" fragment="contato">Contato</a>
+    </nav>
+
+    <nav class="rodape-coluna" aria-label="Acesso à plataforma">
+      <h4>Plataforma</h4>
+      <a routerLink="/login-paciente">Sou paciente</a>
+      <a routerLink="/login-medico">Sou médico</a>
+      <a routerLink="/login-atendente">Sou atendente</a>
+    </nav>
+
+    <div class="rodape-coluna">
+      <h4>Contato</h4>
+      <a [href]="'mailto:' + contato.email">{{ contato.email }}</a>
+      <a [href]="telefoneLink">{{ contato.telefone }}</a>
+      <span>{{ contato.horario }}</span>
+    </div>
+  </div>
+
+  <div class="rodape-base">
+    <span>© {{ ano }} Saúde+. Todos os direitos reservados.</span>
+    <span class="rodape-legal">
+      <span>Privacidade</span>
+      <span>Termos de uso</span>
+    </span>
+  </div>
 </footer>

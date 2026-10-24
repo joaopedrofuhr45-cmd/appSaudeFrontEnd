@@ -1,11 +1,16 @@
 <header class="header" [class.rolado]="rolado">
-  <a routerLink="/" class="logo">✚ Saúde+</a>
+  <a routerLink="/" fragment="inicio" class="logo">✚ Saúde+</a>
 
-  <nav class="nav">
-    <a routerLink="/" fragment="inicio" class="nav-link ativo">Início</a>
-    <a routerLink="/" fragment="sobre" class="nav-link">Sobre nós</a>
-    <a routerLink="/" fragment="como-funciona" class="nav-link">Como funciona</a>
-    <a routerLink="/" fragment="contato" class="nav-link">Contato</a>
+  <nav class="nav" aria-label="Seções da página">
+    @for (item of itens; track item.id) {
+      <a
+        routerLink="/"
+        [fragment]="item.id"
+        class="nav-link"
+        [class.ativo]="ativa === item.id"
+        [attr.aria-current]="ativa === item.id ? 'location' : null"
+      >{{ item.rotulo }}</a>
+    }
   </nav>
 
   <div class="acoes">
