@@ -38,7 +38,7 @@
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
 body {
   margin: 0;

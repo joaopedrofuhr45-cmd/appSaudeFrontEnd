@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 440" role="img" aria-labelledby="t d">
+  <title id="t">Atendimento Saúde+</title>
+  <desc id="d">Atendente sorridente com headset, cercada de um balão de conversa, um calendário e uma planta.</desc>
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="520" height="440" rx="32" fill="url(#fundo)"/>
+  <circle cx="450" cy="60" r="120" fill="#fff" opacity=".08"/>
+  <circle cx="60" cy="400" r="140" fill="#fff" opacity=".08"/>
+  <circle cx="240" cy="62" r="4" fill="#fff" opacity=".7"/>
+  <circle cx="302" cy="120" r="3" fill="#fff" opacity=".6"/>
+  <circle cx="478" cy="214" r="5" fill="#fff" opacity=".6"/>
+  <circle cx="44" cy="238" r="4" fill="#fff" opacity=".6"/>
+
+  <!-- balão: mensagem -->
+  <rect x="44" y="64" width="150" height="76" rx="20" fill="#fff"/>
+  <path d="M84 140 L72 162 L108 140 Z" fill="#fff"/>
+  <circle cx="84" cy="102" r="20" fill="#ccfbf1"/>
+  <rect x="80" y="90" width="8" height="24" rx="3" fill="#0d9488"/>
+  <rect x="72" y="98" width="24" height="8" rx="3" fill="#0d9488"/>
+  <rect x="116" y="92" width="62" height="8" rx="4" fill="#0d9488" opacity=".85"/>
+  <rect x="116" y="108" width="44" height="8" rx="4" fill="#cbd5e1"/>
+
+  <!-- balão: cuidado -->
+  <rect x="330" y="44" width="146" height="72" rx="20" fill="#fff"/>
+  <path d="M440 116 L452 138 L420 116 Z" fill="#fff"/>
+  <circle cx="361" cy="76" r="8" fill="#f43f5e"/>
+  <circle cx="377" cy="76" r="8" fill="#f43f5e"/>
+  <polygon points="353,79 385,79 369,97" fill="#f43f5e"/>
+  <rect x="396" y="68" width="62" height="8" rx="4" fill="#0d9488" opacity=".85"/>
+  <rect x="396" y="84" width="40" height="8" rx="4" fill="#cbd5e1"/>
+
+  <!-- planta -->
+  <ellipse cx="104" cy="300" rx="10" ry="27" transform="rotate(-25 104 300)" fill="#14b8a6"/>
+  <ellipse cx="119" cy="290" rx="10" ry="32" fill="#0f766e"/>
+  <ellipse cx="134" cy="300" rx="10" ry="27" transform="rotate(25 134 300)" fill="#5eead4"/>
+  <path d="M96 354 L142 354 L135 322 L103 322 Z" fill="#f97316"/>
+
+  <!-- calendário de mesa -->
+  <rect x="392" y="296" width="64" height="62" rx="8" fill="#fff"/>
+  <path d="M392 306 a8 8 0 0 1 8 -8 h48 a8 8 0 0 1 8 8 v8 h-64 z" fill="#f43f5e"/>
+  <circle cx="406" cy="330" r="3" fill="#cbd5e1"/>
+  <circle cx="424" cy="330" r="3" fill="#cbd5e1"/>
+  <circle cx="442" cy="330" r="3" fill="#cbd5e1"/>
+  <circle cx="406" cy="344" r="3" fill="#cbd5e1"/>
+  <circle cx="424" cy="344" r="6" fill="#0d9488"/>
+  <circle cx="442" cy="344" r="3" fill="#cbd5e1"/>
+
+  <!-- atendente -->
+  <path d="M150 362 C150 292 196 262 260 262 C324 262 370 292 370 362 Z" fill="#fff"/>
+  <path d="M232 266 L260 308 L288 266 Z" fill="#ccfbf1"/>
+  <path d="M246 268 L260 292 L274 268 Z" fill="#0d9488"/>
+  <rect x="290" y="318" width="40" height="14" rx="4" fill="#ccfbf1"/>
+  <rect x="296" y="323" width="28" height="4" rx="2" fill="#0d9488"/>
+  <rect x="246" y="232" width="28" height="40" rx="10" fill="#f5c6a0"/>
+  <circle cx="260" cy="196" r="46" fill="#fcd5b5"/>
+  <path d="M212 192 C206 146 240 138 262 138 C292 138 314 158 308 194 C296 172 270 166 244 170 C228 172 218 180 212 192 Z" fill="#1e293b"/>
+  <circle cx="244" cy="202" r="4" fill="#1e293b"/>
+  <circle cx="276" cy="202" r="4" fill="#1e293b"/>
+  <circle cx="234" cy="214" r="6" fill="#f9a8a8" opacity=".55"/>
+  <circle cx="286" cy="214" r="6" fill="#f9a8a8" opacity=".55"/>
+  <path d="M248 220 Q260 232 272 220" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- headset -->
+  <path d="M208 202 C204 134 316 134 312 202" stroke="#0f766e" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <rect x="198" y="188" width="16" height="34" rx="8" fill="#0f766e"/>
+  <rect x="306" y="188" width="16" height="34" rx="8" fill="#0f766e"/>
+  <path d="M206 218 C204 246 226 254 246 248" stroke="#0f766e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="249" cy="248" r="6" fill="#0f766e"/>
+
+  <!-- mesa -->
+  <rect x="36" y="352" width="448" height="16" rx="8" fill="#ccfbf1"/>
+  <rect x="68" y="368" width="384" height="72" fill="#f0fdfa"/>
+</svg>
