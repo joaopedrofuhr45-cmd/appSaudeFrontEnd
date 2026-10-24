@@ -3,8 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@environment/environment';
 import {
-  Consulta, ConsultaAgendamento, ConsultaDetalhe, ConsultaPaciente,
-  HistoricoConsulta, MedicoOpcao, PacienteOpcao
+  Consulta, ConsultaAgendamento, ConsultaDetalhe, MedicoOpcao, PacienteOpcao
 } from '@features/consulta/models/consulta.model';
 
 @Injectable({ providedIn: 'root' })
@@ -12,6 +11,7 @@ export class ConsultaService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl.replace(/\/auth\/?$/, '');
 
+  /** Agenda geral do dia (atendente). Médico: MedicoService.listarAgenda. Paciente: PacienteService.listarMinhasConsultas. */
   listarPorData(data: string): Observable<Consulta[]> {
     return this.http.get<Consulta[]>(`${this.baseUrl}/consultas`, {
       params: new HttpParams().set('data', data)
@@ -28,14 +28,6 @@ export class ConsultaService {
 
   cancelar(id: number | string): Observable<ConsultaDetalhe> {
     return this.http.patch<ConsultaDetalhe>(`${this.baseUrl}/consultas/${id}/cancelar`, {});
-  }
-
-  listarMinhasConsultas(): Observable<ConsultaPaciente[]> {
-    return this.http.get<ConsultaPaciente[]>(`${this.baseUrl}/consultas/paciente`);
-  }
-
-  listarHistorico(): Observable<HistoricoConsulta[]> {
-    return this.http.get<HistoricoConsulta[]>(`${this.baseUrl}/consultas/paciente/historico`);
   }
 
   agendar(dados: ConsultaAgendamento): Observable<void> {

@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConsultaService } from '@features/consulta/services/consulta.service';
+import { PacienteService } from '@features/paciente/services/paciente.service';
 import { ConsultaPaciente } from '@features/consulta/models/consulta.model';
 import { StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
 import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
@@ -19,6 +20,7 @@ import { RevealDirective } from '@shared/ui/reveal/reveal.component';
 })
 export class PacienteHomeComponent implements OnInit {
   private readonly consultaService = inject(ConsultaService);
+  private readonly pacienteService = inject(PacienteService);
 
   consultas: ConsultaPaciente[] = [];
   especialidades: string[] = [];
@@ -26,7 +28,7 @@ export class PacienteHomeComponent implements OnInit {
   erro = '';
 
   ngOnInit(): void {
-    this.consultaService.listarMinhasConsultas().subscribe({
+    this.pacienteService.listarMinhasConsultas().subscribe({
       next: (dados) => {
         this.consultas = dados;
         this.carregando = false;

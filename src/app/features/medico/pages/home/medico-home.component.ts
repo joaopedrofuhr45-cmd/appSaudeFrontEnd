@@ -6,7 +6,6 @@ import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
 import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { ConsultaRowComponent } from '@features/consulta/components/consulta-row/consulta-row.component';
 import { StatusBadgeComponent, StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
-import { ConsultaService } from '@features/consulta/services/consulta.service';
 import { Consulta } from '@features/consulta/models/consulta.model';
 import { MedicoService } from '@features/medico/services/medico.service';
 
@@ -18,8 +17,7 @@ import { MedicoService } from '@features/medico/services/medico.service';
   styleUrl: './medico-home.component.css',
 })
 export class MedicoHomeComponent implements OnInit {
-  private readonly consultaService = inject(ConsultaService);
-  private readonly perfilService = inject(MedicoService);
+  private readonly medicoService = inject(MedicoService);
   nome = 'Médico';
   subtitulo = 'Área médica';
 
@@ -29,10 +27,10 @@ export class MedicoHomeComponent implements OnInit {
   situacao = '';
 
   ngOnInit(): void {
-    this.perfilService.obterMeuPerfil().subscribe({ next: p => { this.nome = p.nome; this.subtitulo = p.especialidade; } });
+    this.medicoService.obterMeuPerfil().subscribe({ next: p => { this.nome = p.nome; this.subtitulo = p.especialidade; } });
     const hoje = new Date().toLocaleDateString('en-CA');
 
-    this.consultaService.listarPorData(hoje).subscribe({
+    this.medicoService.listarAgenda(hoje).subscribe({
       next: (dados) => {
         this.consultas = dados;
         this.carregando = false;

@@ -3,12 +3,12 @@ import { FormsModule } from '@angular/forms'; import { CommonModule } from '@ang
 import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from '@shared/ui/page-header/page-header.component';
 import { StatusBadgeComponent,StatusConsulta } from '@features/consulta/components/status-badge/status-badge.component';
-import { ConsultaService } from '@features/consulta/services/consulta.service';
+import { PacienteService } from '@features/paciente/services/paciente.service';
 import { ConsultaPaciente } from '@features/consulta/models/consulta.model';
 @Component({selector:'app-consultas-anteriores',standalone:true,imports:[CommonModule,FormsModule,RouterLink,PageHeaderComponent,StatusBadgeComponent],templateUrl:'./consultas-anteriores.component.html',styleUrl:'./consultas-anteriores.component.css'})
 export class ConsultasAnterioresComponent implements OnInit {
- private readonly consultaService=inject(ConsultaService); busca='';periodo='Últimos 12 meses';situacao='Todas';consultas:ConsultaPaciente[]=[];carregando=true;erro='';
- ngOnInit():void{this.consultaService.listarMinhasConsultas().subscribe({next:d=>{this.consultas=d;this.carregando=false},error:()=>{this.erro='Não foi possível carregar suas consultas.';this.carregando=false}});}
+ private readonly pacienteService=inject(PacienteService); busca='';periodo='Últimos 12 meses';situacao='Todas';consultas:ConsultaPaciente[]=[];carregando=true;erro='';
+ ngOnInit():void{this.pacienteService.listarMinhasConsultas().subscribe({next:d=>{this.consultas=d;this.carregando=false},error:()=>{this.erro='Não foi possível carregar suas consultas.';this.carregando=false}});}
  get filtradas():ConsultaPaciente[]{const termo=this.busca.trim().toLocaleLowerCase('pt-BR');const limite=this.periodo==='Últimos 30 dias'?30:this.periodo==='Últimos 6 meses'?180:365;return this.consultas.filter(c=>{const okBusca=!termo||`${c.medico} ${c.especialidade}`.toLocaleLowerCase('pt-BR').includes(termo);const okSit=this.situacao==='Todas'||this.statusTexto(c.status)===this.situacao;const okPeriodo=Date.now()-new Date(c.dataHora).getTime()<=limite*86400000;return okBusca&&okSit&&okPeriodo&&new Date(c.dataHora).getTime()<Date.now();}).sort((a,b)=>new Date(b.dataHora).getTime()-new Date(a.dataHora).getTime());}
  statusParaBadge(s:ConsultaPaciente['status']):StatusConsulta{return s.toLowerCase().replace('_','-') as StatusConsulta;}
  statusTexto(s:ConsultaPaciente['status']):string{return ({AGENDADO:'Agendada',CONFIRMADO:'Confirmada',EM_ESPERA:'Pendente',CANCELADO:'Cancelada',CONCLUIDO:'Concluída'})[s];}

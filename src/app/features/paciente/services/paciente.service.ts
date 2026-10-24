@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '@environment/environment';
+import { ConsultaPaciente, HistoricoConsulta } from '@features/consulta/models/consulta.model';
 import { AlterarSenhaPaciente, PacientePerfil } from '@features/paciente/models/paciente-perfil';
 
 @Injectable({ providedIn: 'root' })
@@ -20,5 +21,13 @@ export class PacienteService {
 
   alterarSenha(dados: AlterarSenhaPaciente): Observable<void> {
     return this.http.patch<void>(`${this.baseUrl}/pacientes/me/senha`, dados);
+  }
+
+  listarMinhasConsultas(): Observable<ConsultaPaciente[]> {
+    return this.http.get<ConsultaPaciente[]>(`${this.baseUrl}/pacientes/me/consultas`);
+  }
+
+  listarHistorico(): Observable<HistoricoConsulta[]> {
+    return this.http.get<HistoricoConsulta[]>(`${this.baseUrl}/pacientes/me/consultas/historico`);
   }
 }
