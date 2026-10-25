@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, inject } from '@angular/core';
+import { FotoBlobService } from '@shared/services/foto-blob.service';
 import { FotoPerfilService, RecursoPerfil } from '@shared/services/foto-perfil.service';
 
 const TIPOS = ['image/jpeg', 'image/png', 'image/webp'];
@@ -12,17 +13,21 @@ const MAX_BYTES = 2 * 1024 * 1024;
 })
 export class AvatarUploadComponent implements OnChanges {
   private readonly fotos = inject(FotoPerfilService);
+  private readonly blobs = inject(FotoBlobService);
 
   @Input({ required: true }) recurso!: RecursoPerfil;
   @Input() nome = '';
   @Input() fotoUrl?: string | null;
+  @Output() fotoAlterada = new EventEmitter<string | null>();
 
   imagem: string | null = null;
   enviando = false;
   erro = '';
 
   ngOnChanges(): void {
-    if (this.fotoUrl) this.imagem = this.fotoUrl;
+    if (this.fotoUrl && !this.enviando) {
+      this.blobs.carregar(this.fotoUrl).subscribe({ next: (src) => (this.imagem = src), error: () => (this.imagem = null) });
+    }
   }
 
   get iniciais(): string {
@@ -44,7 +49,7 @@ export class AvatarUploadComponent implements OnChanges {
     this.imagem = previa;
     this.enviando = true;
     this.fotos.enviar(this.recurso, arquivo).subscribe({
-      next: (r) => { this.enviando = false; this.imagem = r.fotoUrl ?? previa; },
+      next: () => { this.enviando = false; this.imagem = previa; this.fotos.alterada$.next(previa); this.fotoAlterada.emit(previa); },
       error: () => { this.enviando = false; this.imagem = anterior; this.erro = 'Não foi possível enviar a foto.'; },
     });
   }
@@ -53,7 +58,7 @@ export class AvatarUploadComponent implements OnChanges {
     this.erro = '';
     this.enviando = true;
     this.fotos.remover(this.recurso).subscribe({
-      next: () => { this.enviando = false; this.imagem = null; },
+      next: () => { this.enviando = false; this.imagem = null; this.fotos.alterada$.next(null); this.fotoAlterada.emit(null); },
       error: () => { this.enviando = false; this.erro = 'Não foi possível remover a foto.'; },
     });
   }

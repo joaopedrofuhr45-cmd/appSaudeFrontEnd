@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { resolverFotoUrl } from '@shared/utils/foto-url';
 
 import { environment } from '@environment/environment';
 import { ConsultaPaciente, HistoricoConsulta } from '@features/consulta/models/consulta.model';
@@ -12,11 +13,11 @@ export class PacienteService {
   private readonly baseUrl = environment.apiUrl.replace(/\/auth\/?$/, '');
 
   obterMeuPerfil(): Observable<PacientePerfil> {
-    return this.http.get<PacientePerfil>(`${this.baseUrl}/pacientes/me`);
+    return this.http.get<PacientePerfil>(`${this.baseUrl}/pacientes/me`).pipe(map(resolverFotoUrl));
   }
 
   atualizarPerfil(perfil: PacientePerfil): Observable<PacientePerfil> {
-    return this.http.put<PacientePerfil>(`${this.baseUrl}/pacientes/me`, perfil);
+    return this.http.put<PacientePerfil>(`${this.baseUrl}/pacientes/me`, perfil).pipe(map(resolverFotoUrl));
   }
 
   alterarSenha(dados: AlterarSenhaPaciente): Observable<void> {

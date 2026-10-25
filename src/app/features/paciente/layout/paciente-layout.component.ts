@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '@shared/ui/sidebar/sidebar.component';
+import { FotoPerfilService } from '@shared/services/foto-perfil.service';
 import { PacienteService } from '@features/paciente/services/paciente.service';
 
 @Component({
@@ -23,11 +24,13 @@ import { PacienteService } from '@features/paciente/services/paciente.service';
 })
 export class PacienteLayoutComponent implements OnInit {
   private readonly pacienteService = inject(PacienteService);
+  private readonly fotos = inject(FotoPerfilService);
   nomePaciente = 'Paciente';
   subtitulo = 'Área do paciente';
   fotoUrl: string | null | undefined = null;
 
   ngOnInit(): void {
+    this.fotos.alterada$.subscribe((url) => (this.fotoUrl = url));
     this.pacienteService.obterMeuPerfil().subscribe({
       next: (perfil) => { this.nomePaciente = perfil.nome; this.fotoUrl = perfil.fotoUrl; },
     });

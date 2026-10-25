@@ -1,4 +1,5 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, inject } from '@angular/core';
+import { FotoBlobService } from '@shared/services/foto-blob.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export interface SidebarItem {
@@ -15,7 +16,15 @@ export interface SidebarItem {
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnChanges {
+  private readonly blobs = inject(FotoBlobService);
+  fotoSrc: string | null = null;
+
+  ngOnChanges(): void {
+    if (!this.fotoUrl) { this.fotoSrc = null; return; }
+    this.blobs.carregar(this.fotoUrl).subscribe({ next: (s) => (this.fotoSrc = s), error: () => (this.fotoSrc = null) });
+  }
+
   @Input() nome = '';
   @Input() subtitulo = '';
   @Input() itens: SidebarItem[] = [];
