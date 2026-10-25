@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { resolverFotoUrl } from '@shared/utils/foto-url';
 import { environment } from '@environment/environment';
 import { FotoPerfilResponse } from '@shared/models/perfil-configuracao';
 
@@ -14,7 +15,7 @@ export class FotoPerfilService {
   enviar(recurso: RecursoPerfil, arquivo: File): Observable<FotoPerfilResponse> {
     const form = new FormData();
     form.append('foto', arquivo);
-    return this.http.put<FotoPerfilResponse>(`${this.baseUrl}/${recurso}/me/foto`, form);
+    return this.http.put<FotoPerfilResponse>(`${this.baseUrl}/${recurso}/me/foto`, form).pipe(map(resolverFotoUrl));
   }
 
   remover(recurso: RecursoPerfil): Observable<void> {
