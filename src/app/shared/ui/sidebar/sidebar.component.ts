@@ -20,6 +20,7 @@ export class SidebarComponent {
   @Input() subtitulo = '';
   @Input() itens: SidebarItem[] = [];
   @Input() rotaLogout = '/';
+  @Input() fotoUrl?: string | null;
 
   /** Só vale no celular: a sidebar vira uma gaveta aberta pelo botão do menu. */
   aberto = false;

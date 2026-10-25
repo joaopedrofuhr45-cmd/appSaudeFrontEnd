@@ -1,0 +1,13 @@
+.senha-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; border: 1px solid var(--cor-borda); border-radius: 9px; background: #f8faf9; }
+.senha-form > strong, .check, small, p, button { grid-column: 1 / -1; }
+strong { font-size: 12px; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 600; }
+label input:not([type=checkbox]) { min-height: 38px; padding: 8px 10px; border: 1px solid var(--cor-borda); border-radius: 7px; font: inherit; font-weight: 400; }
+.check { flex-direction: row; align-items: center; font-weight: 400; }
+small { color: var(--cor-texto-suave); font-size: 11px; }
+small.invalido, .erro { color: var(--cor-erro); }
+p { margin: 0; font-size: 12px; }
+.ok { color: var(--cor-sucesso); }
+button { justify-self: end; min-height: 36px; padding: 0 16px; border: 0; border-radius: 7px; background: var(--cor-primaria); color: #fff; font-size: 12px; font-weight: 600; cursor: pointer; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+@media (max-width: 700px) { .senha-form { grid-template-columns: 1fr; } button { justify-self: stretch; } }

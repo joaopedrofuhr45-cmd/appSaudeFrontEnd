@@ -1,0 +1,17 @@
+<div class="foto">
+  <div class="avatar" [class.carregando]="enviando">
+    @if (imagem) { <img [src]="imagem" alt="Foto de perfil" /> } @else { <span>{{ iniciais }}</span> }
+  </div>
+  <div class="acoes">
+    <strong>Foto de perfil</strong>
+    <small>JPG, PNG ou WebP, até 2 MB.</small>
+    <div class="botoes">
+      <label class="trocar">
+        {{ imagem ? 'Trocar foto' : 'Adicionar foto' }}
+        <input type="file" accept="image/jpeg,image/png,image/webp" (change)="escolher($event)" [disabled]="enviando" hidden />
+      </label>
+      @if (imagem) { <button type="button" class="remover" (click)="remover()" [disabled]="enviando">Remover</button> }
+    </div>
+    @if (erro) { <p class="erro" role="alert">{{ erro }}</p> }
+  </div>
+</div>
