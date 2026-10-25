@@ -10,7 +10,7 @@
     <span class="marca" aria-hidden="true">♥</span>
     <span class="titulo">Saúde<span class="mais">+</span></span>
   </div>
-  <span class="avatar" aria-hidden="true">@if (fotoUrl) { <img [src]="fotoUrl" alt="" /> } @else { {{ iniciais }} }</span>
+  <span class="avatar" aria-hidden="true">@if (fotoSrc) { <img [src]="fotoSrc" alt="" /> } @else { {{ iniciais }} }</span>
 </header>
 
 <div class="fundo" [class.visivel]="aberto" (click)="fechar()" aria-hidden="true"></div>
@@ -23,7 +23,7 @@
 
   <div class="who">
     <span class="avatar" aria-hidden="true">
-      @if (fotoUrl) { <img [src]="fotoUrl" alt="" /> } @else { {{ iniciais }} }
+      @if (fotoSrc) { <img [src]="fotoSrc" alt="" /> } @else { {{ iniciais }} }
       <span class="online"></span>
     </span>
     <div class="dados">

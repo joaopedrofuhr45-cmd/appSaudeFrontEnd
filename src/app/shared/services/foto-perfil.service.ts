@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { resolverFotoUrl } from '@shared/utils/foto-url';
 import { environment } from '@environment/environment';
 import { FotoPerfilResponse } from '@shared/models/perfil-configuracao';
@@ -11,6 +11,9 @@ export type RecursoPerfil = 'pacientes' | 'medicos' | 'atendentes';
 export class FotoPerfilService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl.replace(/\/auth\/?$/, '');
+
+  /** Avisa quem mostra a foto (sidebar) que ela mudou; null = removida. */
+  readonly alterada$ = new Subject<string | null>();
 
   enviar(recurso: RecursoPerfil, arquivo: File): Observable<FotoPerfilResponse> {
     const form = new FormData();
