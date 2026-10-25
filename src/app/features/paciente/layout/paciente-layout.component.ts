@@ -11,6 +11,7 @@ import { PacienteService } from '@features/paciente/services/paciente.service';
     <div class="paciente-layout">
       <app-sidebar
         [nome]="nomePaciente"
+        [fotoUrl]="fotoUrl"
         [subtitulo]="subtitulo"
         [itens]="itens"
         rotaLogout="/menu-inicial"
@@ -24,10 +25,11 @@ export class PacienteLayoutComponent implements OnInit {
   private readonly pacienteService = inject(PacienteService);
   nomePaciente = 'Paciente';
   subtitulo = 'Área do paciente';
+  fotoUrl: string | null | undefined = null;
 
   ngOnInit(): void {
     this.pacienteService.obterMeuPerfil().subscribe({
-      next: (perfil) => { this.nomePaciente = perfil.nome; },
+      next: (perfil) => { this.nomePaciente = perfil.nome; this.fotoUrl = perfil.fotoUrl; },
     });
   }
 

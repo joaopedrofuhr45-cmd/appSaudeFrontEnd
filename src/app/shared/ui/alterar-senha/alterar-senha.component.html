@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="enviar()" class="senha-form">
+  <strong>Mudar senha</strong>
+  <label>Nova senha
+    <input [type]="mostrar ? 'text' : 'password'" formControlName="nova" autocomplete="new-password" />
+  </label>
+  <label>Confirmar nova senha
+    <input [type]="mostrar ? 'text' : 'password'" formControlName="confirmar" autocomplete="new-password" />
+  </label>
+  <label class="check"><input type="checkbox" [checked]="mostrar" (change)="mostrar = !mostrar" /> Mostrar senhas</label>
+  <small [class.invalido]="form.controls.nova.touched && form.controls.nova.invalid">
+    Mínimo de 8 caracteres, com letras e números.
+  </small>
+  @if (diferente) { <p class="erro" role="alert">A confirmação não corresponde à nova senha.</p> }
+  @if (erro) { <p class="erro" role="alert">{{ erro }}</p> }
+  @if (mensagem) { <p class="ok">{{ mensagem }}</p> }
+  <button type="submit" [disabled]="salvando">{{ salvando ? 'Salvando…' : 'Salvar nova senha' }}</button>
+</form>
